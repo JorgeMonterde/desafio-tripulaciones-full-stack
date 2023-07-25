@@ -1,0 +1,14 @@
+@import '../utils/variables.scss';
+@import '../utils/mixins.scss';
+
+.footer {
+  min-height: 4.8rem;
+  background-color: #f7f4f1;
+  width: 100vw;
+  
+    a {
+      display: inline-block;
+      padding: 2rem;
+      color: #6a6969;
+    }
+}
