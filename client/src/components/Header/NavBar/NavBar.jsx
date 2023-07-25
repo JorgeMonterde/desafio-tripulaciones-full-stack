@@ -1,5 +1,6 @@
 import { Navbar } from "@nextui-org/react";
 import { Link } from 'react-router-dom';
+import Button from '../../baseComponents/Button/Button';
 
 const NavBar = () => {  
 
@@ -44,6 +45,7 @@ const NavBar = () => {
           {linksNavBar.map((item) => (
               <Link className='navBar_link' to={item.link} key={item.name} >{item.name}</Link>
           ))}
+          <Link to="login"><Button text="login"/></Link>
         </Navbar.Content>
         <Navbar.Collapse className='collapse'>
           {linksCollapse.map((item) => (
