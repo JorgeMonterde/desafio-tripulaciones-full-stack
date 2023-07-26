@@ -1,6 +1,7 @@
 @import '../utils/variables.scss';
+@import '../utils/media_queries.scss';
 
-.navBar {
+.nextui-c-hhqfap {
   display: flex;
   justify-content: space-between;
   place-content: center;
@@ -12,18 +13,31 @@
     height: 88px;
     padding: 0;
   }
-
+  
   .navBar_link {
     color: #6a6969;
   }
+  
   .transparent {
     background-color: transparent;
     width: 100vw;
   }
+
+  .nextui-c-iTPCAT-dusCa-isOpen-true {
+    padding-bottom: 0;
+    height: fit-content;
+    opacity: 0.9;
+  }
+
   .collapse > ul {
     @include flexCol;
     gap: 1rem;
     width: 100%;
+  }
+  .nextui-navbar-toggle {
+    .line {
+      height: 0.1rem;
+    }
   }
   .nextui-c-egxOLa.navBar_layer {
     width: 100vw;
