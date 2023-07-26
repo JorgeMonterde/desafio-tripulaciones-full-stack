@@ -1,0 +1,14 @@
+//Basecomponents scss
+@import './components/baseComponents/Form';
+
+
+//Components scss
+@import './components/Footer';
+@import './components/NavBar';
+@import './components/Header';
+
+//Components/pages scss
+@import './components/pages/Home';
+
+//general scss
+@import './views/App';

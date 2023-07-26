@@ -1,0 +1,25 @@
+@import '../utils/variables.scss';
+
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  width: 100vw;
+
+  .navBar_link {
+    color: #6a6969;
+  }
+  .transparent {
+    background-color: transparent;
+    width: 100vw;
+  }
+  .collapse > ul {
+    @include flexCol;
+    gap: 1rem;
+    width: 100%;
+  }
+  .nextui-c-egxOLa.navBar_layer {
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+  }
+}

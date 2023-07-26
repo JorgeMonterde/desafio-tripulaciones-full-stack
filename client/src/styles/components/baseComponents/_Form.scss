@@ -1,0 +1,19 @@
+@import '../../utils/mixins.scss';
+@import '../../utils/variables.scss';
+
+.form_contact {
+  @include flexCol;
+  text-align: start;
+  gap: 0.4rem;
+
+  label {
+    @include flexCol;
+  }
+
+  p.text_error {
+    font-size: 1rem;
+    height: 1.4rem;
+    margin-bottom: 0.2rem;
+    color: $danger_color;
+  }
+}
