@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt");
-const users = require("../models/users");
+const Users = require("../models/users");
 const saltRounds = 10;
 
 
@@ -8,7 +8,7 @@ const saltRounds = 10;
 const getUserInfo = async (req,res) => {
     try {
         let {email} = req.decoded.data;
-        let data = await users.getUserByEmail(email);
+        let data = await Users.getUserByEmail(email);
         res.status(200).json({
             "success": true,
             "message": `User info supplied: ${data}`,
@@ -28,13 +28,21 @@ const getUserInfo = async (req,res) => {
 //POSTs
 //create user
 const createUser = async (req,res) => {
-    let {email, password, user_name, firstname, surname} = req.body.data;
+    console.log("--->",req.body);
+    let {first_name, surname, email, password, user_position} = req.body;
     const hashed_password = await bcrypt.hash(password, saltRounds);
+    const userInfo = { // "user_id" is automatically added by SQL DDBB
+        first_name,
+        surname,
+        email,
+        user_position,
+        hashed_password,
+        admin:false,
+        logged:false
+    };
+
     try {
-        // "user_id" is automatically added by SQL DDBB
-        let admin = false;
-        let logged = false;
-        let createInfo = await users.createUser(email, hashed_password, user_name, admin, firstname, surname, logged);
+        let createInfo = await Users.create(userInfo);
         if(createInfo){
             res.status(200).json({
                 "success": true,
@@ -82,7 +90,7 @@ const editUserProfile = async (req,res) => {
         };
 
         // "user_id" goes in "userInfo" to search the user row in the DDBB.
-        let editedInfo = await users.updateUser(id_user, email, password, user_name, firstname, surname);
+        let editedInfo = await Users.updateUser(id_user, email, password, user_name, firstname, surname);
 
         res.status(200).json({
             "success": true,
@@ -104,7 +112,7 @@ const editUserProfile = async (req,res) => {
 const deleteUser = async (req,res) => {
     let user_id = req.params.id; // delete by user by id
     try {
-        let deleteInfo = await users.deleteUser(user_id);
+        let deleteInfo = await Users.deleteUser(user_id);
 
         res.status(200).json({
             "success": true,

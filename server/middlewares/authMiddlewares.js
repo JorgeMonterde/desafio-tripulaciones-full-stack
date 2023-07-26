@@ -1,6 +1,6 @@
 const express = require('express');
 const jwt = require("jsonwebtoken");
-const users = require("../models/users");
+const Users = require("../models/users");
 require("dotenv").config();
 const jwtSecret = process.env.JWT_SECRET;
 const bcrypt = require('bcrypt');
@@ -13,9 +13,9 @@ const authCheck = (req, res, next) => {
 
     if(token){
         jwt.verify(token, jwtSecret, async (err, decoded) => {
-            //console.log("decoded -----> ", decoded);
+            console.log("decoded -----> ", decoded);
             let {email} = decoded;
-            let data = await users.getUserByEmail(email);
+            let data = await Users.findOne({ where: { "email": email } });
             console.log("data: ",data)
             if(data.logged == true) {
                 req.decoded = decoded;
@@ -52,7 +52,7 @@ const isUserLoggedCheck = (req, res, next) => {
         jwt.verify(token, jwtSecret, async (err, decoded) => {
             //console.log("decoded -----> ", decoded);
             let {email} = decoded;
-            let data = await users.getUserByEmail(email);
+            let data = await Users.findOne({ where: { "email": email } });
             //console.log("data: ",data)
             if(data.logged == true) {
                 req.decoded = decoded;
@@ -89,23 +89,25 @@ const checkEmailLogIn = async(req, res, next) => {
     let {email, password} = req.body;
     console.log("check email login: ", email, password)
     try {
-        let data = await users.getUserByEmail(email);
+        //check if a user with the provided email is already in the database:
+        let data = await Users.findOne({ where: { "email": email } });
         if(!data){
             console.log("This email do not have an account");
-            res.status(401).json({"success": false, "msj":"This email do not have an account"});
+            res.status(401).json({"success": false, "message":"This email do not have an account"});
         } else {
             console.log("match??", password, data.hashed_password);
+            //check if the provided 
             const match = await bcrypt.compare(password, data.hashed_password);
             if(match){
-                const result = await users.logInUserTrue(email);
+                //change user's "logged" state to true:
+                const result = await Users.update({logged: true}, {where: {"email": email}});
                 req.user = {email};
                 console.log("++++++>>>", result);
                 next();
             } else {
-                res.status(400).json({ msg: 'Incorrect user or password'});
+                res.status(400).json({ "message": 'Incorrect user or password'});
             }
         }
-        
     } catch (error) {
         console.log(`Error: ${error}`);
     }
@@ -116,8 +118,8 @@ const signUpUser = async(req, res, next) => {
     try {
         const {email, password, userName, admin, firstName, surname, logged} = req.body;
         const hashedPassword = await bcrypt.hash(password, saltRounds);
-        data = await users.createUser(email, hashedPassword, userName, admin, firstName, surname, logged);
-        await users.logInUserTrue(email);
+        data = await Users.createUser(email, hashedPassword, userName, admin, firstName, surname, logged);
+        await Users.logInUserTrue(email);
 
         req.user = {email};
         next();
@@ -135,7 +137,7 @@ const signUpUser = async(req, res, next) => {
 
 
 
-//module.exports = protectedRoutes;
+
 module.exports = {
     authCheck,
     adminAuthCheck,
