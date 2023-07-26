@@ -6,10 +6,11 @@ const cors = require("cors");
 require("./utils/auth.js");
 require("dotenv").config();
 const error404 = require('./middlewares/error404');
+const helmet = require("helmet");
 
 // Initialize server
 const app = express();
-const port = 3000;
+const port = process.env.PORT;
 
 //Passport and session
 app.use(session({
@@ -29,9 +30,10 @@ app.use(express.json()); // Enable data type to receive
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser()); //Better access to cookies
 app.use(cors({credentials: true, origin: process.env.FRONTEND_DOMAIN})) //Enable all CORS requests
+app.use(helmet());
 
 //Routes 
-app.use('/api/users/user',usersApiRoutes); // Users routes
+app.use('/api/users',usersApiRoutes); // Users routes
 app.use('/auth',authRoutes); // Auth routes
 
 app.use(error404);

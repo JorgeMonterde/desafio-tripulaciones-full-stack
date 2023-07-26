@@ -1,5 +1,10 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+
+
+
 
 const inputDefaultValues = {
   email: '',
@@ -10,11 +15,45 @@ const Login = () => {
   const [inputValue, setInputValue] = useState({...inputDefaultValues});
   const { register, handleSubmit, formState: { errors } } = useForm({ 
     defaultValues: inputDefaultValues });
-  const onSubmit = (data) => console.log(data);
+    const navigate = useNavigate();
+    
+     const handleClick = async () => {
+       //logout
+       const authResponse = await axios.get("http://localhost:3000/auth/logout", { withCredentials: true });
+       console.log("auth response: ",authResponse)
+       if(authResponse.data.success){
+         //Redirect
+         console.log("Logout successfull");
+         navigate("/");
+       } else {
+         //Not logged out
+         console.log("Could not logout");
+       }
+     };
+    
+    
+    
+    //Submit function:
+    const onSubmit = async(data) => {
+      const {email, password} = data;
+      console.log("data???", data)
+    //log in 
+    const authResponse = await axios.post("http://localhost:3000/auth/email/login", {email, password}, { withCredentials: true });
+    console.log("auth response: ",authResponse)
+
+    if(authResponse.data.success){
+      //Redirect
+      console.log("From client: You are logged in");
+      navigate("/catalogue");
+    } else {
+      //Not logged in
+      console.log("From client: You are NOT logged in");
+    }
+    console.log(data);
+  };
 
   const handleChange = (e) => {
     e.preventDefault();
-
     setInputValue({
       ...inputValue,
       [e.target.name]: e.target.value,
@@ -43,6 +82,10 @@ const Login = () => {
         {errors.password && <p className='text_error' role="alert">{errors.password?.message}</p>}
         <button type="submit">Enviar</button>
       </form>
+
+
+      
+      <button onClick={handleClick}>Logout</button>
     </>
   )
   

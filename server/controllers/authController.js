@@ -1,7 +1,7 @@
 const passport = require('passport');
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
-let users = require("../models/users");
+let Users = require("../models/users");
 const transporter = require('../utils/nodemailer');
 const bcrypt = require('bcrypt');
 let jwtSecret = process.env.JWT_SECRET;
@@ -14,15 +14,17 @@ const saltRounds = 10;
 //EMAIL AND PASSWORD AUTH
 
 //Destroy session and clear cookies
-const destroySessionAndClearCookies = (req, res) => {
+const destroySessionAndClearCookies = async (req, res) => {
     // Now we have to change the user state because he is logging out:
     let email = req.decoded.email;
-    users.logInUserFalse(email);
+
+    //change user's "logged" state to false:
+    const result = await Users.update({logged: false}, {where: {"email": email}});
 
     req.logout(function(err) {
         if (err) { return next(err); }
         req.session.destroy();
-        res.clearCookie("access-token").redirect('/login');
+        res.clearCookie("access-token").json({"success": true, "message":"Good bye! You are logged out"});
     });
 }
 
@@ -72,7 +74,7 @@ const resetPassword = async(req, res) => {
         const payload = jwt.verify(recoverToken, jwtSecret);
         const password = req.body.password;
         const hashPassword = await bcrypt.hash(password, saltRounds);
-        await users.updateUserPassword(payload.email, hashPassword);
+        await Users.updateUserPassword(payload.email, hashPassword);
         res.status(200).json({"success": true, "message":'Password actualized'});
     } catch (error) {
         console.log('Error:', error);
