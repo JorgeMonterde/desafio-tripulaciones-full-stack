@@ -16,6 +16,10 @@ const NavBar = () => {
     {
       name: "Sobre nosotros",
       link: "/about",
+    },
+    {
+      name: "Contacto",
+      link: "/contact",
     }
   ];
 
@@ -31,6 +35,10 @@ const NavBar = () => {
     {
       name: "Sobre nosotros",
       link: "/about",
+    },
+    {
+      name: "Contacto",
+      link: "/contact",
     }
   ];
 
