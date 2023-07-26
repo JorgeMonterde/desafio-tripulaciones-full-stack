@@ -1,7 +1,9 @@
-import React from "react";
+import Form from '../../baseComponents/Form/Form';
 
 const Contact = () => {
-  return <div>Contact</div>;
+  return <>
+    <Form />
+  </>;
 };
 
 export default Contact;
