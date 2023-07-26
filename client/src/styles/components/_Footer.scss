@@ -2,13 +2,15 @@
 @import '../utils/mixins.scss';
 
 .footer {
+  display: flex;
+  justify-content: space-around;
+  text-align: left;
   min-height: 4.8rem;
   background-color: #f7f4f1;
   width: 100vw;
   
     a {
       display: inline-block;
-      padding: 2rem;
       color: #6a6969;
     }
 }
