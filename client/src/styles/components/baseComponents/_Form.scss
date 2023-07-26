@@ -1,8 +1,8 @@
 @import '../../utils/mixins.scss';
 @import '../../utils/variables.scss';
+@import '../../utils/media_queries.scss';
 
 .form_contact {
-  @include flexCol;
   text-align: start;
   gap: 0.4rem;
 
@@ -15,5 +15,27 @@
     height: 1.4rem;
     margin-bottom: 0.2rem;
     color: $danger_color;
+  }
+
+  @include small_medium {
+    font-size: 1.2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: start;
+    gap: 1rem;
+    width: 80%;
+  
+    label {
+      width: 45%;
+  
+      input {
+        @include inputStyle;
+      }
+
+      select {
+        @include inputStyle;
+      }
+    }
   }
 }

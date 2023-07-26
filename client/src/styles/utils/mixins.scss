@@ -13,3 +13,11 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+@mixin inputStyle {
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  margin: 0px;
+  padding-left: 0.4rem;
+  border: solid 0.01px gray;
+}
