@@ -7,8 +7,8 @@ WORKDIR /app
 # Copiar los archivos de dependencias del back-end (package.json y package-lock.json)
 COPY package*.json ./
 
-COPY index.js ./
-
+# Verificar el contenido del directorio /app antes de continuar con la instalación
+RUN ls
 
 # Instalar las dependencias
 RUN npm install
