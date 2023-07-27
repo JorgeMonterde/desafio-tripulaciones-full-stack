@@ -24,7 +24,7 @@ jobs:
           source-connection-arn: ${{ secrets.AWS_CONNECTION_SOURCE_ARN }}
           repo: https://github.com/${{ github.repository }}
           branch: ${{ github.ref }}
-          runtime: NODEJS_12
+          runtime: NODEJS_12f
           build-command: npm install
           start-command: npm start
           port: 18000
