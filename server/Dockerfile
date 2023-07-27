@@ -11,7 +11,7 @@ COPY package*.json ./
 RUN ls
 
 # Instalar las dependencias
-RUN npm install
+RUN npm ci
 
 # Copiar los archivos del back-end al contenedor
 COPY . .
