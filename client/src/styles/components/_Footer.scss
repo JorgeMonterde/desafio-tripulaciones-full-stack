@@ -2,13 +2,32 @@
 @import '../utils/mixins.scss';
 
 .footer {
-  min-height: 4.8rem;
+  display: flex;
+  justify-content: space-around;
   background-color: #f7f4f1;
+  height: 88px;
   width: 100vw;
+
+  .footer_links {
+    @include flexCenterCenter;
+    gap: 2rem;
+  }
   
-    a {
-      display: inline-block;
-      padding: 2rem;
-      color: #6a6969;
+  .footer_RRSS {
+    @include flexCenterCenter;
+    gap: 2rem;
+    
+    li {
+      height: fit-content;
     }
+    .icon {
+      width: 2.4rem;
+      height: 2.4rem;
+    }
+  }
+
+  a {
+    display: inline-block;
+    color: #6a6969;
+  }
 }

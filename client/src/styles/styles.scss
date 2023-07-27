@@ -1,5 +1,6 @@
 //Basecomponents scss
 @import './components/baseComponents/Form';
+@import './components/baseComponents/ClaimCard';
 
 
 //Components scss
@@ -8,7 +9,7 @@
 @import './components/Header';
 
 //Components/pages scss
-@import './components/pages/Home';
+@import './components/pages/Landing';
 
 //general scss
 @import './views/App';
