@@ -1,4 +1,6 @@
-- name: Deploy to App Runner
+# Seteamos el workflow de github
+
+ name: Deploy to App Runner
         id: deploy-apprunner
         uses: awslabs/amazon-app-runner-deploy@main # Deploy app runner service
         with:
