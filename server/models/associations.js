@@ -1,12 +1,12 @@
-const Users = require('./users');
+const Clients = require('./clients');
 /* const Accounts = require('./accounts'); */
 const Buildings = require('./buildings');
 
 
-Users.hasOne(Buildings, {
-  foreignKey: 'user_id',
+Clients.hasOne(Buildings, {
+  foreignKey: 'client_id',
   onDelete: "CASCADE",
   onUpdate: "CASCADE"
 });
-Buildings.belongsTo(Users);
+Buildings.belongsTo(Clients);
 

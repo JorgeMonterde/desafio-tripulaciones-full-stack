@@ -3,7 +3,7 @@ const passport = require("passport");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-require("./utils/auth.js");
+
 require("dotenv").config();
 const error404 = require('./middlewares/error404');
 const helmet = require("helmet");
@@ -22,7 +22,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Routes modules
-const usersApiRoutes = require('./routes/usersApiRoutes');
+const clientsApiRoutes = require('./routes/clientsApiRoutes');
+const leadsApiRoutes = require('./routes/leadsApiRoutes');
+const buildingsApiRoutes = require('./routes/buildingsApiRoutes');
 const authRoutes = require('./routes/authRoutes');
 
 // Middlewares
@@ -33,7 +35,9 @@ app.use(cors({credentials: true, origin: process.env.FRONTEND_DOMAIN})) //Enable
 app.use(helmet());
 
 //Routes 
-app.use('/api/users',usersApiRoutes); // Users routes
+app.use('/api/clients',clientsApiRoutes); // clients routes
+app.use('/api/leads',leadsApiRoutes); // leads routes
+app.use("/api/buildings", buildingsApiRoutes); // Buildings routes
 app.use('/auth',authRoutes); // Auth routes
 
 app.use(error404);
