@@ -4,7 +4,7 @@ FROM node:14
 # Establecer el directorio de trabajo dentro del contenedor
 WORKDIR /app
 
-# Copiar los archivos de dependencias del front-end 
+# Copiar los archivos de dependencias del front-end..
 COPY package*.json ./
 
 COPY index.js ./
