@@ -4,7 +4,6 @@ import Login from '../pages/Login/Login';
 import About from '../pages/About/About';
 import Catalogue from '../pages/Catalogue/Catalogue';
 import Contact from '../pages/Contact/Contact';
-import News from '../pages/News/News';
 import StudyCases from '../pages/StudyCases/StudyCases';
 
 const Main = () => {
@@ -16,7 +15,6 @@ const Main = () => {
         <Route path='/about' element={<About />} />
         <Route path='/catalogue' element={<Catalogue />} />
         <Route path='/contact' element={<Contact />} />
-        <Route path='/news' element={<News />} />
         <Route path='studyCases' element={<StudyCases />} />
       </Routes>
     </main>
