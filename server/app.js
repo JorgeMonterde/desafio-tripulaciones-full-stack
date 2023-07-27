@@ -2,7 +2,6 @@ const express = require('express');
 const passport = require("passport");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
-const axios = require('axios');
 const cors = require("cors");
 require("./utils/auth.js");
 require("dotenv").config();
