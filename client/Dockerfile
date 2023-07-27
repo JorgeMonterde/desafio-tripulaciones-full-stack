@@ -11,7 +11,7 @@ COPY index.js ./
 
 # 
 
-RUN npm ci
+RUN npm install
 
 # Copiar los archivos del front-end al contenedor
 COPY . .
