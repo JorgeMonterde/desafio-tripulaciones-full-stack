@@ -2,7 +2,7 @@
 FROM node:14
 
 # Establecer el directorio de trabajo dentro del contenedor
-WORKDIR /app/frontend
+WORKDIR /app
 
 # Copiar los archivos de dependencias del front-end (package.json y package-lock.json)
 COPY package*.json ./
