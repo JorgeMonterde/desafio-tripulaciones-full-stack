@@ -20,7 +20,7 @@ RUN npm install client -g
 COPY . .
 
 # Comando para construir la aplicación de React (si es necesario)
-RUN npm run build
+# RUN npm run build
 
 # Exponer el puerto en el que escucha el servidor del front-end (si es necesario)
 EXPOSE 8080
