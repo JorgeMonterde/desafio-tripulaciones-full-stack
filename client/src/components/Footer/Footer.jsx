@@ -1,6 +1,10 @@
+
 import { AiFillFacebook, AiOutlineInstagram, AiOutlineTwitter } from "react-icons/ai";
 
+
 const Footer = () => {
+ 
+
   return (
     <footer className='footer'>
       <ul className='footer_links'>
@@ -14,6 +18,8 @@ const Footer = () => {
         <li><a href='https://github.com/desafioteam1/full-stack/tree/develop'><AiOutlineInstagram className='icon' /></a></li>
         <li><a href='https://github.com/desafioteam1/full-stack/tree/develop'><AiOutlineTwitter className='icon' /></a></li>
       </ul>
+
+      <a href='https://github.com/desafioteam1/full-stack/tree/develop'>@Team_1</a>
     </footer>
   );
 };
