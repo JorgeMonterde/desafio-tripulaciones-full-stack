@@ -4,11 +4,14 @@ FROM node:14
 # Establecer el directorio de trabajo dentro del contenedor
 WORKDIR /app
 
-# Copiar los archivos de dependencias del front-end (package.json y package-lock.json)
+# Copiar los archivos de dependencias del front-end 
 COPY package*.json ./
 
-# Instalar las dependencias
-RUN npm install
+COPY index.js ./
+
+# 
+
+RUN npm ci
 
 # Copiar los archivos del front-end al contenedor
 COPY . .
@@ -17,7 +20,7 @@ COPY . .
 RUN npm run build
 
 # Exponer el puerto en el que escucha el servidor del front-end (si es necesario)
-EXPOSE 3000
+EXPOSE 8080
 
 # Comando para iniciar el servidor del front-end (por ejemplo, con serve)
 CMD ["npx", "serve", "-s", "build"]
