@@ -1,7 +1,11 @@
+import { Link } from 'react-router-dom';
+
 const Landing = () => {
   
   return (
     <>
+      <Link to="/contact"><button className='contact_btn'><img src='../../../../public/assets/vite.svg'/></button></Link>
+
       <article className='claim_container'>
         <h1>Claim</h1>
         <h3>subtitle</h3>
