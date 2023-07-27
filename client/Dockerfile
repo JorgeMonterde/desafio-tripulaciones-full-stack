@@ -7,11 +7,14 @@ WORKDIR /app
 # Copiar los archivos de dependencias del front-end..
 COPY package*.json ./
 
+run npm cache clean --force
+
+
 # Verificar el contenido del directorio /app antes de continuar con la instalación
 RUN ls
 
 # Instalar las dependencias
-RUN npm install
+RUN npm install client -g
 
 # Copiar los archivos del front-end al contenedor
 COPY . .

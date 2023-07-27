@@ -7,11 +7,13 @@ WORKDIR /app
 # Copiar los archivos de dependencias del back-end (package.json y package-lock.json)
 COPY package*.json ./
 
+run npm cache clean --force
+
 # Verificar el contenido del directorio /app antes de continuar con la instalación
 RUN ls
 
 # Instalar las dependencias
-RUN npm install
+RUN npm install server -g
 
 # Copiar los archivos del back-end al contenedor
 COPY . .
