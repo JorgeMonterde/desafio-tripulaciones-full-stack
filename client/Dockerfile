@@ -7,9 +7,7 @@ WORKDIR /app
 # Copiar los archivos de dependencias del front-end..
 COPY package*.json ./
 
-COPY index.js ./
-
-# 
+# Instala dependencias cliente
 
 RUN npm install
 
