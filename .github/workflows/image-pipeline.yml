@@ -30,7 +30,7 @@ jobs:
         id: build-server-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: desafio_server
+          ECR_REPOSITORY: server
           IMAGE_TAG: ${{ github.sha }}
         run: |
           cd ./server
@@ -84,7 +84,7 @@ jobs:
         id: build-client-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: desafio_client
+          ECR_REPOSITORY: client
           IMAGE_TAG: ${{ github.sha }}
         run: |
           cd ./client
