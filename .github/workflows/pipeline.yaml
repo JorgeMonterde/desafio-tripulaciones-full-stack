@@ -17,7 +17,7 @@ jobs:
 
       - name: Deploy to App Runner
         id: deploy-apprunner
-        uses: AlbertoJBaez/full-stack-deploy@main # Asegúrate de que esté usando la versión correcta
+        uses: albertojbaez/full-stack-deploy@main # Asegúrate de que esté usando la versión correcta
         with:
           service: app-runner-git-deploy-service
           source-connection-arn: ${{ secrets.AWS_CONNECTION_SOURCE_ARN }}
