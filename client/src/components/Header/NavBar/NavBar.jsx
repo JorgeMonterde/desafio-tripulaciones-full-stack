@@ -45,7 +45,7 @@ const NavBar = () => {
   return (
     <>
       <Navbar className='navBar' isBordered>
-          <img className='navBar_logo' src='../../../../public/assets/vite.svg' alt='Logo' />
+        <Link to="/"><img className='navBar_logo' src='../../../../public/assets/vite.svg' alt='Logo' /></Link>
         <Navbar.Content className='navBar_layer' hideIn="xs">
           {linksNavBar.map((item) => (
               <Link className='navBar_link' to={item.link} key={item.name} >{item.name}</Link>

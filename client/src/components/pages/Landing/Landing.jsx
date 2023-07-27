@@ -1,8 +1,3 @@
-// import { Card } from "@nextui-org/react";
-
-import Form from '../../baseComponents/Form/Form';
-
-
 const Landing = () => {
   
   return (
@@ -27,8 +22,6 @@ const Landing = () => {
         <img className='card_img' src='../../../../public/assets/energyImg.avif' alt='Card background' />
         <p className='card_text'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
       </article>
-
-      <Form />
     </>
   )
 };
