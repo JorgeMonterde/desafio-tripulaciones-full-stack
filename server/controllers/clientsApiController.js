@@ -72,30 +72,24 @@ const createClient = async (req,res) => {
 const editClientProfile = async (req,res) => {
     try {
         let {client_id} = req.decoded.data;
-        let {email, password, user_name, firstname, surname} = req.body;
-        // If a field is not filled, do it with the current value
-        if(email == ""){
-            email = req.decoded.data.email;
-        };
-        if (password == "") {
-            password = req.decoded.data.password;
-        };
-        if (user_name == "") {
-            user_name = req.decoded.data.user_name;
-        };
-        if (firstname == "") {
-            firstname = req.decoded.data.firstname;
-        };
-        if (surname == "") {
-            surname = req.decoded.data.surname;
-        };
 
-        // "user_id" goes in "userInfo" to search the user row in the DDBB. 
-        let editedInfo = await Clients.update({client_id, email, password, user_name, firstname, surname}, { where: { "email": email } });
+        let prevInfo = {...req.decoded.data};
+        let infoToUpdate = {...req.body};
+        Object.keys(prevInfo).forEach(key => {
+            if (!infoToUpdate[key]){
+                infoToUpdate[key] = prevInfo[key];
+            }
+        });
+        console.log("req.body: ", req.body);
+        console.log("prevInfo: ", prevInfo);
+        console.log("info to update: ", infoToUpdate);
+
+        // "client_id" goes in "clientInfo" to search the client row in the DDBB. 
+        let editedInfo = await Clients.update({client_id, infoToUpdate}, { where: { "client_id": client_id } });
 
         res.status(200).json({
             "success": true,
-            "message": `User profile updated`,
+            "message": `client profile updated`,
             "data": editedInfo
         });
     } catch (error) {

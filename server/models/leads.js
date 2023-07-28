@@ -24,18 +24,22 @@ const Leads = sequelize.define("Leads", {
             unique: true
         },
         telephone_num:{
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING(45),
             allowNull: false
         },
         lead_position:{
             type: DataTypes.STRING(45),
             allowNull: false
         },
-        address_number:{
+        /* address_number:{
             type: DataTypes.INTEGER,
             allowNull: false
         },
         street:{
+            type: DataTypes.STRING(100),
+            allowNull: false
+        }, */
+        address:{
             type: DataTypes.STRING(100),
             allowNull: false
         },
@@ -51,10 +55,10 @@ const Leads = sequelize.define("Leads", {
             type: DataTypes.STRING(100),
             allowNull: false
         },
-        autonomous_community:{
+        /* autonomous_community:{
             type: DataTypes.STRING(100),
             allowNull: false
-        },
+        }, */
         community_type: {
             type: DataTypes.STRING(100),
             allowNull: true

@@ -3,14 +3,13 @@ const passport = require("passport");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
-
 require("dotenv").config();
 const error404 = require('./middlewares/error404');
 const helmet = require("helmet");
 
 // Initialize server
 const app = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
 //Passport and session
 app.use(session({

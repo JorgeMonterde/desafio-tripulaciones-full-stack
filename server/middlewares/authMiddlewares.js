@@ -90,7 +90,7 @@ const checkEmailLogIn = async(req, res, next) => {
             res.status(401).json({"success": false, "message":"This email do not have an account"});
         } else {
             console.log("match??", password, data.hashed_password);
-            //check if the provided 
+            //check if the provided password is correct
             const match = await bcrypt.compare(password, data.hashed_password);
             if(match){
                 //change client's "logged" state to true:

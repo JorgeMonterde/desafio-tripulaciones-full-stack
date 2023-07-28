@@ -1,18 +1,20 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-
-
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 
 const inputDefaultValues = {
-  name: '',
-  lastName: '',
-  role: '',
-  communityType: '',
+  first_name: '',
+  surname: '',
+  lead_position: '',
+  community_type: '',
   email: '',
   address: '',
-  zone: '',
-  province: ''
+  city: '',
+  province: '',
+  telephone_num: "",
+  postal_code: ""
 };
 
 
@@ -20,19 +22,33 @@ const Form = () => {
   const [inputValue, setInputValue] = useState({...inputDefaultValues});
   const { register, handleSubmit, formState: { errors } } = useForm({
     defaultValues: inputDefaultValues });
-  const onSubmit = (data) => console.log(data);
+  const navigate = useNavigate();
 
+  //Submit function:
+  const onSubmit = async(data) => {
+    console.log("data???", data)
+    const authResponse = await axios.post("http://localhost:3000/api/leads/lead", data, { withCredentials: true });
+    console.log("auth response: ",authResponse)
+
+    if(authResponse.data.success){
+      // Success
+      console.log("From client: You have send the form");
+      navigate("/catalogue");
+    } else {
+      // Fail
+      console.log("From client: You could not send the form");
+    }
+    console.log(data);
+  };
 
   const handleChange = (e) => {
     e.preventDefault();
-
 
     setInputValue({
       ...inputValue,
       [e.target.name]: e.target.value,
     })
   }
-
 
   return (
     <>
@@ -62,55 +78,55 @@ const Form = () => {
       <form className='form_contact' onSubmit={handleSubmit(onSubmit)}>
         <section className='fields'>
           <label className='bodyXLBold'>Nombre *
-            <input className='input bodyLRegular' type="text" placeholder="Nombre" onChange={handleChange} {...register("name", {
+            <input className='input bodyLRegular' type="text" placeholder="Nombre" onChange={handleChange} {...register("first_name", {
               required: true,
               minLength: 3,
               maxLength: 20,
               pattern: /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]{3,20}/,
               message: "Verificar nombre"
-            })} aria-invalid={errors.name ? "true" : "false"} />
-            {errors.name &&  <p className='text_error' role="alert">Campo obligatorio</p>}
+            })} aria-invalid={errors.first_name ? "true" : "false"} />
+            {errors.first_name &&  <p className='text_error' role="alert">Campo obligatorio</p>}
           </label>
         
           <label className='bodyXLBold'>Apellidos *
-            <input className='input bodyLRegular' type="text" placeholder="Apellidos" onChange={handleChange} {...register("lastName", {
+            <input className='input bodyLRegular' type="text" placeholder="Apellidos" onChange={handleChange} {...register("surname", {
               required: true,
               minLength: 3,
               maxLength: 20,
               pattern: /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]{3,20}/
-            })} aria-invalid={errors.lastName ? "true" : "false"} />
-            {errors.lastName &&  <p className='text_error' role="alert">Campo obligatorio</p>}
+            })} aria-invalid={errors.surname ? "true" : "false"} />
+            {errors.surname &&  <p className='text_error' role="alert">Campo obligatorio</p>}
           </label>
         </section>
 
         <section className='fields'>    
           <label  className='bodyXLBold'>Función *
-            <select name="role" {...register("role", {required: {
+            <select name="lead_position" {...register("lead_position", {required: {
               value: true,
               message: "Campo obligatorio"
             }})}>
               <option value="admin">Administración</option>
-              <option value="precident">Presidente</option>
+              <option value="president">Presidente</option>
               <option value="otro">Otro</option>
             </select>
-            {errors.role &&  <p className='text_error' role="alert">{errors.role?.message}</p>}
+            {errors.lead_position &&  <p className='text_error' role="alert">{errors.lead_position?.message}</p>}
           </label>
 
           <label className='bodyXLBold'>Tipo de comunidad
-            <select name="communityType" {...register("communityType")}>
+            <select name="community_type" {...register("community_type")}>
               <option value="admin">Un único edificio</option>
-              <option value="precident">Urbanización</option>
+              <option value="president">Urbanización</option>
             </select>
           </label>
         </section>
         
         <section className='fields'>
           <label className='bodyXLBold'>Teléfono *
-            <input className='input bodyLRegular' type="number" placeholder="número de teléfono" onChange={handleChange} {...register("phone", {
+            <input className='input bodyLRegular' type="number" placeholder="número de teléfono" onChange={handleChange} {...register("telephone_num", {
               required: "Verificar número de teléfono",
               pattern: /(\+34|0034|34)?[ -]*(6|7)[ -]*([0-9][ -]*){8}/
-            })} aria-invalid={errors.phone ? "true" : "false"} />
-            {errors.phone &&  <p className='text_error' role="alert">Campo obligatorio</p>}
+            })} aria-invalid={errors.telephone_num ? "true" : "false"} />
+            {errors.telephone_num &&  <p className='text_error' role="alert">Campo obligatorio</p>}
           </label>
 
           <label className='bodyXLBold'>Correo electrónico *
@@ -131,19 +147,19 @@ const Form = () => {
           </label>
 
           <label className='bodyXLBold'>C.P
-            <input className='input bodyLRegular' type="number" placeholder="Código postal" onChange={handleChange} {...register("zipCode", {
+            <input className='input bodyLRegular' type="number" placeholder="Código postal" onChange={handleChange} {...register("postal_code", {
               pattern: /^(?:0[1-9]|[1-4]\d|5[0-2])\d{3}$/
-            })} aria-invalid={errors.zipCode ? "true" : "false"} />
-            {errors.zipCode &&  <p className='text_error' role="alert">{errors.zipCode?.message}</p>}
+            })} aria-invalid={errors.postal_code ? "true" : "false"} />
+            {errors.postal_code &&  <p className='text_error' role="alert">{errors.postal_code?.message}</p>}
           </label>
         </section>
        
         <section className='fields'>   
           <label className='bodyXLBold'>Localidad
-            <input className='input' type="text" placeholder="Localidad" onChange={handleChange} {...register("zone", {
+            <input className='input' type="text" placeholder="Localidad" onChange={handleChange} {...register("city", {
               pattern: /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]{3,20}/
-            })} aria-invalid={errors.zone ? "true" : "false"} />
-            {errors.zone &&  <p className='text_error' role="alert">{errors.zone?.message}</p>}
+            })} aria-invalid={errors.city ? "true" : "false"} />
+            {errors.city &&  <p className='text_error' role="alert">{errors.city?.message}</p>}
           </label>
 
 
