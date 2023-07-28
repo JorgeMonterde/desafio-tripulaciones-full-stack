@@ -38,10 +38,43 @@
   margin-bottom: 0;
 }
 
-@mixin bodyXXLRegular {
+@mixin bodyMRegular {
+  font-family: Orkney;
+  font-size: 16px;
+  font-weight: 300;
+  overflow-wrap: break-word;
+  margin-bottom: 0;
+}
+
+@mixin bodyLRegular {
+  font-family: Orkney;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1.2;
+  overflow-wrap: break-word;
+  margin-bottom: 0;
+}
+
+@mixin bodyXLRegular {
   font-family: Orkney;
   font-size: 24px;
   font-weight: 300;
+  overflow-wrap: break-word;
+  margin-bottom: 0;
+}
+
+@mixin bodyXXLRegular {
+  font-family: Orkney;
+  font-size: 32px;
+  font-weight: 300;
+  overflow-wrap: break-word;
+  margin-bottom: 0;
+}
+
+@mixin bodyMBold {
+  font-family: Orkney;
+  font-size: 16px;
+  font-weight: 700;
   overflow-wrap: break-word;
   margin-bottom: 0;
 }
@@ -54,27 +87,9 @@
   margin-bottom: 0;
 }
 
-@mixin bodyLRegular {
-  height: 24px;
+@mixin bodyXXLBold {
   font-family: Orkney;
-  font-size: 20px;
-  font-weight: 300;
-  line-height: 1.2;
-  overflow-wrap: break-word;
-  margin-bottom: 0;
-}
-
-@mixin bodyMRegular {
-  font-family: Orkney;
-  font-size: 16px;
-  font-weight: 300;
-  overflow-wrap: break-word;
-  margin-bottom: 0;
-}
-
-@mixin bodyMBold {
-  font-family: Orkney;
-  font-size: 16px;
+  font-size: 32px;
   font-weight: 700;
   overflow-wrap: break-word;
   margin-bottom: 0;
