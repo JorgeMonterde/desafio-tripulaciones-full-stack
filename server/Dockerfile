@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Copiar los archivos de dependencias del back-end (package.json y package-lock.json)
 COPY package*.json ./
-COPY index.js ./
+#COPY index.js ./
 
 RUN command npm cache clean --force
 

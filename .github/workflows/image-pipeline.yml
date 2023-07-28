@@ -4,6 +4,18 @@ on:
   push:
     branches: [ main ] # Trigger workflow on git push to deploy branch
   workflow_dispatch: # Allow manual invocation of the workflow
+env:
+  COOKIE_SECRET: ${{ secrets.COOKIE_SECRET }}
+  JWT_SECRET: ${{ secrets.JWT_SECRET }}
+  MYSQL_port: ${{ secrets.MYSQL_port }}
+  MYSQL_HOST: ${{ secrets.MYSQL_HOST }}
+  MYSQL_USER: ${{ secrets.MYSQL_USER }}
+  MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
+  MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+  PORT: ${{ secrets.PORT }}
+  DOMAIN: ${{ secrets.DOMAIN }}
+  FRONTEND_DOMAIN: ${{ secrets.FRONTEND_DOMAIN }}
+
 jobs:
   deploy-server:
     runs-on: ubuntu-latest
@@ -36,6 +48,7 @@ jobs:
           cd ./server
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
       - name: Deploy server to App Runner
         id: deploy-server-apprunner
@@ -90,6 +103,7 @@ jobs:
           cd ./client
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
       - name: Deploy client to App Runner
         id: deploy-client-apprunner
