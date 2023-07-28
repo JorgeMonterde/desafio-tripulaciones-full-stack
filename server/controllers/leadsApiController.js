@@ -45,14 +45,13 @@ const getLeadInfo = async (req,res) => {
 
 //sendEmail
 const sendEmail = async (req,res) => {
+    const { email } = req.params;
     try {
-        const { emailrecipient } = req.params;
-
         transporter.sendMail({
             from: process.env.GMAIL_SENDER,
-            to: emailrecipient,
-            subject: "Nodemailer from gmail",
-            text: "I hope this message gets through!",
+            to: email,
+            subject: "Email from our webpage",
+            text: "Visit the following url to continue: http://localhost:5173/technical-form",
             auth: {
                 user: process.env.GMAIL_SENDER,
                 refreshToken: process.env.REFRESH_TOKEN,
@@ -61,12 +60,19 @@ const sendEmail = async (req,res) => {
             },
         });
 
-        res.send(`Email sent to ${emailrecipient}!`);
+        res.status(200).json({
+            "success": true,
+            "message": `Email sent to: ${email}`,
+            "data": {}
+        });
         
     } catch (error) {
-        
+        res.status(400).json({
+            "success": false,
+            "message": `Could not send email to: ${email}`,
+            "data": {}
+        });
     }
-
 };
 
 

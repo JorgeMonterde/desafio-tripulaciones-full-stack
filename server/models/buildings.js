@@ -7,11 +7,15 @@ const Buildings = sequelize.define("Buildings", {
             type: DataTypes.UUID,
             allowNull: false
         },
-        address_number:{
+        /* address_number:{
             type: DataTypes.INTEGER,
             allowNull: false
         },
         street:{
+            type: DataTypes.STRING(100),
+            allowNull: false
+        }, */
+        address:{
             type: DataTypes.STRING(100),
             allowNull: false
         },
@@ -27,10 +31,10 @@ const Buildings = sequelize.define("Buildings", {
             type: DataTypes.STRING(100),
             allowNull: false
         },
-        autonomous_community:{
+        /* autonomous_community:{
             type: DataTypes.STRING(100),
             allowNull: false
-        },
+        }, */
         cif:{
             type: DataTypes.STRING(12),
             allowNull: false,

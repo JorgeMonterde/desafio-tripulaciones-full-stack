@@ -27,9 +27,9 @@ const getBuildingInfo = async (req,res) => {
 //POSTs
 //create building
 const createBuildingInfo = async (req,res) => {
-    console.log("--->",req.body);
+    console.log("--->>",req.body);
     // buildings fields: address_number, street, postal_code, city, province, autonomous_community, cif, total_area, communal_areas_area, housing_area, number_of_apartments, year_of_construction, cadastre_number, energy_efficiency_certificate, project_state
-    const buildingInfo = req.body;
+    const buildingInfo = {...req.body, "project_state":"not started"};
 
     try {
         let createInfo = await Buildings.create(buildingInfo);

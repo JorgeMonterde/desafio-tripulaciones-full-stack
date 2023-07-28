@@ -24,7 +24,7 @@ const Clients = sequelize.define("Clients", {
             unique: true
         },
         telephone_num:{
-            type: DataTypes.NUMBER,
+            type: DataTypes.INTEGER,
             allowNull: false
         },
         client_position:{
