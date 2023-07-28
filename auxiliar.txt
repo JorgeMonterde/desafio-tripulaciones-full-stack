@@ -1,0 +1,8 @@
+"email":"ciber@gmail.com",
+"password":"Ciber1234",
+
+"email":"cloud@gmail.com",
+"password":"Cloud1234",
+
+"email":"marketing@gmail.com",
+"password":"Marketing1234",
