@@ -1,7 +1,5 @@
 const express = require('express');
 const app = express();
-const axios = require('axios');
-
 
 app.get('/', (req, res) => {
     res.send('Running on AWS App Runner Service !');
