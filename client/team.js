@@ -1,20 +1,20 @@
 export const team = [
   {
-    "img": "../../../../public/assets/energyImg.avif",
+    "img": "../../../../public/assets/jorgePicture.png",
     "name": "Jorge Monterde",
     "role": "Desarrollador",
-    "rrss": "j.monterdeortega@gmail.com"
+    "rrss": "https://www.linkedin.com/in/jorge-monterde-ortega-6aa50127b/"
   },
   {
-    "img": "../../../../public/assets/energyImg.avif",
+    "img": "../../../../public/assets/anaPicture.png",
     "name": "Annita Niño",
     "role": "Diseñadora UX/UI",
     "rrss": "annitaing@gmail.com"
   },
   {
-    "img": "../../../../public/assets/energyImg.avif",
-    "name": "Alberto Jiménez ",
+    "img": "../../../../public/assets/pabloPicture.jpg",
+    "name": "Pablo Primo Rodriguez",
     "role": "Experto Cloud",
-    "rrss": "jimenezbaezalberto@gmail.com"
+    "rrss": "https://www.linkedin.com/in/pabloprimo/"
   }
 ];
