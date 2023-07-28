@@ -1,4 +1,27 @@
-import { BsFillArrowDownSquareFill } from "react-icons/bs";
+import { BsAspectRatio, BsFillArrowDownSquareFill } from "react-icons/bs";
+
+// const steps = [
+//   {
+//     label: 'Datos',
+//     step: 1,
+//   },
+//   {
+//     label: 'Auditoría',
+//     step: 2,
+//   },
+//   {
+//     label: 'Propuesta',
+//     step: 3,
+//   },
+//   {
+//     label: 'Proyecto',
+//     step: 4,
+//   },
+//   {
+//     label: 'Hoy',
+//     step: 5,
+//   },
+// ]
 
 const Profile = () => {
   return (
@@ -13,7 +36,17 @@ const Profile = () => {
       </section>
 
       <section className='profile_progressBar'>
-        <h1 className='progressBar'>barra de progreso</h1>
+        <section className='step-bar'>
+          <div>
+            <p className='circle TitleM'>1</p><span></span>
+          </div>
+          <div></div>
+          <p className='circle TitleM'>2</p><span></span>
+          <p className='circle TitleM'>3</p><span></span>
+          <p className='circle TitleM'>4</p><span></span>
+          <p className='circle TitleM'>5</p>
+        </section>
+
         <ul className='legend'>
           <li className='legend_title'>Leyenda:</li>
           <li>
