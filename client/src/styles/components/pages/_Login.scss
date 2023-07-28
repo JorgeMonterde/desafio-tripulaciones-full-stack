@@ -1,0 +1,38 @@
+@import '../../utils/mixins.scss';
+
+.form_login {
+  @include flexCol;
+  text-align: left;
+  margin: auto;
+  gap: 16px;
+
+  .bodyXLBold {
+    @include bodyXLBold;
+    @include flexCol;
+    gap: 8px;
+
+    .bodyLRegular {
+      @include bodyLRegular;
+      margin: 0px;
+      padding-left: 0.4rem;
+      border: solid 0.01px gray;
+    }
+  }
+
+  .TitleXS {
+    @include flexCenterCenter;
+    @include TitleXS;
+    width: 150px;
+    height: 48px;
+    margin: auto;
+    margin-top: 8px;
+  }
+}
+
+.TitleXS {
+  @include flexCenterCenter;
+  @include TitleXS;
+  width: 150px;
+  height: 48px;
+  margin-top: 8px;
+}
