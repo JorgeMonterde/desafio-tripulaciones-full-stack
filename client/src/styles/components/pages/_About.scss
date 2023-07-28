@@ -1,0 +1,80 @@
+@import '../../utils/mixins.scss';
+
+.about {
+  display: flex;
+  gap: 48px;
+  padding: 48px 96px;
+
+  .about_us {
+    @include flexCol;
+    gap: 16px;
+    width: 100%;
+    height: fit-content;
+
+    .TitleM {
+      @include TitleM;
+      margin: 0;
+    }
+
+    .bodyLRegular {
+      @include bodyLRegular;
+    }
+  }
+}
+
+.text_band {
+  overflow: hidden;
+  padding: 24px 0;
+  margin: 0 0 48px 0;
+}
+
+.team {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  padding: 0 96px 48px;
+  width: 100%;
+
+  .member {
+    @include flexCol;
+    align-items: center;
+    width: 331px;
+    gap: 32px;
+
+    .member_img {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+    }
+
+    .member_data {
+      gap: 16px;
+
+      .member_name {
+        @include bodyXXLBold;
+        width: 100%;
+      }
+
+      .member_role {
+        @include bodyXLRegular;
+        width: 100%;
+      }
+
+      .member_rrss {
+        @include flexCenterCenter;
+        gap: 16px;
+        width: 100%;
+        
+        .bodyXLRegular {
+          color: black;
+          @include bodyXLRegular;
+        }
+
+        .icon {
+          width: 24px;
+          height: 24px;
+        }
+      }
+    }
+  }
+}
