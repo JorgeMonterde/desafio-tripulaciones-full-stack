@@ -16,5 +16,17 @@ export const team = [
     "name": "Pablo Primo Rodriguez",
     "role": "Experto Cloud",
     "rrss": "https://www.linkedin.com/in/pabloprimo/"
+  },
+  {
+    "img": "../../../../public/assets/juditPicture.png",
+    "name": "Judit Roca Tovar",
+    "role": "Científica de datos",
+    "rrss": "https://www.linkedin.com/in/judit-r-ab8734b0/"
+  },
+  {
+    "img": "../../../../public/assets/marianPicture.png",
+    "name": "Mariangelica Rodríguez",
+    "role": "Desarrolladora",
+    "rrss": "https://www.linkedin.com/in/mariangelicarodriguezperez/"
   }
 ];
