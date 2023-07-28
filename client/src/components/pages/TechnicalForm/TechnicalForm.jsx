@@ -5,20 +5,34 @@ import axios from "axios";
 
 
 const inputDefaultValues = {
+  // client fields
   first_name: '',
   surname: '',
-  lead_position: '',
-  community_type: '',
   email: '',
+  telephone_num: "",
+  client_position: '',
+  password: "",
+
+  // building fields
   address: '',
+  postal_code: "", 
   city: '',
   province: '',
-  telephone_num: "",
-  postal_code: ""
+  community_type: '',
+
+  cif: "",
+  total_area:"",
+  communal_areas_area: "",
+  housing_area: "",
+  number_of_apartments: "",
+  year_of_construction: "",
+  cadastre_number:"",
+  energy_efficiency_certificate:""
+
 };
 
 
-const Form = () => {
+const TechnicalForm = () => {
   const [inputValue, setInputValue] = useState({...inputDefaultValues});
   const { register, handleSubmit, formState: { errors } } = useForm({
     defaultValues: inputDefaultValues });
@@ -27,13 +41,24 @@ const Form = () => {
   //Submit function:
   const onSubmit = async(data) => {
     console.log("data???", data)
-    const authResponse = await axios.post("http://localhost:3000/api/leads/lead", data, { withCredentials: true });
-    console.log("auth response: ",authResponse)
+    //store client info
+    const {first_name, surname, email, telephone_num, client_position, password} = data;
+    const clientData = {first_name, surname, email, telephone_num, client_position, password};
+    
+    const clientResponse = await axios.post("http://localhost:3000/api/clients/client", clientData, { withCredentials: true });
+    const {client_id} = clientResponse.data.data;
+    console.log("auth response: ",clientResponse);
 
-    if(authResponse.data.success){
-      // Success
-      console.log("From client: You have send the form");
-      navigate("/catalogue");
+    //store building info
+    const {address, postal_code, city, province, community_type, cif, total_area, communal_areas_area, housing_area, number_of_apartments, year_of_construction, cadastre_number, energy_efficiency_certificate} = data;
+    const buildingData = {client_id, address, postal_code, city, province, community_type, cif, total_area, communal_areas_area, housing_area, number_of_apartments, year_of_construction, cadastre_number, energy_efficiency_certificate};
+
+    const buildingResponse = await axios.post("http://localhost:3000/api/buildings/building", buildingData, { withCredentials: true });
+    console.log("auth response: ",buildingResponse);
+
+    if(clientResponse.data.success && buildingResponse.data.success){
+      // Confirm building characteristics are according to validation
+      
     } else {
       // Fail
       console.log("From client: You could not send the form");
@@ -52,30 +77,16 @@ const Form = () => {
 
   return (
     <>
-      <section className='contact_header'>
-        <article className='header_question'>
-          <h1 className='TitleM'>¿Tienes alguna pregunta?</h1>
-          <p className='bodyXXLRegular'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore </p>
-        </article>
-        <section className='contact_us'>
-          <article>
-            <h3 className='TitleM'>Llámanos al</h3>
-            <p className='TitleM'>xxx.xx.xx.xx</p>
-          </article>
-          <article>
-            <h3 className='TitleM'>O escríbenos a</h3>
-            <p className='TitleM'>abc@abc.es</p>
-          </article>
-        </section>
-      </section>
-
       <h1 className='text_band'>Title XL · Beneficios · Title XL · Beneficios · Title XL · Beneficios · Title XL · Beneficios · Title XL ·</h1>
 
       <article className='form_header'>
-        <h1 className='TitleM'>¿Tienes alguna pregunta?</h1>
+        <h1 className='TitleM'>---Rellene el siguiente formulario para que valoremos su situación---</h1>
         <p className='bodyXXLRegular'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore </p>
       </article>
       <form className='form_contact' onSubmit={handleSubmit(onSubmit)}>
+
+        {/* client fields */}
+
         <section className='fields'>
           <label className='bodyXLBold'>Nombre *
             <input className='input bodyLRegular' type="text" placeholder="Nombre" onChange={handleChange} {...register("first_name", {
@@ -101,7 +112,7 @@ const Form = () => {
 
         <section className='fields'>    
           <label  className='bodyXLBold'>Función *
-            <select name="lead_position" {...register("lead_position", {required: {
+            <select name="client_position" {...register("client_position", {required: {
               value: true,
               message: "Campo obligatorio"
             }})}>
@@ -109,7 +120,7 @@ const Form = () => {
               <option value="president">Presidente</option>
               <option value="otro">Otro</option>
             </select>
-            {errors.lead_position &&  <p className='text_error' role="alert">{errors.lead_position?.message}</p>}
+            {errors.client_position &&  <p className='text_error' role="alert">{errors.client_position?.message}</p>}
           </label>
 
           <label className='bodyXLBold'>Tipo de comunidad
@@ -138,6 +149,8 @@ const Form = () => {
           </label>
         </section>
 
+        {/* building fields */}
+
         <section className='fields'>
           <label className='bodyXLBold'>Dirección de la comunidad *
             <input className='input bodyLRegular' type="text" placeholder="Dirección de la comunidad" onChange={handleChange} {...register("address", {
@@ -162,7 +175,6 @@ const Form = () => {
             {errors.city &&  <p className='text_error' role="alert">{errors.city?.message}</p>}
           </label>
 
-
           <label className='bodyXLBold'>Provincia
             <input className='input' type="text" placeholder="Provincia" onChange={handleChange} {...register("province", {
               minLength: 3,
@@ -172,6 +184,64 @@ const Form = () => {
             {errors.province &&  <p className='text_error' role="alert">{errors.province?.message}</p>}
           </label>
         </section> 
+
+        <section className='fields'>   
+          <label className='bodyXLBold'>CIF
+            <input className='input' type="text" placeholder="CIF" onChange={handleChange} {...register("cif")} aria-invalid={errors.cif ? "true" : "false"} />
+            {errors.cif &&  <p className='text_error' role="alert">{errors.cif?.message}</p>}
+          </label>
+
+          <label className='bodyXLBold'>Superficie de zonas comunes
+            <input className='input' type="text" placeholder="Superficie de zonas comunes" onChange={handleChange} {...register("communal_areas_area", {
+              minLength: 3,
+              maxLength: 20
+            })} aria-invalid={errors.communal_areas_area ? "true" : "false"} />
+            {errors.communal_areas_area &&  <p className='text_error' role="alert">{errors.communal_areas_area?.message}</p>}
+          </label>
+        </section> 
+
+        <section className='fields'>   
+          <label className='bodyXLBold'>Superficie de viviendas
+            <input className='input' type="text" placeholder="Superficie de viviendas" onChange={handleChange} {...register("housing_area")} aria-invalid={errors.housing_area ? "true" : "false"} />
+            {errors.housing_area &&  <p className='text_error' role="alert">{errors.housing_area?.message}</p>}
+          </label>
+
+          <label className='bodyXLBold'>Número de viviendas
+            <input className='input' type="text" placeholder="Número de viviendas" onChange={handleChange} {...register("number_of_apartments", {
+              maxLength: 20
+            })} aria-invalid={errors.number_of_apartments ? "true" : "false"} />
+            {errors.number_of_apartments &&  <p className='text_error' role="alert">{errors.number_of_apartments?.message}</p>}
+          </label>
+        </section> 
+
+        <section className='fields'>   
+          <label className='bodyXLBold'>Año de construcción
+            <input className='input' type="text" placeholder="Año de construcción" onChange={handleChange} {...register("year_of_construction")} aria-invalid={errors.year_of_construction ? "true" : "false"} />
+            {errors.year_of_construction &&  <p className='text_error' role="alert">{errors.year_of_construction?.message}</p>}
+          </label>
+
+          <label className='bodyXLBold'>Referencia catastral
+            <input className='input' type="text" placeholder="Referencia catastral" onChange={handleChange} {...register("cadastre_number", {
+              minLength: 3,
+              maxLength: 20
+            })} aria-invalid={errors.cadastre_number ? "true" : "false"} />
+            {errors.cadastre_number &&  <p className='text_error' role="alert">{errors.cadastre_number?.message}</p>}
+          </label>
+        </section> 
+
+        <section className='fields'>   
+          <label className='bodyXLBold'>Certificación de eficiencia energética
+            <input className='input' type="text" placeholder="Certificación de eficiencia energética" onChange={handleChange} {...register("energy_efficiency_certificate", {
+              pattern: /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]{1,20}/
+            })} aria-invalid={errors.energy_efficiency_certificate ? "true" : "false"} />
+            {errors.energy_efficiency_certificate &&  <p className='text_error' role="alert">{errors.energy_efficiency_certificate?.message}</p>}
+          </label>
+        </section> 
+
+
+
+
+
 
         <section className='form_checkboxes'>
           <section className='form_termsAndConditions'>
@@ -192,4 +262,4 @@ const Form = () => {
 };
 
 
-export default Form;
+export default TechnicalForm;

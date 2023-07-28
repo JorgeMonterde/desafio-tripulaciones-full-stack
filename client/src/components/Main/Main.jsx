@@ -6,6 +6,7 @@ import Catalogue from '../pages/Catalogue/Catalogue';
 import Contact from '../pages/Contact/Contact';
 import StudyCases from '../pages/StudyCases/StudyCases';
 import Profile from '../pages/Profile/Profile';
+import TechnicalForm from '../pages/TechnicalForm/TechnicalForm';
 
 const Main = () => {
   return (
@@ -18,6 +19,7 @@ const Main = () => {
         <Route path='/contact' element={<Contact />} />
         <Route path='/studyCases' element={<StudyCases />} />
         <Route path='/profile' element={<Profile />} />
+        <Route path='/technical-form' element={<TechnicalForm />} />
       </Routes>
     </main>
   );
