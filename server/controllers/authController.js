@@ -6,6 +6,7 @@ const transporter = require('../utils/nodemailer');
 const bcrypt = require('bcrypt');
 let jwtSecret = process.env.JWT_SECRET;
 let domain = process.env.DOMAIN;
+let frontendDomain = process.env.FRONTEND_DOMAIN;
 const saltRounds = 10;
 
 
@@ -29,11 +30,12 @@ const destroySessionAndClearCookies = async (req, res) => {
 }
 
 //Create and store token for authentification via email and send json response back:
-const createAndStoreTokenViaEmail = (req,res)=>{
+const createAndStoreTokenViaEmail = async (req,res)=>{
     //save user's info in the payload for navigation purpose:
     const payload = {
         check: true,
-        email: req.user.email
+        email: req.user.email,
+        client_id: req.user.client_id
     };
     //sign token 
     const token = jwt.sign(payload, jwtSecret, {
@@ -50,16 +52,26 @@ const createAndStoreTokenViaEmail = (req,res)=>{
 
 //RECOVER - RESET PASSWORD
 const recoverPassword = async(req, res) => {
+    const {email} = req.params;
     try {
-        const recoverToken = jwt.sign({email: req.params.email}, jwtSecret, {expiresIn: '60m'});
-        const url = domain + `/email/resetpassword/` + recoverToken;
+        const recoverToken = jwt.sign({"email": email}, jwtSecret, {expiresIn: '60m'});
+        const url = frontendDomain + `/resetpassword/` + recoverToken + "/";
+        
         await transporter.sendMail({
-            to: req.params.email,
-            subject: 'Recover Password',
-            html: `<h3>Recover Password</h3>
-                <a href = ${url}>Click to recover password</a>
-                <p>Link will expire in 60 minutes</p>`
+            from: process.env.GMAIL_SENDER,
+            to: email,
+            subject: "Elegir contraseña",
+            html: `<h3>Elige contraseña</h3>
+            <a href = ${url}>Haz click aquí para elegir tu contraseña</a>
+            <p>El link expirará en 60 minutos</p>`,
+            auth: {
+                user: process.env.GMAIL_SENDER,
+                refreshToken: process.env.REFRESH_TOKEN,
+                accessToken: process.env.ACCESS_TOKEN,
+                expires: 1484314697598,
+            }
         });
+
         res.status(200).json({"success": true, "message":'A link for reset your password has been send to your email'})
     } catch (error) {
         console.log('Error:', error)
@@ -69,12 +81,12 @@ const recoverPassword = async(req, res) => {
 
 const resetPassword = async(req, res) => {
     try {
-        const recoverToken = req.headers.token;
-        console.log("reseting password")
+        const recoverToken = req.headers.recover_token;
+        console.log("reseting password");
         const payload = jwt.verify(recoverToken, jwtSecret);
         const password = req.body.password;
         const hashPassword = await bcrypt.hash(password, saltRounds);
-        await Clients.updateUserPassword(payload.email, hashPassword);
+        await Clients.update({"hashed_password": hashPassword}, {where: {"email": payload.email}});
         res.status(200).json({"success": true, "message":'Password actualized'});
     } catch (error) {
         console.log('Error:', error);
