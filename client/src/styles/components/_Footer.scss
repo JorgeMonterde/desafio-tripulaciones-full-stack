@@ -3,19 +3,22 @@
 
 .footer {
   display: flex;
-  justify-content: space-around;
-  background-color: #f7f4f1;
-  height: 88px;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 150px;
   width: 100vw;
+  padding: 0 96px 24px;
 
   .footer_links {
     @include flexCenterCenter;
     gap: 2rem;
+    height: fit-content;
   }
   
   .footer_RRSS {
     @include flexCenterCenter;
     gap: 2rem;
+    height: fit-content;
     
     li {
       height: fit-content;

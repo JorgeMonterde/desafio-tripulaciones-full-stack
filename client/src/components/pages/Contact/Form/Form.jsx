@@ -61,29 +61,6 @@ const Form = () => {
 
   return (
     <>
-      <section className='contact_header'>
-        <article className='header_question'>
-          <h1 className='TitleM'>¿Tienes alguna pregunta?</h1>
-          <p className='bodyXXLRegular'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore </p>
-        </article>
-        <section className='contact_us'>
-          <article>
-            <h3 className='TitleM'>Llámanos al</h3>
-            <p className='TitleM'>xxx.xx.xx.xx</p>
-          </article>
-          <article>
-            <h3 className='TitleM'>O escríbenos a</h3>
-            <p className='TitleM'>abc@abc.es</p>
-          </article>
-        </section>
-      </section>
-
-      <h1 className='text_band'>Title XL · Beneficios · Title XL · Beneficios · Title XL · Beneficios · Title XL · Beneficios · Title XL ·</h1>
-
-      <article className='form_header'>
-        <h1 className='TitleM'>¿Tienes alguna pregunta?</h1>
-        <p className='bodyXXLRegular'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore </p>
-      </article>
       <form className='form_contact' onSubmit={handleSubmit(onSubmit)}>
         <section className='fields'>
           <label className='bodyXLBold'>Nombre *
@@ -112,7 +89,7 @@ const Form = () => {
           <label  className='bodyXLBold'>Función *
             <select name="lead_position" {...register("lead_position", {required: {
               value: true,
-              message: "Campo obligatorio"
+              message: 'Campo obligatorio'
             }})}>
               <option value="admin">Administración</option>
               <option value="president">Presidente</option>
@@ -138,21 +115,21 @@ const Form = () => {
             {errors.telephone_num &&  <p className='text_error' role="alert">Campo obligatorio</p>}
           </label>
 
-          <label className='bodyXLBold'>Correo electrónico *
-            <input className='input bodyLRegular' type="email" id='email' placeholder="Correo electrónico" onChange={handleChange} {...register("email", {
-              required: "Verificar correo electrónico",
+          <label className='bodyXLBold' htmlFor='email'>Correo electrónico *
+            <input className='input bodyLRegular' type='email' id='email' placeholder='Correo electrónico' onChange={handleChange} {...register('email', {
+              required: 'Verificar correo electrónico',
               pattern: /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})*$/i
-            })} aria-invalid={errors.email ? "true" : "false"} />
-            {errors.email &&  <p className='text_error' role="alert">{errors.email?.message}</p>}
+            })} aria-invalid={errors.email ? 'true' : 'false'} />
+            {errors.email &&  <p className='text_error' role='alert'>{errors.email?.message}</p>}
           </label>
         </section>
 
         <section className='fields'>
-          <label className='bodyXLBold'>Dirección de la comunidad *
-            <input className='input bodyLRegular' type="text" placeholder="Dirección de la comunidad" onChange={handleChange} {...register("address", {
-              required: "Verificar dirección de la comunidad"
-            })} aria-invalid={errors.address ? "true" : "false"} />
-            {errors.address &&  <p className='text_error' role="alert">Campo obligatorio</p>}
+          <label className='bodyXLBold' htmlFor='address'>Dirección de la comunidad *
+            <input className='input bodyLRegular' type='text' id='address' placeholder='Dirección de la comunidad' onChange={handleChange} {...register('address', {
+              required: 'Verificar dirección de la comunidad'
+            })} aria-invalid={errors.address ? 'true' : 'false'} />
+            {errors.address &&  <p className='text_error' role='alert'>Campo obligatorio</p>}
           </label>
 
           <label className='bodyXLBold'>C.P
@@ -172,29 +149,29 @@ const Form = () => {
           </label>
 
 
-          <label className='bodyXLBold'>Provincia
-            <input className='input' type="text" placeholder="Provincia" onChange={handleChange} {...register("province", {
+          <label className='bodyXLBold' htmlFor='province'>Provincia
+            <input className='input' type='text' placeholder='Provincia' id='province' onChange={handleChange} {...register('province', {
               minLength: 3,
               maxLength: 20,
               pattern: /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]{3,20}/
-            })} aria-invalid={errors.province ? "true" : "false"} />
-            {errors.province &&  <p className='text_error' role="alert">{errors.province?.message}</p>}
+            })} aria-invalid={errors.province ? 'true' : 'false'} />
+            {errors.province &&  <p className='text_error' role='alert'>{errors.province?.message}</p>}
           </label>
         </section> 
 
         <section className='form_checkboxes'>
           <section className='form_termsAndConditions'>
-            <input {...register("checkbox")} type="checkbox" id="termsAndConditions" value="Aceptar términos y condiciones" />
-            <label htmlFor="termsAndConditions">He leído y acepto las condiciones de la <a>Política de Privacidad</a></label>
+            <input {...register('checkbox')} type='checkbox' id='termsAndConditions' value='Aceptar términos y condiciones' />
+            <label htmlFor='termsAndConditions' className='bodyLRegular'>Declaro haber leído y acepto los <a href='#'>Términos y condiciones</a> y la <a href='#'>Política de Privacidad</a></label>
           </section>
           <section className='form_notifications'>
-            <input {...register("checkbox")} type="checkbox" value="Recibir notificaciones" />
-            <label>Acepto recibir comunicaciones de carácter publicitario e informativo con noticias, consejos y recomendaciones relacionadas con temas de ecosostenibilidad y medioambiente.</label>
+            <input {...register('checkbox')} type='checkbox' id='notifications' value='Recibir notificaciones' />
+            <label htmlFor='notifications' className='bodyLRegular'>Consiento la utilización de mis datos con fines informativos y la introducción en la base de datos</label>
           </section>
         </section>
 
 
-        <button type="submit">Enviar</button>
+        <button className='cta_btn' type='submit'>Enviar</button>
       </form>
     </>
   );

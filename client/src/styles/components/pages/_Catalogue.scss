@@ -2,7 +2,7 @@
 
 .sevices_header {
   @include flexCol;
-  padding: 96px;
+  padding: 96px 200px;
   gap: 48px;
 
   .service {
@@ -19,7 +19,7 @@
       justify-content: space-between;
 
       .service_img {
-        width: 400px;
+        min-width: 400px;
         height: 48px;
         background-color: dimgrey;
       }
@@ -36,7 +36,7 @@
   @include flexCol;
   text-align: left;
   width: 100%;
-  padding: 0 196px 96px;
+  padding: 0 260px 96px;
   gap: 24px;
 
   .TitleM {

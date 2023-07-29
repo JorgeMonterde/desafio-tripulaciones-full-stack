@@ -1,0 +1,17 @@
+@import '../../utils/mixins.scss';
+
+.modal {
+  min-height: 25rem;
+
+  .TitleM {
+    @include TitleM; 
+  }
+
+  .bodyLRegular {
+    @include bodyLRegular;
+  }
+
+  .nextui-modal-close-icon {
+    padding: 24px;
+  }
+}

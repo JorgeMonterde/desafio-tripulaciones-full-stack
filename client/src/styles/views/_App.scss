@@ -17,7 +17,6 @@ main {
   align-items: center;
   height: 100%;
   min-height: 80vh;
-  margin-bottom: 3rem;
   width: 100vw;
 }
 
@@ -25,11 +24,9 @@ main {
   display: none;
 }
 
-.contact_btn {
-  position: fixed;
-  right: 3rem;
-  top: 15rem;
-  width: 76px;
-  height: 76px;
-  border-radius: 50%;
+.cta_btn {
+  @include flexCenterCenter;
+  @include TitleXS;
+  width: 150px;
+  height: 48px;
 }

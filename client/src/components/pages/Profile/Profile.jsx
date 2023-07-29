@@ -1,4 +1,6 @@
+import { Link } from 'react-router-dom';
 import { BsAspectRatio, BsFillArrowDownSquareFill } from "react-icons/bs";
+import ContactBtn from '../../baseComponents/ContactBtn/ContactBtn';
 
 // const steps = [
 //   {
@@ -26,6 +28,7 @@ import { BsAspectRatio, BsFillArrowDownSquareFill } from "react-icons/bs";
 const Profile = () => {
   return (
     <>
+      <Link to="/contact"><ContactBtn/></Link>
       <section className='profile_header'>
         <img className='profile_avatar' src='../../../../public/assets/energyImg.avif'/>
         <article className='profile_headerText'>
@@ -109,7 +112,7 @@ const Profile = () => {
       <section className='profile_incidents'>
         <article className='incidents_header'>
           <h2 className='TitleM'>¿Algo no va bien?</h2>
-          <p className='bodyXXLRegular'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
+          <p className='bodyXLRegular'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
         </article>
 
         <section className='incidents_content'>
