@@ -1,4 +1,5 @@
 @import '../utils/variables.scss';
+@import '../utils/mixins.scss';
 @import '../utils/media_queries.scss';
 
 .nextui-c-hhqfap {
@@ -15,9 +16,17 @@
   }
   
   .navBar_link {
+    @include bodyMCAPS;
     color: #6a6969;
   }
   
+  .TitleXS {
+    @include flexCenterCenter;
+    @include TitleXS;
+    width: 150px;
+    height: 48px;
+  }
+
   .transparent {
     background-color: transparent;
     width: 100vw;

@@ -47,9 +47,9 @@ const NavBar = () => {
         <Link to="/"><img className='navBar_logo' src='../../../../public/assets/vite.svg' alt='Logo' /></Link>
         <Navbar.Content className='navBar_layer' hideIn="xs">
           {linksNavBar.map((item) => (
-              <Link className='navBar_link' to={item.link} key={item.name} >{item.name}</Link>
+              <Link className='navBar_link bodyMCAPS' to={item.link} key={item.name} >{item.name}</Link>
           ))}
-          <Link to="login"><button>login</button></Link>
+          <Link to="login"><button className='TitleXS'>login</button></Link>
         </Navbar.Content>
         <Navbar.Brand>
           <Navbar.Toggle showIn="xs" />

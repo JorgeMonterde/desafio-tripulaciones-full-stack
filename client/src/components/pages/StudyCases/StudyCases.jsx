@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import TextBand from '../../baseComponents/TextBand/TextBand';
 
 const StudyCases = () => {
   return (
@@ -22,7 +23,7 @@ const StudyCases = () => {
           </article>
         </section>
 
-        <h1 className='text_band'>Title XL · Beneficios · Title XL · Beneficios · Title XL · Beneficios · Title XL · Beneficios · Title XL ·</h1>
+        <TextBand  className="text_band" text="Title XL * Beneficios * Title XL * Beneficios"  />
     </>
   );
 };

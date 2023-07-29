@@ -33,3 +33,10 @@ main {
   height: 76px;
   border-radius: 50%;
 }
+
+.cta_btn {
+  @include flexCenterCenter;
+  @include TitleXS;
+  width: 150px;
+  height: 48px;
+}

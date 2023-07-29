@@ -2,60 +2,20 @@
 @import '../../utils/variables.scss';
 @import '../../utils/media_queries.scss';
 
-.contact_header {
-  @include flexCol;
-  padding: 0 96px;
-  gap: 24px;
-  text-align: left;
-  margin: 48px 0;
-  width: 100%;
-
-  .header_questions {
-    @include flexCol;
-    gap: 10px;
-    text-align: left;
-  
-    .TitleM {
-      @include TitleM;
-    }
-  
-    .bodyXXLRegular {
-      @include bodyXXLRegular;
-    }
-  }
-
-  .contact_us {
-    display: flex;
-    width: 100%;
-    gap: 48px;
-    text-align: left;
-    
-    article {
-      width: 100%;
-    }
-  }
-}    
-
-.text_band {
-  overflow: hidden;
-  padding: 24px 0;
-  margin: 0 0 48px 0;
-}
 
 .form_header {
   @include flexCol;
-  padding: 0 120px;
+  padding: 48px 120px;
   gap: 24px;
   text-align: left;
-  margin-bottom: 48px;
   width: 100%;
 
   .TitleM {
     @include TitleM;
   }
 
-  .bodyXXLRegular {
-    @include bodyXXLRegular;
+  .bodyXLRegular {
+    @include bodyXLRegular;
   }
 }
 .form_contact {
@@ -98,10 +58,10 @@
       width: 100%;
 
 
-      label {
+      .bodyLRegular {
+        @include bodyLRegular;
         flex-direction: row;
         width: 100%;
-
 
         a {
           margin: 0 1rem;
@@ -166,4 +126,52 @@
       }
     }
   }
+}
+
+.contact_header {
+  @include flexCol;
+  padding: 0 96px;
+  gap: 24px;
+  text-align: left;
+  margin: 48px 0;
+  width: 100%;
+
+  .header_question {
+    @include flexCol;
+    gap: 10px;
+    text-align: left;
+  
+    .TitleM {
+      @include TitleM;
+    }
+  
+    .bodyXLRegular {
+      @include bodyXLRegular;
+    }
+  }
+
+  .contact_us {
+    display: flex;
+    width: 100%;
+    gap: 48px;
+    text-align: left;
+    
+    section {
+      width: 100%;
+
+      .TitleXS {
+        @include TitleXS;
+      }
+
+      .TitleM {
+        @include TitleM;
+      }
+    }
+  }
+}    
+
+.text_band {
+  overflow: hidden;
+  padding: 24px 0;
+  margin: 0 0 48px 0;
 }
