@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import Modal from "../../baseComponents/Modal/Modal";
 
 const inputDefaultValues = {
   // client fields
@@ -37,10 +37,27 @@ const TechnicalForm = () => {
   const { register, handleSubmit, formState: { errors } } = useForm({
     defaultValues: inputDefaultValues });
   const navigate = useNavigate();
-  const [clientEmail, setClientEmail] = useState("");
+
+
+  const [visible, setVisible] = useState(false);
+  const [modalInfo, setModalInfo] = useState({});
+  const changeVisibleState = () => {
+    setVisible(!visible);
+  };
+  const changeModalInfo = (title, content) => {
+    setModalInfo({"title": title, "content": content});
+  };
+  const isVisible = {visible, changeVisibleState};
+
+
+  
 
   //Submit function:
   const onSubmit = async(data) => {
+    //1º: validar
+    //2º: guardar datos
+    //3º: enviar correo con password
+
     console.log("data???", data);
     //store client info
     const {first_name, surname, email, telephone_num, client_position, password} = data;
@@ -62,11 +79,15 @@ const TechnicalForm = () => {
 
         //validation true: set password and redirect to "login"
         const response = await axios.get(`http://localhost:3000/auth/email/recoverpassword/${email}`, { withCredentials: true });
-        if(response.data.success){
-          navigate("/login");
-        }
+
+        //show modal
+        changeModalInfo("Enhorabuena,","el formulario ha sido correctamente validado y ya hemos guardado su información en nuestra base de datos. Le hemos mandado un email con un link para completar su registro en la aplicacion. Si no lo ha recibido, póngase en contacto con nosotros.");
+        changeVisibleState();
 
         //validation false: message and redirect to "home"
+        //show modal
+        /* changeModalInfo("Lo sentimos,","la validación no ha resultado exitosa. Nos pondremos en contacto con usted lo antes posible.");
+        changeVisibleState(); */
       
     } else {
       // Fail
@@ -263,6 +284,8 @@ const TechnicalForm = () => {
 
         <button type="submit">Enviar</button>
       </form>
+
+      <Modal isVisible={isVisible} title={modalInfo.title} content={modalInfo.content}/>
 
     </>
   );

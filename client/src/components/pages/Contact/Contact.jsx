@@ -1,13 +1,27 @@
+import {useState} from "react";
 import Form from './Form/Form';
 import TextBand from '../../../components/baseComponents/TextBand/TextBand';
+import Modal from "../../baseComponents/Modal/Modal";
+
 const Contact = () => {
+  const [visible, setVisible] = useState(false);
+  const [modalInfo, setModalInfo] = useState({});
+  const changeVisibleState = () => {
+    setVisible(!visible);
+  };
+  const changeModalInfo = (title, content) => {
+    setModalInfo({"title": title, "content": content});
+  };
+  const isVisible = {visible, changeVisibleState};
+
+
   return <>
     <article className='form_header'>
-        <h1 className='TitleM'>Me interesa</h1>
-        <p className='bodyXLRegular'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore </p>
-      </article>
+      <h1 className='TitleM'>Me interesa</h1>
+      <p className='bodyXLRegular'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore </p>
+    </article>
 
-    <Form />
+    <Form isVisible={isVisible} changeModalInfo={changeModalInfo}/>
     
     <TextBand className='text_band' text='Title XL * Beneficios * Title XL * Beneficios'/>
 
@@ -28,6 +42,8 @@ const Contact = () => {
           </section>
         </section>
       </section>
+
+      <Modal isVisible={isVisible} title={modalInfo.title} content={modalInfo.content}/>
   </>;
 };
 

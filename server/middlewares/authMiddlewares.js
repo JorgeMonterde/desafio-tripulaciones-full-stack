@@ -15,6 +15,7 @@ const authCheck = (req, res, next) => {
             console.log("decoded -----> ", decoded);
             let {email} = decoded;
             let data = await Clients.findOne({ where: { "email": email } });
+            data = data.dataValues;
             console.log("data: ",data)
             if(data.logged == true) {
                 req.decoded = decoded;
@@ -47,6 +48,7 @@ const authCheck = (req, res, next) => {
 
 const isClientLoggedCheck = (req, res, next) => {
     const token = req.cookies["access-token"];
+    console.log("cookies: ", req.cookies);
     if(token){
         jwt.verify(token, jwtSecret, async (err, decoded) => {
             console.log("decoded -----> ", decoded);

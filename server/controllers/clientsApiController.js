@@ -73,7 +73,7 @@ const editClientProfile = async (req,res) => {
     try {
         let {client_id} = req.decoded.data;
 
-        let prevInfo = {...req.decoded.data};
+        /* let prevInfo = {...req.decoded.data};
         let infoToUpdate = {...req.body};
         Object.keys(prevInfo).forEach(key => {
             if (!infoToUpdate[key]){
@@ -82,10 +82,9 @@ const editClientProfile = async (req,res) => {
         });
         console.log("req.body: ", req.body);
         console.log("prevInfo: ", prevInfo);
-        console.log("info to update: ", infoToUpdate);
+        console.log("info to update: ", infoToUpdate); */
 
-        // "client_id" goes in "clientInfo" to search the client row in the DDBB. 
-        let editedInfo = await Clients.update({client_id, infoToUpdate}, { where: { "client_id": client_id } });
+        let editedInfo = await Clients.update(req.body, { where: { "client_id": client_id } });
 
         res.status(200).json({
             "success": true,

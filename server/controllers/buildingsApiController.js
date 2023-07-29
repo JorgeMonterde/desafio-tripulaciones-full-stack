@@ -6,8 +6,7 @@ const saltRounds = 10;
 //GETs
 //get building's info:
 const getBuildingInfo = async (req,res) => {
-    let {email,client_id} = req.decoded;
-    let clientData = req.decoded.data;
+    let {client_id} = req.decoded;
     let data = await Buildings.findOne({ where: { "client_id": client_id } });
     try {
         res.status(200).json({
@@ -62,34 +61,13 @@ const createBuildingInfo = async (req,res) => {
 // Edit building profile (building and admin)
 const editBuildingInfo = async (req,res) => {
     let {client_id} = req.decoded.data;
-    let {email, password, user_name, firstname, surname} = req.body;
-    //find client's building info:
-    const buildingInfo = Buildings.findOne({ where: { "client_id": client_id } });
 
     try {
-        // If a field is not filled, do it with the current value
-        if(email == ""){
-            email = req.decoded.data.email;
-        };
-        if (password == "") {
-            password = req.decoded.data.password;
-        };
-        if (user_name == "") {
-            user_name = req.decoded.data.user_name;
-        };
-        if (firstname == "") {
-            firstname = req.decoded.data.firstname;
-        };
-        if (surname == "") {
-            surname = req.decoded.data.surname;
-        };
-
-        // "user_id" goes in "userInfo" to search the user row in the DDBB. 
-        let editedInfo = await Buildings.update({client_id, email, password, user_name, firstname, surname}, { where: { "email": email } });
+        let editedInfo = await Buildings.update(req.body, { where: { "client_id": client_id } });
 
         res.status(200).json({
             "success": true,
-            "message": `User profile updated`,
+            "message": `building info updated`,
             "data": editedInfo
         });
     } catch (error) {
