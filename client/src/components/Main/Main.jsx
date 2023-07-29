@@ -6,6 +6,8 @@ import Catalogue from '../pages/Catalogue/Catalogue';
 import Contact from '../pages/Contact/Contact';
 import StudyCases from '../pages/StudyCases/StudyCases';
 import Profile from '../pages/Profile/Profile';
+import TechnicalForm from '../pages/TechnicalForm/TechnicalForm';
+import ResetPasswordForm from '../pages/ResetPasswordForm/ResetPasswordForm';
 
 const Main = () => {
   return (
@@ -18,6 +20,8 @@ const Main = () => {
         <Route path='/contact' element={<Contact />} />
         <Route path='/studyCases' element={<StudyCases />} />
         <Route path='/profile' element={<Profile />} />
+        <Route path='/technical-form' element={<TechnicalForm />} />
+        <Route path='/resetpassword/:recover_token/' element={<ResetPasswordForm />} />
       </Routes>
     </main>
   );

@@ -1,4 +1,4 @@
-import Form from '../../baseComponents/Form/Form';
+import Form from './Form/Form';
 
 const Contact = () => {
   return <>

@@ -7,7 +7,6 @@ const authMiddleware = require("../middlewares/authMiddlewares");
 
 //EMAIL AND PASSWORD AUTH
 authRouter.post("/email/login", authMiddleware.checkEmailLogIn, authController.createAndStoreTokenViaEmail);
-authRouter.post("/email/signup", authMiddleware.signUpUser, authController.createAndStoreTokenViaEmail);
 authRouter.get("/email/recoverpassword/:email", authController.recoverPassword);
 authRouter.put("/email/resetpassword", authController.resetPassword);
 

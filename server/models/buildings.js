@@ -1,26 +1,26 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require("../utils/db_mysql");
-//console.log(sequelize);
+
 
 const Buildings = sequelize.define("Buildings", {
-        user_id:{
+        client_id:{
             type: DataTypes.UUID,
-            references: {
-                model: Users,
-                key: "user_id"
-            },
             allowNull: false
         },
-        address_number:{
-            type: DataTypes.NUMBER,
+        /* address_number:{
+            type: DataTypes.INTEGER,
             allowNull: false
         },
         street:{
             type: DataTypes.STRING(100),
             allowNull: false
+        }, */
+        address:{
+            type: DataTypes.STRING(100),
+            allowNull: false
         },
         postal_code:{
-            type: DataTypes.NUMBER,
+            type: DataTypes.INTEGER,
             allowNull: false,
         },
         city:{
@@ -31,10 +31,10 @@ const Buildings = sequelize.define("Buildings", {
             type: DataTypes.STRING(100),
             allowNull: false
         },
-        autonomous_community:{
+        /* autonomous_community:{
             type: DataTypes.STRING(100),
             allowNull: false
-        },
+        }, */
         cif:{
             type: DataTypes.STRING(12),
             allowNull: false,
@@ -53,11 +53,11 @@ const Buildings = sequelize.define("Buildings", {
             allowNull: false
         },
         number_of_apartments:{
-            type: DataTypes.NUMBER,
+            type: DataTypes.INTEGER,
             allowNull: false
         },
         year_of_construction:{
-            type: DataTypes.NUMBER,
+            type: DataTypes.INTEGER,
             allowNull: false
         },
         cadastre_number:{
@@ -74,7 +74,7 @@ const Buildings = sequelize.define("Buildings", {
     },{
         modelName:"Buildings",
         tableName:"buildings",
-        timestamps: true
+        timestamps: false
     }
 )
 
