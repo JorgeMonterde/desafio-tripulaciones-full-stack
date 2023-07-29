@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
 import { BsAspectRatio, BsFillArrowDownSquareFill } from "react-icons/bs";
+import { Document, Outline, Page } from 'react-pdf';
 import ContactBtn from '../../baseComponents/ContactBtn/ContactBtn';
+
+import samplePDF from '../../../../public/assets/Principios_de_seguridad.pdf';
 
 // const steps = [
 //   {
@@ -25,7 +29,17 @@ import ContactBtn from '../../baseComponents/ContactBtn/ContactBtn';
 //   },
 // ]
 
+
 const Profile = () => {
+  const [showGraphic, setshowGraphic] = useState(true);
+
+  // const handleGraphic = () => setshowGraphic(!showGraphic);
+  const [pageNumber, setPageNumber] = useState(1);
+
+  function onItemClick({ pageNumber: itemPageNumber }) {
+    setPageNumber(itemPageNumber);
+  }
+
   return (
     <>
       <Link to="/contact"><ContactBtn/></Link>
@@ -38,6 +52,7 @@ const Profile = () => {
           </article>
       </section>
 
+
       <section className='profile_progressBar'>
         <section className='step-bar'>
           <div>
@@ -49,6 +64,7 @@ const Profile = () => {
           <p className='circle TitleM'>4</p><span></span>
           <p className='circle TitleM'>5</p>
         </section>
+
 
         <ul className='legend'>
           <li className='legend_title'>Leyenda:</li>
@@ -71,7 +87,9 @@ const Profile = () => {
         </ul>
       </section>
 
-      <section className='profile_temperature'>
+
+      {showGraphic  
+      ?<section className='profile_temperature'>
         <article className='temp_header'>
           <h2 className='TitleM'>Estas son tus lecturas</h2>
           <p className='bodyXXLRegular'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
@@ -92,10 +110,11 @@ const Profile = () => {
             </article>
           </section>
 
+
           <section className='temp_graphic'>
             <img src='../../../../public/assets/Chart.png' alt='gráfica de temperaturas'/>
           </section>
-          
+         
           <section className='temp_savedTrees'>
             <div className='temp_box '>
               <p className='temp_text'>4500</p>
@@ -104,16 +123,26 @@ const Profile = () => {
             <img src='../../../../public/assets/Tree.png' alt='Icono de arbol'/>
             <p className='temp_text'>29ºC</p>
             <p>Temperatura interior</p>
-          
+         
           </section>
         </section>
       </section>
+      :<section className='pdf_report'>
+        <Document file={samplePDF}>
+          <Outline onItemClick={onItemClick} />
+          <Page pageNumber={pageNumber || 1} />
+        </Document>
+        {/* <embed className='report' src='../../../../public/assets/Principios_de_seguridad.pdf' alt='report'/> */}
+      </section>
+      }
+
 
       <section className='profile_incidents'>
         <article className='incidents_header'>
           <h2 className='TitleM'>¿Algo no va bien?</h2>
           <p className='bodyXLRegular'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
         </article>
+
 
         <section className='incidents_content'>
           <p className='bodyXLBold'>Notificar incidencia <BsFillArrowDownSquareFill/></p>
@@ -126,5 +155,6 @@ const Profile = () => {
     </>
   );
 };
+
 
 export default Profile;
