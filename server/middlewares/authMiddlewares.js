@@ -95,8 +95,7 @@ const checkEmailLogIn = async(req, res, next) => {
             if(match){
                 //change client's "logged" state to true:
                 const result = await Clients.update({logged: true}, {where: {"email": email}});
-                req.user = {email};
-                console.log("++++++>>>", result);
+                req.user = {email, "client_id": data.client_id};
                 next();
             } else {
                 res.status(400).json({ "message": 'Incorrect client or password'});

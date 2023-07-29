@@ -6,8 +6,10 @@ const saltRounds = 10;
 //GETs
 //get building's info:
 const getBuildingInfo = async (req,res) => {
+    let {email,client_id} = req.decoded;
+    let clientData = req.decoded.data;
+    let data = await Buildings.findOne({ where: { "client_id": client_id } });
     try {
-        let data = req.decoded.data;
         res.status(200).json({
             "success": true,
             "message": `Building info supplied`,
@@ -18,7 +20,7 @@ const getBuildingInfo = async (req,res) => {
         res.status(400).json({
             "success": false,
             "message": `Error: ${error}`,
-            "data": ""
+            "data": {}
         });
     }
 }
@@ -59,9 +61,12 @@ const createBuildingInfo = async (req,res) => {
 //PUTs
 // Edit building profile (building and admin)
 const editBuildingInfo = async (req,res) => {
+    let {client_id} = req.decoded.data;
+    let {email, password, user_name, firstname, surname} = req.body;
+    //find client's building info:
+    const buildingInfo = Buildings.findOne({ where: { "client_id": client_id } });
+
     try {
-        let {client_id} = req.decoded.data;
-        let {email, password, user_name, firstname, surname} = req.body;
         // If a field is not filled, do it with the current value
         if(email == ""){
             email = req.decoded.data.email;

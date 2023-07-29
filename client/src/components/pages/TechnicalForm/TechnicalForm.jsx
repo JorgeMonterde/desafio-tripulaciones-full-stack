@@ -37,10 +37,11 @@ const TechnicalForm = () => {
   const { register, handleSubmit, formState: { errors } } = useForm({
     defaultValues: inputDefaultValues });
   const navigate = useNavigate();
+  const [clientEmail, setClientEmail] = useState("");
 
   //Submit function:
   const onSubmit = async(data) => {
-    console.log("data???", data)
+    console.log("data???", data);
     //store client info
     const {first_name, surname, email, telephone_num, client_position, password} = data;
     const clientData = {first_name, surname, email, telephone_num, client_position, password};
@@ -57,7 +58,15 @@ const TechnicalForm = () => {
     console.log("auth response: ",buildingResponse);
 
     if(clientResponse.data.success && buildingResponse.data.success){
-      // Confirm building characteristics are according to validation
+      // Go to validation: Confirm building specifications are according to validation
+
+        //validation true: set password and redirect to "login"
+        const response = await axios.get(`http://localhost:3000/auth/email/recoverpassword/${email}`, { withCredentials: true });
+        if(response.data.success){
+          navigate("/login");
+        }
+
+        //validation false: message and redirect to "home"
       
     } else {
       // Fail
@@ -240,9 +249,6 @@ const TechnicalForm = () => {
 
 
 
-
-
-
         <section className='form_checkboxes'>
           <section className='form_termsAndConditions'>
             <input {...register("checkbox")} type="checkbox" id="termsAndConditions" value="Aceptar términos y condiciones" />
@@ -257,6 +263,7 @@ const TechnicalForm = () => {
 
         <button type="submit">Enviar</button>
       </form>
+
     </>
   );
 };
