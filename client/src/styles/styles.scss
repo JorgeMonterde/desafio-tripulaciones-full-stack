@@ -1,18 +1,20 @@
 //Basecomponents scss
-@import './components/baseComponents/Form';
 @import './components/baseComponents/ClaimCard';
+@import './components/baseComponents/Form';
 
 
 //Components scss
 @import './components/Footer';
-@import './components/NavBar';
 @import './components/Header';
+@import './components/NavBar';
 
 //Components/pages scss
-@import './components/pages/Landing';
-@import './components/pages/Profile';
-@import './components/pages/Catalogue';
 @import './components/pages/About';
+@import './components/pages/Catalogue';
+@import './components/pages/Landing';
+@import './components/pages/Login';
+@import './components/pages/Profile';
+@import './components/pages/StudyCases';
 
 //general scss
 @import './views/App';
