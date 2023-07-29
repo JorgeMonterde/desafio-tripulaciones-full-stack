@@ -1,11 +1,9 @@
 import { BsLinkedin } from "react-icons/bs";
-import { Link } from 'react-router-dom';
 import { team } from '../../../../team';
 
 const About = () => {
   return (
     <>
-      <Link to="/contact"><button className='contact_btn'><img src='../../../../public/assets/vite.svg'/></button></Link>
       <section className='about'>
         <article className='about_us'>
           <h1 className='TitleM'>¿Tienes alguna pregunta?</h1>

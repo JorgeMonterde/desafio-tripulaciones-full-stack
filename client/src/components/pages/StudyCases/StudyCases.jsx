@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
 import TextBand from '../../baseComponents/TextBand/TextBand';
+import ContactBtn from '../../baseComponents/ContactBtn/ContactBtn';
 
 const StudyCases = () => {
   return (
     <>
-      <Link to="/contact"><button className='contact_btn'><img src='../../../../public/assets/vite.svg'/></button></Link>
+      <Link to="/contact"><ContactBtn/></Link>
       <section className='study_cases'>
           <article className='case'>
             <img src='../../../../public/assets/energyImg.avif'/>

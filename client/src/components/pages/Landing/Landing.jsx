@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom';
 import TextBand from '../../baseComponents/TextBand/TextBand';
+import ContactBtn from '../../baseComponents/ContactBtn/ContactBtn';
 
 const Landing = () => {
   
   return (
     <>
-      <Link to="/contact"><button className='contact_btn'><img src='../../../../public/assets/vite.svg'/></button></Link>
+      <Link to="/contact"><ContactBtn/></Link>
 
       <article className='claim_container'>
         <p className='TitleXL'>Claim</p>
@@ -13,6 +14,8 @@ const Landing = () => {
         <button className='claimCta_btn bodyXXLBold'>CTA</button>
       </article>
 
+      <TextBand className="text_band" text="Title XL * Beneficios * Title XL * Beneficios" />
+      
       <section className='cards_container'>
         <article className='card_img_text'>
           <section className='case_content'>
@@ -38,8 +41,6 @@ const Landing = () => {
           <img className='card_img' src='../../../../public/assets/energyImg.avif'  alt='Card background'/>
         </article>
       </section>
-
-      <TextBand className="text_band" text="Title XL * Beneficios * Title XL * Beneficios" />
     </>
   )
 };

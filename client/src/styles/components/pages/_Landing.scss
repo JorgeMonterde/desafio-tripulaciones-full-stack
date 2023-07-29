@@ -7,6 +7,8 @@
   width: 100%;
   height: 24rem;
   gap: 2rem;
+  margin: 48px 0;
+  padding: 48px 176.5px;
   background-image: url("../../../../public/assets/energyImg.avif");
   background-size: "contain";
   background-repeat: "no-repeat";
@@ -30,7 +32,7 @@
 
 .cards_container {
   @include flexCol;
-  padding: 48px 96px;
+  padding: 0 200px 48px;
   width: 100%;
   gap: 32px;
 
