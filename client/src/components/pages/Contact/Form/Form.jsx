@@ -18,11 +18,13 @@ const inputDefaultValues = {
 };
 
 
-const Form = () => {
+const Form = (props) => {
   const [inputValue, setInputValue] = useState({...inputDefaultValues});
   const { register, handleSubmit, formState: { errors } } = useForm({
     defaultValues: inputDefaultValues });
   const navigate = useNavigate();
+  const {visible, changeVisibleState} = props.isVisible;
+  const {changeModalInfo} = props;
 
   //Submit function:
   const onSubmit = async(data) => {
@@ -38,9 +40,17 @@ const Form = () => {
       const response2 = await axios.get(`http://localhost:3000/api/leads/email/${data.email}`, { withCredentials: true });
       if(response2.data.success){
         console.log(`An email has been send to ${data.email}`);
-        navigate("/catalogue");
+        //show modal
+        changeModalInfo("Hemos recibido su solicitud.", "Nos pondremos en contacto con usted lo antes posible.");
+        changeVisibleState();
+
+        //navigate("/catalogue");
       } else {
         console.log("We could not send you an email");
+        //show modal
+        changeModalInfo("No se pudo enviar la solicitud.", "Contáctenos por otros medios y le atenderemos encantados.");
+        changeVisibleState();
+
       }
       
     } else {

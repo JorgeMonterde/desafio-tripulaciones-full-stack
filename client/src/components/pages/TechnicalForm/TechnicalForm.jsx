@@ -37,10 +37,13 @@ const TechnicalForm = () => {
   const { register, handleSubmit, formState: { errors } } = useForm({
     defaultValues: inputDefaultValues });
   const navigate = useNavigate();
-  const [clientEmail, setClientEmail] = useState("");
 
   //Submit function:
   const onSubmit = async(data) => {
+    //1º: validar
+    //2º: guardar datos
+    //3º: enviar correo con password
+
     console.log("data???", data);
     //store client info
     const {first_name, surname, email, telephone_num, client_position, password} = data;
