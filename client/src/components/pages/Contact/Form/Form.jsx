@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import TextBand from '../TextBand/TextBand';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -62,10 +61,6 @@ const Form = () => {
 
   return (
     <>
-      <article className='form_header'>
-        <h1 className='TitleM'>Me interesa</h1>
-        <p className='bodyXLRegular'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore </p>
-      </article>
       <form className='form_contact' onSubmit={handleSubmit(onSubmit)}>
         <section className='fields'>
           <label className='bodyXLBold'>Nombre *
@@ -178,26 +173,6 @@ const Form = () => {
 
         <button className='cta_btn' type='submit'>Enviar</button>
       </form>
-
-      <TextBand className='text_band' text='Title XL * Beneficios * Title XL * Beneficios'/>
-
-      <section className='contact_header'>
-        <section className='header_question'>
-          <p className='TitleM'>¿Tienes alguna pregunta?</p>
-          <p className='bodyXLRegular'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore </p>
-        </section>
-
-        <section className='contact_us'>
-          <section>
-            <p className='TitleXS'>Llámanos al</p>
-            <p className='TitleM'>xxx.xx.xx.xx</p>
-          </section>
-          <section>
-            <p className='TitleXS'>O escríbenos a</p>
-            <p className='TitleM'>abc@abc.es</p>
-          </section>
-        </section>
-      </section>
     </>
   );
 };
