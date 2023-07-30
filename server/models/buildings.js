@@ -15,6 +15,10 @@ const Buildings = sequelize.define("Buildings", {
             type: DataTypes.STRING(100),
             allowNull: false
         }, */
+        name_of_community:{
+            type: DataTypes.STRING(100),
+            allowNull: true
+        },
         address:{
             type: DataTypes.STRING(100),
             allowNull: false

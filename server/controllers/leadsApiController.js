@@ -7,7 +7,7 @@ const saltRounds = 10;
 //GETs
 //get lead's info:
 const getLeadInfo = async (req,res) => {
-    let email = req.decoded.email;
+    let {email} = req.params;
     try {
         let data = await Leads.findOne({ where: { "email": email } });
         if(data){
@@ -42,7 +42,7 @@ const sendEmail = async (req,res) => {
             from: process.env.GMAIL_SENDER,
             to: email,
             subject: "Email from our webpage",
-            text: "Visit the following url to continue: http://localhost:5173/technical-form",
+            text: `Visit the following url to continue: http://localhost:5173/technical-form/${email}/`,
             auth: {
                 user: process.env.GMAIL_SENDER,
                 refreshToken: process.env.REFRESH_TOKEN,

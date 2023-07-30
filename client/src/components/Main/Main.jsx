@@ -20,7 +20,7 @@ const Main = () => {
         <Route path='/contact' element={<Contact />} />
         <Route path='/studyCases' element={<StudyCases />} />
         <Route path='/profile' element={<Profile />} />
-        <Route path='/technical-form' element={<TechnicalForm />} />
+        <Route path='/technical-form/:email/' element={<TechnicalForm />} />
         <Route path='/resetpassword/:recover_token/' element={<ResetPasswordForm />} />
       </Routes>
     </main>

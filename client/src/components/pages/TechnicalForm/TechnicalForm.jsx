@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Modal from "../../baseComponents/Modal/Modal";
 
 let inputDefaultValues = {
   // client fields
-  first_name: 'HOLA',
+  first_name: '',
   surname: '',
   email: '',
   telephone_num: "",
@@ -27,17 +27,19 @@ let inputDefaultValues = {
   number_of_apartments: "",
   year_of_construction: "",
   cadastre_number:"",
-  energy_efficiency_certificate:""
+  energy_efficiency_certificate:"",
+  name_of_community: ""
 
 };
 
 
 const TechnicalForm = () => {
   const [inputValue, setInputValue] = useState({...inputDefaultValues});
+  const {email} = useParams();
 
   useEffect(() => {
     const getLeadsInfo = async() => {
-      const response = await axios.get("http://localhost:3000/api/leads/lead", { withCredentials: true });
+      const response = await axios.get(`http://localhost:3000/api/leads/lead/${email}`, { withCredentials: true });
 
       inputDefaultValues = {...inputDefaultValues, ...response.data.data};
       setInputValue({...inputDefaultValues});
@@ -84,8 +86,8 @@ const TechnicalForm = () => {
     console.log("auth response: ",clientResponse);
 
     //store building info
-    const {address, postal_code, city, province, community_type, cif, total_area, communal_areas_area, housing_area, number_of_apartments, year_of_construction, cadastre_number, energy_efficiency_certificate} = data;
-    const buildingData = {client_id, address, postal_code, city, province, community_type, cif, total_area, communal_areas_area, housing_area, number_of_apartments, year_of_construction, cadastre_number, energy_efficiency_certificate};
+    const {address, postal_code, city, province, community_type, cif, total_area, communal_areas_area, housing_area, number_of_apartments, year_of_construction, cadastre_number, energy_efficiency_certificate, name_of_community} = data;
+    const buildingData = {client_id, address, postal_code, city, province, community_type, cif, total_area, communal_areas_area, housing_area, number_of_apartments, year_of_construction, cadastre_number, energy_efficiency_certificate, name_of_community};
 
     const buildingResponse = await axios.post("http://localhost:3000/api/buildings/building", buildingData, { withCredentials: true });
     console.log("auth response: ",buildingResponse);
@@ -287,7 +289,7 @@ const TechnicalForm = () => {
           </section> 
 
 
-          <section className='fields'>   
+          <section className='fields'>
             <label  className='bodyXLBold' htmlFor='energyCertificate'>Certificación de eficiencia energética
               <select name="energy_efficiency_certificate" id='energyCertificate' {...register("energy_efficiency_certificate")}>
                 <option value=""></option>
@@ -300,6 +302,16 @@ const TechnicalForm = () => {
                 <option value="G">G</option>
               </select>
               {errors.energy_efficiency_certificate &&  <p className='text_error' role="alert">{errors.energy_efficiency_certificate?.message}</p>}
+            </label>
+
+            <label className='bodyXLBold' htmlFor='name_of_community'>Nombre de comunidad
+              <input className='input' type="text" id='name_of_community' placeholder="Nombre de comunidad" onChange={handleChange} {...register("name_of_community", {
+                value: inputValue.name_of_community,
+                minLength: 3,
+                maxLength: 20,
+                pattern: /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]{3,30}/
+              })} aria-invalid={errors.name_of_community ? "true" : "false"} />
+              {errors.name_of_community &&  <p className='text_error' role="alert">{errors.name_of_community?.message}</p>}
             </label>
           </section> 
 
