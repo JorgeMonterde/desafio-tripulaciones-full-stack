@@ -191,9 +191,10 @@ const TechnicalForm = () => {
 
           <label className='bodyXLBold'>C.P
             <input className='input bodyLRegular' type="number" placeholder="Código postal" onChange={handleChange} {...register("postal_code", {
+              required: "Verificar código postal",
               pattern: /^(?:0[1-9]|[1-4]\d|5[0-2])\d{3}$/
             })} aria-invalid={errors.postal_code ? "true" : "false"} />
-            {errors.postal_code &&  <p className='text_error' role="alert">{errors.postal_code?.message}</p>}
+            {errors.postal_code &&  <p className='text_error' role="alert">Campo obligatorio</p>}
           </label>
         </section>
        
@@ -260,17 +261,32 @@ const TechnicalForm = () => {
         </section> 
 
         <section className='fields'>   
-          <label className='bodyXLBold'>Certificación de eficiencia energética
+          {/* <label className='bodyXLBold'>Certificación de eficiencia energética
             <input className='input' type="text" placeholder="Certificación de eficiencia energética" onChange={handleChange} {...register("energy_efficiency_certificate", {
               pattern: /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]{1,20}/
             })} aria-invalid={errors.energy_efficiency_certificate ? "true" : "false"} />
+            {errors.energy_efficiency_certificate &&  <p className='text_error' role="alert">{errors.energy_efficiency_certificate?.message}</p>}
+          </label>
+ */}
+          <label  className='bodyXLBold'>Certificación de eficiencia energética
+            <select name="energy_efficiency_certificate" {...register("energy_efficiency_certificate")}>
+              <option value=""></option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+              <option value="G">G</option>
+            </select>
             {errors.energy_efficiency_certificate &&  <p className='text_error' role="alert">{errors.energy_efficiency_certificate?.message}</p>}
           </label>
         </section> 
 
 
 
-        <section className='form_checkboxes'>
+
+        {/* <section className='form_checkboxes'>
           <section className='form_termsAndConditions'>
             <input {...register("checkbox")} type="checkbox" id="termsAndConditions" value="Aceptar términos y condiciones" />
             <label htmlFor="termsAndConditions">He leído y acepto las condiciones de la <a>Política de Privacidad</a></label>
@@ -279,7 +295,7 @@ const TechnicalForm = () => {
             <input {...register("checkbox")} type="checkbox" value="Recibir notificaciones" />
             <label>Acepto recibir comunicaciones de carácter publicitario e informativo con noticias, consejos y recomendaciones relacionadas con temas de ecosostenibilidad y medioambiente.</label>
           </section>
-        </section>
+        </section>  */}
 
 
         <button type="submit">Enviar</button>
