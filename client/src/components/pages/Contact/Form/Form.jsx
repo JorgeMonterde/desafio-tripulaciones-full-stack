@@ -119,7 +119,7 @@ const Form = (props) => {
         
         <section className='fields'>
           <label className='bodyXLBold'>Teléfono *
-            <input className='input bodyLRegular' type="number" placeholder="número de teléfono" onChange={handleChange} {...register("telephone_num", {
+            <input className='input bodyLRegular' type="text" placeholder="+34 número de teléfono" onChange={handleChange} {...register("telephone_num", {
               required: "Verificar número de teléfono",
               pattern: /(\+34|0034|34)?[ -]*(6|7)[ -]*([0-9][ -]*){8}/
             })} aria-invalid={errors.telephone_num ? "true" : "false"} />

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import ResetPasswordModal from "./ResetPasswordModal/ResetPasswordModal";
 
 
 
@@ -13,43 +13,57 @@ const inputDefaultValues = {
 
 const Login = () => {
   const [inputValue, setInputValue] = useState({...inputDefaultValues});
+  const [loginErrorMessage, setLoginErrorMessage] = useState("");
   const { register, handleSubmit, formState: { errors } } = useForm({ 
     defaultValues: inputDefaultValues });
     const navigate = useNavigate();
-    
-     const handleClick = async () => {
-       //logout
-       const authResponse = await axios.get("http://localhost:3000/auth/logout", { withCredentials: true });
-       console.log("auth response: ",authResponse)
-       if(authResponse.data.success){
-         //Redirect
-         console.log("Logout successfull");
-         navigate("/");
-       } else {
-         //Not logged out
-         console.log("Could not logout");
-       }
-     };
-    
-    
-    
-    //Submit function:
-    const onSubmit = async(data) => {
-      const {email, password} = data;
-      console.log("data???", data)
-    //log in 
-    const authResponse = await axios.post("http://localhost:3000/auth/email/login", {email, password}, { withCredentials: true });
-    console.log("auth response: ",authResponse)
 
+  const [visible, setVisible] = useState(false);
+  const changeVisibleState = () => {
+    setVisible(!visible);
+  };
+  const isVisible = {visible, changeVisibleState};
+
+  
+    
+  const handleClick = async () => {
+    //logout
+    const authResponse = await axios.get("http://localhost:3000/auth/logout", { withCredentials: true });
+    console.log("auth response: ",authResponse)
     if(authResponse.data.success){
       //Redirect
-      console.log("From client: You are logged in");
-      navigate("/catalogue");
+      console.log("Logout successfull");
+      navigate("/");
     } else {
-      //Not logged in
-      console.log("From client: You are NOT logged in");
+      //Not logged out
+      console.log("Could not logout");
     }
-    console.log(data);
+  };
+    
+    
+    
+  //Submit function:
+  const onSubmit = async(data) => {
+    const {email, password} = data;
+    console.log("data???", data)
+    //log in 
+    try {
+      const authResponse = await axios.post("http://localhost:3000/auth/email/login", {email, password}, { withCredentials: true });
+      console.log("auth response: ",authResponse)
+  
+      if(authResponse.data.success){
+        //Redirect
+        console.log("From client: You are logged in");
+        navigate("/profile");
+      } else {
+        //Not logged in
+        console.log("From client: You are NOT logged in");
+        
+      }
+    } catch (error) {
+      console.log(`Error: ${error}`);
+      setLoginErrorMessage("Email o contraseña incorrectos");
+    }
   };
 
   const handleChange = (e) => {
@@ -59,6 +73,8 @@ const Login = () => {
       [e.target.name]: e.target.value,
     })
   }
+
+
   
   return (
     <section className='login_section'>
@@ -80,6 +96,11 @@ const Login = () => {
           })} aria-invalid={errors.password ? "true" : "false"} />
         </label>
         {errors.password && <p className='text_error' role="alert">{errors.password?.message}</p>}
+        <a onClick={changeVisibleState}>¿Ha olvidado su contraseña?</a>
+        <ResetPasswordModal isVisible={isVisible} />
+
+
+        {loginErrorMessage? <p className='text_error'>{loginErrorMessage}</p> : ""}
         <button className='TitleXS cta_btn' type="submit">Enviar</button>
       </form>
     </section>

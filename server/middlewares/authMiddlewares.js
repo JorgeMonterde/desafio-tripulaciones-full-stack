@@ -87,24 +87,20 @@ const checkEmailLogIn = async(req, res, next) => {
     try {
         //check if a client with the provided email is already in the database:
         let data = await Clients.findOne({ where: { "email": email } });
-        if(!data){
-            console.log("This email do not have an account");
-            res.status(401).json({"success": false, "message":"This email do not have an account"});
+        console.log("match??", password, data.hashed_password);
+        //check if the provided password is correct
+        const match = await bcrypt.compare(password, data.hashed_password);
+        if(match){
+            //change client's "logged" state to true:
+            const result = await Clients.update({logged: true}, {where: {"email": email}});
+            req.user = {email, "client_id": data.client_id};
+            next();
         } else {
-            console.log("match??", password, data.hashed_password);
-            //check if the provided password is correct
-            const match = await bcrypt.compare(password, data.hashed_password);
-            if(match){
-                //change client's "logged" state to true:
-                const result = await Clients.update({logged: true}, {where: {"email": email}});
-                req.user = {email, "client_id": data.client_id};
-                next();
-            } else {
-                res.status(400).json({ "message": 'Incorrect client or password'});
-            }
+            res.status(401).json({"success": false, "message":"Incorrect client or password"});
         }
     } catch (error) {
         console.log(`Error: ${error}`);
+        res.status(401).json({"success": false, "message":"This email do not have an account"});
     }
 }
 

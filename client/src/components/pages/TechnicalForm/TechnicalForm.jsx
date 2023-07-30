@@ -262,27 +262,71 @@ const TechnicalForm = () => {
             </label>
           </section> 
 
-          <section className='fields'>   
-            <label className='bodyXLBold' htmlFor='energyCertificate'>Certificación de eficiencia energética
-              <input className='input' type="text" id='energyCertificate' placeholder="Certificación de eficiencia energética" onChange={handleChange} {...register("energy_efficiency_certificate", {
-                pattern: /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]{1,20}/
-              })} aria-invalid={errors.energy_efficiency_certificate ? "true" : "false"} />
-              {errors.energy_efficiency_certificate &&  <p className='text_error' role="alert">{errors.energy_efficiency_certificate?.message}</p>}
-            </label>
-          </section> 
+        <section className='fields'>   
+          <label className='bodyXLBold'>Superficie de viviendas
+            <input className='input' type="text" placeholder="Superficie de viviendas" onChange={handleChange} {...register("housing_area")} aria-invalid={errors.housing_area ? "true" : "false"} />
+            {errors.housing_area &&  <p className='text_error' role="alert">{errors.housing_area?.message}</p>}
+          </label>
+
+          <label className='bodyXLBold'>Número de viviendas
+            <input className='input' type="text" placeholder="Número de viviendas" onChange={handleChange} {...register("number_of_apartments", {
+              maxLength: 20
+            })} aria-invalid={errors.number_of_apartments ? "true" : "false"} />
+            {errors.number_of_apartments &&  <p className='text_error' role="alert">{errors.number_of_apartments?.message}</p>}
+          </label>
+        </section> 
+
+        <section className='fields'>   
+          <label className='bodyXLBold'>Año de construcción
+            <input className='input' type="text" placeholder="Año de construcción" onChange={handleChange} {...register("year_of_construction")} aria-invalid={errors.year_of_construction ? "true" : "false"} />
+            {errors.year_of_construction &&  <p className='text_error' role="alert">{errors.year_of_construction?.message}</p>}
+          </label>
+
+          <label className='bodyXLBold'>Referencia catastral
+            <input className='input' type="text" placeholder="Referencia catastral" onChange={handleChange} {...register("cadastre_number", {
+              minLength: 3,
+              maxLength: 20
+            })} aria-invalid={errors.cadastre_number ? "true" : "false"} />
+            {errors.cadastre_number &&  <p className='text_error' role="alert">{errors.cadastre_number?.message}</p>}
+          </label>
+        </section> 
+
+        <section className='fields'>   
+          {/* <label className='bodyXLBold'>Certificación de eficiencia energética
+            <input className='input' type="text" placeholder="Certificación de eficiencia energética" onChange={handleChange} {...register("energy_efficiency_certificate", {
+              pattern: /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]{1,20}/
+            })} aria-invalid={errors.energy_efficiency_certificate ? "true" : "false"} />
+            {errors.energy_efficiency_certificate &&  <p className='text_error' role="alert">{errors.energy_efficiency_certificate?.message}</p>}
+          </label>
+ */}
+          <label  className='bodyXLBold' htmlFor='energyCertificate'>Certificación de eficiencia energética
+            <select name="energy_efficiency_certificate" id='energyCertificate' {...register("energy_efficiency_certificate")}>
+              <option value=""></option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+              <option value="G">G</option>
+            </select>
+            {errors.energy_efficiency_certificate &&  <p className='text_error' role="alert">{errors.energy_efficiency_certificate?.message}</p>}
+          </label>
+        </section> 
 
 
 
-          <section className='form_checkboxes'>
-            <section className='form_termsAndConditions'>
-              <input {...register("checkbox")} type="checkbox" id="termsAndConditions" value="Aceptar términos y condiciones" />
-              <label htmlFor="termsAndConditions" className='bodyLRegular'>He leído y acepto las condiciones de la <a>Política de Privacidad</a></label>
-            </section>
-            <section className='form_notifications'>
-              <input {...register("checkbox")} type="checkbox" id='notification' value="Recibir notificaciones" />
-              <label htmlFor="notification" className='bodyLRegular'>Acepto recibir comunicaciones de carácter publicitario e informativo con noticias, consejos y recomendaciones relacionadas con temas de ecosostenibilidad y medioambiente.</label>
-            </section>
+
+        {/* <section className='form_checkboxes'>
+          <section className='form_termsAndConditions'>
+            <input {...register("checkbox")} type="checkbox" id="termsAndConditions" value="Aceptar términos y condiciones" />
+            <label htmlFor="termsAndConditions">He leído y acepto las condiciones de la <a>Política de Privacidad</a></label>
           </section>
+          <section className='form_notifications'>
+            <input {...register("checkbox")} type="checkbox" value="Recibir notificaciones" />
+            <label>Acepto recibir comunicaciones de carácter publicitario e informativo con noticias, consejos y recomendaciones relacionadas con temas de ecosostenibilidad y medioambiente.</label>
+          </section>
+        </section>  */}
 
 
           <button className='cta_btn titleXS' type="submit">Enviar</button>
