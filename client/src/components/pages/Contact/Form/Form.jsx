@@ -182,7 +182,7 @@ const Form = (props) => {
         </section>
 
 
-        <button className='cta_btn' type='submit'>Enviar</button>
+        <button className='cta_btn titleXS' type='submit'>Enviar</button>
       </form>
     </>
   );
