@@ -5,7 +5,7 @@ const authMiddleware = require("../middlewares/authMiddlewares")
 
 //Route: "api/leads"
 //GETs
-leadsApiRouter.get("/lead/:lead_id?", leadsApiController.getLeadInfo); // Gets lead's info
+leadsApiRouter.get("/lead", authMiddleware.isClientLoggedCheck, leadsApiController.getLeadInfo); // Gets lead's info
 leadsApiRouter.get("/email/:email", leadsApiController.sendEmail); // Send email to lead
 //POSTs
 leadsApiRouter.post("/lead", leadsApiController.createLead);// Create lead
