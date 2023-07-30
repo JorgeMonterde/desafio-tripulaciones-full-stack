@@ -59,7 +59,7 @@ const NavBar = () => {
               <Link className='navBar_link bodyMCAPS' to={item.link} key={item.name} >{item.name}</Link>
           ))}
           {isUserLog ? <Link to="/"><button className='TitleXS logOut_btn' onClick={handleLogOut}>Salir</button></Link> : <Link to="login"><button className='TitleXS login_btn'>Entrar</button></Link>}
-          <UserIcon  className='user_icon' content='User@email'/>
+          <Link to="/profile"><UserIcon  className='user_icon' content='User@email'/></Link>
         </Navbar.Content>
         <Navbar.Brand>
           <Navbar.Toggle showIn="xs" />
