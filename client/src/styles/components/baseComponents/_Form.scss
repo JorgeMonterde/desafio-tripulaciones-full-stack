@@ -3,21 +3,6 @@
 @import '../../utils/media_queries.scss';
 
 
-.form_header {
-  @include flexCol;
-  padding: 48px 120px;
-  gap: 24px;
-  text-align: left;
-  width: 100%;
-
-  .TitleM {
-    @include TitleM;
-  }
-
-  .bodyXLRegular {
-    @include bodyXLRegular;
-  }
-}
 .form_contact {
   display: flex;
   flex-direction: column;
@@ -126,52 +111,4 @@
       }
     }
   }
-}
-
-.contact_header {
-  @include flexCol;
-  padding: 0 96px;
-  gap: 24px;
-  text-align: left;
-  margin: 48px 0;
-  width: 100%;
-
-  .header_question {
-    @include flexCol;
-    gap: 10px;
-    text-align: left;
-  
-    .TitleM {
-      @include TitleM;
-    }
-  
-    .bodyXLRegular {
-      @include bodyXLRegular;
-    }
-  }
-
-  .contact_us {
-    display: flex;
-    width: 100%;
-    gap: 48px;
-    text-align: left;
-    
-    section {
-      width: 100%;
-
-      .TitleXS {
-        @include TitleXS;
-      }
-
-      .TitleM {
-        @include TitleM;
-      }
-    }
-  }
-}    
-
-.text_band {
-  overflow: hidden;
-  padding: 24px 0;
-  margin: 0 0 48px 0;
 }

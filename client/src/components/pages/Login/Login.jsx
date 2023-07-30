@@ -77,9 +77,9 @@ const Login = () => {
 
   
   return (
-    <>
-      <form className='form_login' onSubmit={handleSubmit(onSubmit)}>
-        <label className='bodyXLBold'>Correo electrónico *
+    <section className='login_section'>
+      <form className='form_login grid-1' onSubmit={handleSubmit(onSubmit)}>
+        <label className='bodyXLBold' htmlFor='email'>Correo electrónico *
           <input className='input bodyLRegular' type="email" id='email' placeholder="Correo" onChange={handleChange} {...register("email", {
             required: "Verificar correo de acceso", 
             pattern: /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})*$/i
@@ -87,7 +87,7 @@ const Login = () => {
         </label>
         {errors.email && <p className='text_error' role="alert">{errors.email?.message}</p>}
 
-        <label className='bodyXLBold'>Contraseña *
+        <label className='bodyXLBold' htmlFor='password'>Contraseña *
           <input className='input bodyLRegular' type="password" id='password' placeholder="Contraseña" onChange={handleChange} {...register("password", {
             required: "Verificar contraseña", 
             minLength: 8, 
@@ -97,17 +97,13 @@ const Login = () => {
         </label>
         {errors.password && <p className='text_error' role="alert">{errors.password?.message}</p>}
         <a onClick={changeVisibleState}>¿Ha olvidado su contraseña?</a>
-        <ResetPasswordModal isVisible={isVisible} /> 
-        <button className='TitleXS' type="submit">Enviar</button>
+        <ResetPasswordModal isVisible={isVisible} />
 
 
         {loginErrorMessage? <p className='text_error'>{loginErrorMessage}</p> : ""}
+        <button className='TitleXS cta_btn' type="submit">Enviar</button>
       </form>
-
-
-      
-      <button className='TitleXS' onClick={handleClick}>Logout</button>
-    </>
+    </section>
   )
   
 };

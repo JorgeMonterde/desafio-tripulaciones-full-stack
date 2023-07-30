@@ -17,7 +17,7 @@
   
   .navBar_link {
     @include bodyMCAPS;
-    color: #6a6969;
+    color: #000201;
   }
   
   .TitleXS {
@@ -25,6 +25,19 @@
     @include TitleXS;
     width: 150px;
     height: 48px;
+  }
+  
+  .logOut_btn {
+    background-color: #FFFFFF;
+    margin: 0;
+  }
+  
+  .login_btn {
+    margin: 0;
+  }
+
+  .nextui-c-iWjDFM {
+    background-color: #FFFFFF;
   }
 
   .transparent {

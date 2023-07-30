@@ -79,31 +79,31 @@ const ResetPasswordForm = () => {
   
   return (
     <>
-      <form className='form_login' onSubmit={handleSubmit(onSubmit)}>
-        <label>Contraseña *
-          <input className='input' type="password" id='password' placeholder="Contraseña" onChange={handleChange} {...register("password", {
-            required: "Verificar contraseña", 
-            minLength: 8, 
-            maxLength: 16, 
-            pattern: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$/
-          })} aria-invalid={errors.password ? "true" : "false"} />
-        </label>
-        {errors.password && <p className='text_error' role="alert">{errors.password?.message}</p>}
-        
+      <section className='reset_section'>
+        <form className='form_login' onSubmit={handleSubmit(onSubmit)}>
+          <label className='bodyXLBold' htmlFor='password'>Contraseña *
+            <input className='input bodyLRegular' type="password" id='password' placeholder="Contraseña" onChange={handleChange} {...register("password", {
+              required: "Verificar contraseña", 
+              minLength: 8, 
+              maxLength: 16, 
+              pattern: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$/
+            })} aria-invalid={errors.password ? "true" : "false"} />
+          </label>
+          {errors.password && <p className='text_error' role="alert">{errors.password?.message}</p>}
 
-        <label>Repita la contraseña *
-          <input className='input' type="password" id='rep_password' placeholder="Contraseña" onChange={handleChange} {...register("rep_password", {
-            required: "Verificar contraseña", 
-            minLength: 8, 
-            maxLength: 16, 
-            pattern: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$/
-          })} aria-invalid={errors.rep_password ? "true" : "false"} />
-        </label>
-        {errors.rep_password && <p className='text_error' role="alert">{errors.rep_password?.message}</p>}
-        <button type="submit">Enviar</button>
-      </form>
-
-      <Modal isVisible={isVisible} title={modalInfo.title} content={modalInfo.content}/>
+          <label className='bodyXLBold' htmlFor='rep_password'>Repita la contraseña *
+            <input className='input bodyLRegular' type="password" id='rep_password' placeholder="Contraseña" onChange={handleChange} {...register("rep_password", {
+              required: "Verificar contraseña", 
+              minLength: 8, 
+              maxLength: 16, 
+              pattern: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,16}$/
+            })} aria-invalid={errors.rep_password ? "true" : "false"} />
+          </label>
+          {errors.rep_password && <p className='text_error' role="alert">{errors.rep_password?.message}</p>}
+          <button className='TitleXS cta_btn' type="submit">Enviar</button>
+        </form>
+        <Modal isVisible={isVisible} title={modalInfo.title} content={modalInfo.content}/>
+      </section>
     </>
   )
   

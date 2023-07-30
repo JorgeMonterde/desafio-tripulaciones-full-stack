@@ -107,129 +107,160 @@ const TechnicalForm = () => {
 
   return (
     <>
-      <h1 className='text_band'>Title XL · Beneficios · Title XL · Beneficios · Title XL · Beneficios · Title XL · Beneficios · Title XL ·</h1>
-
-      <article className='form_header'>
-        <h1 className='TitleM'>---Rellene el siguiente formulario para que valoremos su situación---</h1>
-        <p className='bodyXXLRegular'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore </p>
-      </article>
-      <form className='form_contact' onSubmit={handleSubmit(onSubmit)}>
-
-        {/* client fields */}
-
-        <section className='fields'>
-          <label className='bodyXLBold'>Nombre *
-            <input className='input bodyLRegular' type="text" placeholder="Nombre" onChange={handleChange} {...register("first_name", {
-              required: true,
-              minLength: 3,
-              maxLength: 20,
-              pattern: /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]{3,20}/,
-              message: "Verificar nombre"
-            })} aria-invalid={errors.first_name ? "true" : "false"} />
-            {errors.first_name &&  <p className='text_error' role="alert">Campo obligatorio</p>}
-          </label>
+      <section className='technicalForm_section'>
         
-          <label className='bodyXLBold'>Apellidos *
-            <input className='input bodyLRegular' type="text" placeholder="Apellidos" onChange={handleChange} {...register("surname", {
-              required: true,
-              minLength: 3,
-              maxLength: 20,
-              pattern: /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]{3,20}/
-            })} aria-invalid={errors.surname ? "true" : "false"} />
-            {errors.surname &&  <p className='text_error' role="alert">Campo obligatorio</p>}
-          </label>
-        </section>
+        <h1 className='text_band'>Title XL · Beneficios · Title XL · Beneficios · Title XL · Beneficios · Title XL · Beneficios · Title XL ·</h1>
 
-        <section className='fields'>    
-          <label  className='bodyXLBold'>Función *
-            <select name="client_position" {...register("client_position", {required: {
-              value: true,
-              message: "Campo obligatorio"
-            }})}>
-              <option value="admin">Administración</option>
-              <option value="president">Presidente</option>
-              <option value="otro">Otro</option>
-            </select>
-            {errors.client_position &&  <p className='text_error' role="alert">{errors.client_position?.message}</p>}
-          </label>
+        <article className='form_header'>
+          <h1 className='TitleM'>---Rellene el siguiente formulario para que valoremos su situación---</h1>
+          <p className='bodyXLRegular'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore </p>
+        </article>
 
-          <label className='bodyXLBold'>Tipo de comunidad
-            <select name="community_type" {...register("community_type")}>
-              <option value="admin">Un único edificio</option>
-              <option value="president">Urbanización</option>
-            </select>
-          </label>
-        </section>
+        <form className='form_technical' onSubmit={handleSubmit(onSubmit)}>
+
+          {/* client fields */}
+
+          <section className='fields'>
+            <label className='bodyXLBold' htmlFor='name'>Nombre *
+              <input className='input bodyLRegular' type="text" id='name' placeholder="Nombre" onChange={handleChange} {...register("first_name", {
+                required: true,
+                minLength: 3,
+                maxLength: 20,
+                pattern: /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]{3,20}/,
+                message: "Verificar nombre"
+              })} aria-invalid={errors.first_name ? "true" : "false"} />
+              {errors.first_name &&  <p className='text_error' role="alert">Campo obligatorio</p>}
+            </label>
+          
+            <label className='bodyXLBold' htmlFor='lastName'>Apellidos *
+              <input className='input bodyLRegular' type="text" id='lastName' placeholder="Apellidos" onChange={handleChange} {...register("surname", {
+                required: true,
+                minLength: 3,
+                maxLength: 20,
+                pattern: /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]{3,20}/
+              })} aria-invalid={errors.surname ? "true" : "false"} />
+              {errors.surname &&  <p className='text_error' role="alert">Campo obligatorio</p>}
+            </label>
+          </section>
+
+          <section className='fields'>    
+            <label  className='bodyXLBold' htmlFor='role'>Función *
+              <select name="client_position" id='role' {...register("client_position", {required: {
+                value: true,
+                message: "Campo obligatorio"
+              }})}>
+                <option value="admin">Administración</option>
+                <option value="president">Presidente</option>
+                <option value="otro">Otro</option>
+              </select>
+              {errors.client_position &&  <p className='text_error' role="alert">{errors.client_position?.message}</p>}
+            </label>
+
+            <label className='bodyXLBold' htmlFor='communityType'>Tipo de comunidad
+              <select name="community_type" id='communityType' {...register("community_type")}>
+                <option value="admin">Un único edificio</option>
+                <option value="president">Urbanización</option>
+              </select>
+            </label>
+          </section>
+          
+          <section className='fields'>
+            <label className='bodyXLBold' htmlFor='phone'>Teléfono *
+              <input className='input bodyLRegular' type="number" id='phone' placeholder="número de teléfono" onChange={handleChange} {...register("telephone_num", {
+                required: "Verificar número de teléfono",
+                pattern: /(\+34|0034|34)?[ -]*(6|7)[ -]*([0-9][ -]*){8}/
+              })} aria-invalid={errors.telephone_num ? "true" : "false"} />
+              {errors.telephone_num &&  <p className='text_error' role="alert">Campo obligatorio</p>}
+            </label>
+
+            <label className='bodyXLBold' htmlFor='email'>Correo electrónico *
+              <input className='input bodyLRegular' type="email" id='email' placeholder="Correo electrónico" onChange={handleChange} {...register("email", {
+                required: "Verificar correo electrónico",
+                pattern: /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})*$/i
+              })} aria-invalid={errors.email ? "true" : "false"} />
+              {errors.email &&  <p className='text_error' role="alert">{errors.email?.message}</p>}
+            </label>
+          </section>
+
+          {/* building fields */}
+
+          <section className='fields'>
+            <label className='bodyXLBold' htmlFor='address'>Dirección de la comunidad *
+              <input className='input bodyLRegular' type="text" id='address' placeholder="Dirección de la comunidad" onChange={handleChange} {...register("address", {
+                required: "Verificar dirección de la comunidad"
+              })} aria-invalid={errors.address ? "true" : "false"} />
+              {errors.address &&  <p className='text_error' role="alert">Campo obligatorio</p>}
+            </label>
+
+            <label className='bodyXLBold' htmlFor='zipCode'>C.P
+              <input className='input bodyLRegular' type="number" id='zipCode' placeholder="Código postal" onChange={handleChange} {...register("postal_code", {
+                pattern: /^(?:0[1-9]|[1-4]\d|5[0-2])\d{3}$/
+              })} aria-invalid={errors.postal_code ? "true" : "false"} />
+              {errors.postal_code &&  <p className='text_error' role="alert">{errors.postal_code?.message}</p>}
+            </label>
+          </section>
         
-        <section className='fields'>
-          <label className='bodyXLBold'>Teléfono *
-            <input className='input bodyLRegular' type="number" placeholder="número de teléfono" onChange={handleChange} {...register("telephone_num", {
-              required: "Verificar número de teléfono",
-              pattern: /(\+34|0034|34)?[ -]*(6|7)[ -]*([0-9][ -]*){8}/
-            })} aria-invalid={errors.telephone_num ? "true" : "false"} />
-            {errors.telephone_num &&  <p className='text_error' role="alert">Campo obligatorio</p>}
-          </label>
+          <section className='fields'>   
+            <label className='bodyXLBold' htmlFor='zone'>Localidad
+              <input className='input' type="text" id='zone' placeholder="Localidad" onChange={handleChange} {...register("city", {
+                pattern: /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]{3,20}/
+              })} aria-invalid={errors.city ? "true" : "false"} />
+              {errors.city &&  <p className='text_error' role="alert">{errors.city?.message}</p>}
+            </label>
 
-          <label className='bodyXLBold'>Correo electrónico *
-            <input className='input bodyLRegular' type="email" id='email' placeholder="Correo electrónico" onChange={handleChange} {...register("email", {
-              required: "Verificar correo electrónico",
-              pattern: /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})*$/i
-            })} aria-invalid={errors.email ? "true" : "false"} />
-            {errors.email &&  <p className='text_error' role="alert">{errors.email?.message}</p>}
-          </label>
-        </section>
+            <label className='bodyXLBold' htmlFor='province'>Provincia
+              <input className='input' type="text" id='province' placeholder="Provincia" onChange={handleChange} {...register("province", {
+                minLength: 3,
+                maxLength: 20,
+                pattern: /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]{3,20}/
+              })} aria-invalid={errors.province ? "true" : "false"} />
+              {errors.province &&  <p className='text_error' role="alert">{errors.province?.message}</p>}
+            </label>
+          </section> 
 
-        {/* building fields */}
+          <section className='fields'>   
+            <label className='bodyXLBold' htmlFor='cif'>CIF
+              <input className='input' type="text" id='cif' placeholder="CIF" onChange={handleChange} {...register("cif")} aria-invalid={errors.cif ? "true" : "false"} />
+              {errors.cif &&  <p className='text_error' role="alert">{errors.cif?.message}</p>}
+            </label>
 
-        <section className='fields'>
-          <label className='bodyXLBold'>Dirección de la comunidad *
-            <input className='input bodyLRegular' type="text" placeholder="Dirección de la comunidad" onChange={handleChange} {...register("address", {
-              required: "Verificar dirección de la comunidad"
-            })} aria-invalid={errors.address ? "true" : "false"} />
-            {errors.address &&  <p className='text_error' role="alert">Campo obligatorio</p>}
-          </label>
+            <label className='bodyXLBold' htmlFor='meters'>Superficie de zonas comunes
+              <input className='input' type="text" id='meters' placeholder="Superficie de zonas comunes" onChange={handleChange} {...register("communal_areas_area", {
+                minLength: 3,
+                maxLength: 20
+              })} aria-invalid={errors.communal_areas_area ? "true" : "false"} />
+              {errors.communal_areas_area &&  <p className='text_error' role="alert">{errors.communal_areas_area?.message}</p>}
+            </label>
+          </section> 
 
-          <label className='bodyXLBold'>C.P
-            <input className='input bodyLRegular' type="number" placeholder="Código postal" onChange={handleChange} {...register("postal_code", {
-              required: "Verificar código postal",
-              pattern: /^(?:0[1-9]|[1-4]\d|5[0-2])\d{3}$/
-            })} aria-invalid={errors.postal_code ? "true" : "false"} />
-            {errors.postal_code &&  <p className='text_error' role="alert">Campo obligatorio</p>}
-          </label>
-        </section>
-       
-        <section className='fields'>   
-          <label className='bodyXLBold'>Localidad
-            <input className='input' type="text" placeholder="Localidad" onChange={handleChange} {...register("city", {
-              pattern: /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]{3,20}/
-            })} aria-invalid={errors.city ? "true" : "false"} />
-            {errors.city &&  <p className='text_error' role="alert">{errors.city?.message}</p>}
-          </label>
+          <section className='fields'>   
+            <label className='bodyXLBold' htmlFor='householdsMeters'>Superficie de viviendas
+              <input className='input' type="text" id='householdsMeters' placeholder="Superficie de viviendas" onChange={handleChange} {...register("housing_area")} aria-invalid={errors.housing_area ? "true" : "false"} />
+              {errors.housing_area &&  <p className='text_error' role="alert">{errors.housing_area?.message}</p>}
+            </label>
 
-          <label className='bodyXLBold'>Provincia
-            <input className='input' type="text" placeholder="Provincia" onChange={handleChange} {...register("province", {
-              minLength: 3,
-              maxLength: 20,
-              pattern: /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]{3,20}/
-            })} aria-invalid={errors.province ? "true" : "false"} />
-            {errors.province &&  <p className='text_error' role="alert">{errors.province?.message}</p>}
-          </label>
-        </section> 
+            <label className='bodyXLBold' htmlFor='householdsNumber'>Número de viviendas
+              <input className='input' type="text" id='householdsNumber' placeholder="Número de viviendas" onChange={handleChange} {...register("number_of_apartments", {
+                maxLength: 20
+              })} aria-invalid={errors.number_of_apartments ? "true" : "false"} />
+              {errors.number_of_apartments &&  <p className='text_error' role="alert">{errors.number_of_apartments?.message}</p>}
+            </label>
+          </section> 
 
-        <section className='fields'>   
-          <label className='bodyXLBold'>CIF
-            <input className='input' type="text" placeholder="CIF" onChange={handleChange} {...register("cif")} aria-invalid={errors.cif ? "true" : "false"} />
-            {errors.cif &&  <p className='text_error' role="alert">{errors.cif?.message}</p>}
-          </label>
+          <section className='fields'>   
+            <label className='bodyXLBold' htmlFor='buildingYear'>Año de construcción
+              <input className='input' type="text" id='buildingYear' placeholder="Año de construcción" onChange={handleChange} {...register("year_of_construction")} aria-invalid={errors.year_of_construction ? "true" : "false"} />
+              {errors.year_of_construction &&  <p className='text_error' role="alert">{errors.year_of_construction?.message}</p>}
+            </label>
 
-          <label className='bodyXLBold'>Superficie de zonas comunes
-            <input className='input' type="text" placeholder="Superficie de zonas comunes" onChange={handleChange} {...register("communal_areas_area", {
-              minLength: 3,
-              maxLength: 20
-            })} aria-invalid={errors.communal_areas_area ? "true" : "false"} />
-            {errors.communal_areas_area &&  <p className='text_error' role="alert">{errors.communal_areas_area?.message}</p>}
-          </label>
-        </section> 
+            <label className='bodyXLBold' htmlFor='ref'>Referencia catastral
+              <input className='input' type="text" id='ref' placeholder="Referencia catastral" onChange={handleChange} {...register("cadastre_number", {
+                minLength: 3,
+                maxLength: 20
+              })} aria-invalid={errors.cadastre_number ? "true" : "false"} />
+              {errors.cadastre_number &&  <p className='text_error' role="alert">{errors.cadastre_number?.message}</p>}
+            </label>
+          </section> 
 
         <section className='fields'>   
           <label className='bodyXLBold'>Superficie de viviendas
@@ -268,8 +299,8 @@ const TechnicalForm = () => {
             {errors.energy_efficiency_certificate &&  <p className='text_error' role="alert">{errors.energy_efficiency_certificate?.message}</p>}
           </label>
  */}
-          <label  className='bodyXLBold'>Certificación de eficiencia energética
-            <select name="energy_efficiency_certificate" {...register("energy_efficiency_certificate")}>
+          <label  className='bodyXLBold' htmlFor='energyCertificate'>Certificación de eficiencia energética
+            <select name="energy_efficiency_certificate" id='energyCertificate' {...register("energy_efficiency_certificate")}>
               <option value=""></option>
               <option value="A">A</option>
               <option value="B">B</option>
@@ -298,9 +329,9 @@ const TechnicalForm = () => {
         </section>  */}
 
 
-        <button type="submit">Enviar</button>
-      </form>
-
+          <button className='cta_btn titleXS' type="submit">Enviar</button>
+        </form>
+      </section>
       <Modal isVisible={isVisible} title={modalInfo.title} content={modalInfo.content}/>
 
     </>
