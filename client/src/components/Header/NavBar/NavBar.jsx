@@ -1,7 +1,11 @@
 import { Navbar } from "@nextui-org/react";
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import UserIcon from '../../baseComponents/UserIcon/UserIcon';
 
 const NavBar = () => {  
+  const [isUserLog, setIsUserLog] = useState(false);
+  /*agregar estado de sesion de usuario para cambiar  "isUserLog a true"*/
 
   const linksNavBar = [
     {
@@ -41,6 +45,11 @@ const NavBar = () => {
     }
   ];
 
+  const handleLogOut = () => {
+    setIsUserLog(false);
+    /*agregar código para cerrar sesión*/
+  };
+
   return (
     <>
       <Navbar className='navBar' isBordered>
@@ -49,7 +58,8 @@ const NavBar = () => {
           {linksNavBar.map((item) => (
               <Link className='navBar_link bodyMCAPS' to={item.link} key={item.name} >{item.name}</Link>
           ))}
-          <Link to="login"><button className='TitleXS'>login</button></Link>
+          {isUserLog ? <Link to="/"><button className='TitleXS logOut_btn' onClick={handleLogOut}>Salir</button></Link> : <Link to="login"><button className='TitleXS login_btn'>Entrar</button></Link>}
+          <UserIcon  className='user_icon' content='User@email'/>
         </Navbar.Content>
         <Navbar.Brand>
           <Navbar.Toggle showIn="xs" />
