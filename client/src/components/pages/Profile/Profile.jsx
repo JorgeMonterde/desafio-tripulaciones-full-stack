@@ -15,6 +15,7 @@ import 'react-pdf/dist/esm/Page/TextLayer.css';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import samplePDF from '../../../../public/assets/Principios_de_seguridad1.pdf';
 import StepBar from '../../baseComponents/StepBar/StepBar';
+import Collapse from '../../baseComponents/Collapse/Collapse';
 
 
 import axios from "axios";
@@ -55,12 +56,6 @@ const Profile = () => {
 
 
   // const handleGraphic = () => setshowGraphic(!showGraphic);
-
-  const handleDisplayInput = () => {
-    console.log('click');
-    setshowFormIncident(!showFormIncident);
-    console.log('showFormIncident', showFormIncident);
-  };
 
   function onItemClick({ pageNumber: itemPageNumber }) {
     setPageNumber(itemPageNumber);
@@ -174,14 +169,7 @@ const Profile = () => {
 
 
         <section className='incidents_content'>
-          <section className='input' onClick={handleDisplayInput}>
-            <p className='bodyXLBold'>Notificar incidencia</p>
-            <FaChevronDown/>
-          </section>
-          <form className={`incidens_form ${showFormIncident && 'bg-noVisible'}`}>
-            <input className='bodyLRegular' type='text' placeholder='Insertar texto incidencia'></input>
-            <button className='TitleXS' type='submit'>Enviar</button>
-          </form>
+          <Collapse className={`incidens_form ${showFormIncident && 'bg-noVisible'}`}/>
         </section>
       </section>
     </>

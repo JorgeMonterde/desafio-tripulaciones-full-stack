@@ -188,7 +188,6 @@
 
 .profile_incidents {
   @include flexCol;
-  justify-content: space-between;
   width: 100%;
   height: 453px;
   gap: 48px;
@@ -218,50 +217,53 @@
     @include flexCol;
     gap: 8px;
     
-    .input {
-      @include inputStyle;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-      height: 29.6px;
-      
-      .bodyXLBold {
-        @include bodyXLBold;
-        padding-left: 0.04rem;
-      }
-
-      svg {
-        width: 12px;
-        margin-right: 0.2rem;
-      }
-    }
-
-
-    .incidens_form {
-      height: 144px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+    .notification_form {
+      @include flexCol;
       gap: 48px;
-      padding: 12px;
-      background-color: #d9d9d9;
- 
-      input {
-        @include bodyLRegular;
-        border: none;
-        background-color: #d9d9d9;
-      }
- 
-      .TitleXS {
-        @include TitleXS;
-        @include flexCenterCenter;
-        width: 150px;
+
+      .input {
+        min-width: 294px;
+        margin: 0px;
+        padding-left: 0.4rem;
+        border: solid 0.01px gray;
+        display: flex;
+        gap: 8px;
         height: 48px;
-        border: solid 2px #000;
-        background-color: #fff;
-        margin: auto;
+        
+        .bodyXLBold {
+          @include bodyXLBold;
+          padding-left: 0.04rem;
+        }
       }
+
+      .TitleXS {
+      @include TitleXS;
+      @include flexCenterCenter;
+      width: 150px;
+      height: 48px;
+      border: solid 2px #000;
+      background-color: #fff;
+      margin: auto;
     }
+    }
+
+
+    // .incidens_form {
+    //   height: 144px;
+    //   display: flex;
+    //   flex-direction: column;
+    //   justify-content: center;
+    //   gap: 48px;
+    //   padding: 12px;
+    //   background-color: #d9d9d9;
+ 
+    //   input {
+    //     @include bodyLRegular;
+    //     border: none;
+    //     background-color: #d9d9d9;
+    //   }
+ 
+    
+    // }
   }
 }
