@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import TextBand from '../../baseComponents/TextBand/TextBand';
 import ContactBtn from '../../baseComponents/ContactBtn/ContactBtn';
+import TextMarquee from '../../baseComponents/TextMarquee/TextMarquee';
 
 const StudyCases = () => {
   return (
@@ -25,6 +26,7 @@ const StudyCases = () => {
         </section>
 
         <TextBand  className="text_band" text="Title XL * Beneficios * Title XL * Beneficios"  />
+        <TextMarquee />
     </>
   );
 };
