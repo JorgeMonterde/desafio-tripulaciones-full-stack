@@ -33,38 +33,10 @@
 
 
 .profile_progressBar {
-  display: flex;
-  flex-direction: column;
+  @include flexCol;
   width: 100%;
   margin-top: 0;
   padding: 0 200px 40px;
-
-
-  .step-bar {
-    display: flex;
-    justify-content: center;
-
-
-    .circle {
-      @include flexCenterCenter;
-      width: 42px;
-      height: 42px;
-      border: solid 0.01rem;
-      border-radius: 50%;
-    }
-
-
-    .TitleM {
-      @include TitleM;
-    }
-  }
-
-
-  .progressBar {
-    padding: 24px;
-    height: 136px;
-    font-family: 'Orkney';
-  }
 
 
   .legend {
@@ -243,14 +215,26 @@
 
 
   .incidents_content {
-
-
-    .bodyXLBold {
-      @include bodyXLBold;
+    @include flexCol;
+    gap: 8px;
+    
+    .input {
+      @include inputStyle;
       display: flex;
-      flex-direction: row;
+      justify-content: space-between;
       align-items: center;
       gap: 8px;
+      height: 29.6px;
+      
+      .bodyXLBold {
+        @include bodyXLBold;
+        padding-left: 0.04rem;
+      }
+
+      svg {
+        width: 12px;
+        margin-right: 0.2rem;
+      }
     }
 
 
