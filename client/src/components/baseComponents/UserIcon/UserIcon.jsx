@@ -6,7 +6,7 @@ const UserIcon = ({userEmail='logado'}) => {
   return (
     <>
       <Tooltip content={`Usuario: ${userEmail}`} placement="bottom" trigger="hover"> 
-        <Button auto flat>
+        <Button auto flat> MI PORTAL
           <img src='../../../../public/assets/User.png' alt='user icon'/>
         </Button>
       </Tooltip>

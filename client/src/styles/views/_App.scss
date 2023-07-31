@@ -31,6 +31,8 @@ main {
 .cta_btn {
   @include flexCenterCenter;
   @include TitleXS;
+  min-width: fit-content;
   width: 150px;
   height: 48px;
+  border-radius: 40px;
 }
