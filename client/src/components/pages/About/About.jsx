@@ -25,18 +25,18 @@ const About = () => {
     <>
       <section className='about'>
         <article className='about_us'>
-          <h1 className='TitleM'>¿Tienes alguna pregunta?</h1>
-          <p className='bodyLRegular'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore </p>
+          <h1 className='TitleM'>MISIÓN</h1>
+          <p className='bodyLRegular'>busca potenciar el ahorro energético mediante un servicio integral de análisis, instalación y seguimiento para nuestros clientes. Nuestra oferta de soluciones ecosostenibles son aptas para muchos tipos diferentes de comunidades.</p>
         </article>
 
         <article className='about_us'>
-          <h1 className='TitleM'>¿Tienes alguna pregunta?</h1>
-          <p className='bodyLRegular'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore </p>
+          <h1 className='TitleM'>VISIÓN</h1>
+          <p className='bodyLRegular'>Nos esforzamos por ser líderes en el sector del ahorro energético y una compañía de referencia que lucha por mejorar la huella de carbono de las personas en el ecosistema.</p>
         </article>
 
         <article className='about_us'>
-          <h1 className='TitleM'>¿Tienes alguna pregunta?</h1>
-          <p className='bodyLRegular'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore </p>
+          <h1 className='TitleM'>VALORES</h1>
+          <p className='bodyLRegular'>Seguridad, Comfort, Cuidado del Medioambiente, Compromiso y Cuidado al Detalle.</p>
         </article>
       </section>
 
