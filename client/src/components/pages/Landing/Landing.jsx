@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import TextBand from '../../baseComponents/TextBand/TextBand';
 import ContactBtn from '../../baseComponents/ContactBtn/ContactBtn';
+import Chatbot from '../../baseComponents/Chatbot/Chatbot';
 
 const Landing = () => {
   
@@ -41,6 +42,8 @@ const Landing = () => {
           <img className='card_img' src='../../../../public/assets/landingCompromiso.png'  alt='Card background'/>
         </article>
       </section>
+
+      <Chatbot/>
     </>
   )
 };
