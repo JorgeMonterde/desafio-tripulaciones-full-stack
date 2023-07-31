@@ -1,11 +1,37 @@
 import { Link } from 'react-router-dom';
 import TextBand from '../../baseComponents/TextBand/TextBand';
 import ContactBtn from '../../baseComponents/ContactBtn/ContactBtn';
+import TextMarquee from '../../baseComponents/TextMarquee/TextMarquee';
 
 const StudyCases = () => {
+  const passElements =  () => {
+    return (
+      <>
+        {/* <h3>Ahorro</h3>
+        <h3>Silencio</h3>
+        <h3>Durabilidad</h3>
+        <h3>Confort</h3>
+        <h3>Sostenible</h3> */}
+        <h3>Title XL</h3>
+        <h3>*</h3>
+        <h3>Beneficios</h3>
+        <h3>*</h3>
+        <h3>Title XL</h3>
+        <h3>*</h3>
+        <h3>Beneficios</h3>
+        <h3>*</h3>
+      </>
+    )
+  }
+  
+  
+  
+  
+  
   return (
     <>
       <Link to="/contact"><ContactBtn/></Link>
+      <TextMarquee elements={passElements()}/>
       <section className='study_cases'>
           <article className='case'>
             <img src='../../../../public/assets/energyImg.avif'/>
@@ -24,7 +50,7 @@ const StudyCases = () => {
           </article>
         </section>
 
-        <TextBand  className="text_band" text="Title XL * Beneficios * Title XL * Beneficios"  />
+        {/* <TextBand  className="text_band" text="Title XL * Beneficios * Title XL * Beneficios"  /> */}
     </>
   );
 };

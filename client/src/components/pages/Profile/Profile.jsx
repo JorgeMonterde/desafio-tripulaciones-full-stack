@@ -49,6 +49,7 @@ const Profile = () => {
   const [showGraphic, setshowGraphic] = useState(true);
   const [clientInfo, setClientInfo] = useState({});
   const [buildingInfo, setBuildingInfo] = useState({});
+  const [city, setCity] = useState("");
 
   const [showGraphic, setshowGraphic] = useState(false);
   const [showFormIncident, setshowFormIncident] = useState(false);
@@ -65,10 +66,13 @@ const Profile = () => {
     const getClientAndBuildingInfo = async() => {
       const clientResponse = await axios.get("http://localhost:3000/api/clients/client", { withCredentials: true });
       setClientInfo(clientResponse.data.data);
-
+      
+      
       const buildingResponse = await axios.get("http://localhost:3000/api/buildings/building", { withCredentials: true });
       setBuildingInfo(buildingResponse.data.data);
       console.log("info?????", clientResponse, buildingResponse);
+      setCity(buildingResponse.data.data.city);
+      console.log("city ", buildingResponse.data.data.city);
     };
     getClientAndBuildingInfo();
   }, []);
@@ -85,7 +89,7 @@ const Profile = () => {
           </article>
       </section>
 
-      <LinesChart/>
+      <LinesChart city={buildingInfo.city}/>
 
 
       <section className='profile_progressBar'>
