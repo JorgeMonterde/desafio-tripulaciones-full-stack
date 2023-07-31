@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BsAspectRatio, BsFillArrowDownSquareFill } from "react-icons/bs";
 import { Document, Outline, Page } from 'react-pdf';
 import ContactBtn from '../../baseComponents/ContactBtn/ContactBtn';
-
+import LinesChart from "./LinesChart/LinesChart";
 import samplePDF from '../../../../public/assets/Principios_de_seguridad.pdf';
+
+import axios from "axios";
 
 // const steps = [
 //   {
@@ -32,6 +34,8 @@ import samplePDF from '../../../../public/assets/Principios_de_seguridad.pdf';
 
 const Profile = () => {
   const [showGraphic, setshowGraphic] = useState(true);
+  const [clientInfo, setClientInfo] = useState({});
+  const [buildingInfo, setBuildingInfo] = useState({});
 
   // const handleGraphic = () => setshowGraphic(!showGraphic);
   const [pageNumber, setPageNumber] = useState(1);
@@ -40,17 +44,31 @@ const Profile = () => {
     setPageNumber(itemPageNumber);
   }
 
+  useEffect(() => {
+    const getClientAndBuildingInfo = async() => {
+      const clientResponse = await axios.get("http://localhost:3000/api/clients/client", { withCredentials: true });
+      setClientInfo(clientResponse.data.data);
+
+      const buildingResponse = await axios.get("http://localhost:3000/api/buildings/building", { withCredentials: true });
+      setBuildingInfo(buildingResponse.data.data);
+      console.log("info?????", clientResponse, buildingResponse);
+    };
+    getClientAndBuildingInfo();
+  }, []);
+
   return (
     <>
       <Link to="/contact"><ContactBtn/></Link>
       <section className='profile_header'>
         <img className='profile_avatar' src='../../../../public/assets/energyImg.avif'/>
         <article className='profile_headerText'>
-          <h2 className='TitleM'>Nombre de la comunidad</h2>
-          <p>Id de usuario</p>
-          <p>Dirección</p>
+          <h2 className='TitleM'>Nombre de la comunidad: {buildingInfo.name_of_community}</h2>
+          <p>Id de usuario: {clientInfo.client_id}</p>
+          <p>Dirección: {buildingInfo.address}</p>
           </article>
       </section>
+
+      <LinesChart/>
 
 
       <section className='profile_progressBar'>

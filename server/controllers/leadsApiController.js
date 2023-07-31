@@ -7,32 +7,23 @@ const saltRounds = 10;
 //GETs
 //get lead's info:
 const getLeadInfo = async (req,res) => {
+    let {email} = req.params;
     try {
-        if(req.params.lead_id){
-            let data = await Leads.findOne({ where: { lead_id: req.params.lead_id } });
-            if(data){
-                res.status(200).json({
-                    "success": true,
-                    "message": `Lead info supplied`,
-                    "data": data
-                });
-            } else {
-                res.status(200).json({
-                    "success": true,
-                    "message": `Lead not found`,
-                    "data": {}
-                });
-            }
-
-        } else {
-            let data = await Leads.findAll();
+        let data = await Leads.findOne({ where: { "email": email } });
+        if(data){
             res.status(200).json({
                 "success": true,
-                "message": `All leads info supplied`,
+                "message": `Lead info supplied`,
                 "data": data
             });
-
+        } else {
+            res.status(200).json({
+                "success": true,
+                "message": `Lead not found`,
+                "data": {}
+            });
         }
+
     } catch (error) {
         console.log(`Error: ${error}`);
         res.status(400).json({
@@ -51,7 +42,7 @@ const sendEmail = async (req,res) => {
             from: process.env.GMAIL_SENDER,
             to: email,
             subject: "Email from our webpage",
-            text: "Visit the following url to continue: http://localhost:5173/technical-form",
+            text: `Visit the following url to continue: http://localhost:5173/technical-form/${email}/`,
             auth: {
                 user: process.env.GMAIL_SENDER,
                 refreshToken: process.env.REFRESH_TOKEN,
