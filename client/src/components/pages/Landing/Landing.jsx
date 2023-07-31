@@ -11,7 +11,7 @@ const Landing = () => {
       <article className='claim_container'>
         <p className='TitleXL'>Aislamiento Sostenible para tu comunidad</p>
         <p className='bodyXXLRegular'>Integra las mejores soluciones de ahorro energético en tu hogar sin necesidad de obras.</p>
-        <button className='claimCta_btn bodyXXLBold'>Quiero saber más</button>
+        <Link to="/contact"><button className='claimCta_btn bodyXXLBold'>Quiero saber más</button></Link>
       </article>
 
       <TextBand className="text_band" text="Title XL * Beneficios * Title XL * Beneficios" />

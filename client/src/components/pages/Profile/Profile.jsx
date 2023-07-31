@@ -1,10 +1,21 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { BsAspectRatio, BsFillArrowDownSquareFill } from "react-icons/bs";
+import { FaChevronDown } from "react-icons/fa6";
+
 import { Document, Outline, Page } from 'react-pdf';
+import { pdfjs } from 'react-pdf';
 import ContactBtn from '../../baseComponents/ContactBtn/ContactBtn';
+
 import LinesChart from "./LinesChart/LinesChart";
 import samplePDF from '../../../../public/assets/Principios_de_seguridad.pdf';
+
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
+import 'react-pdf/dist/esm/Page/TextLayer.css';
+import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
+import samplePDF from '../../../../public/assets/Principios_de_seguridad1.pdf';
+import StepBar from '../../baseComponents/StepBar/StepBar';
+
 
 import axios from "axios";
 
@@ -33,12 +44,23 @@ import axios from "axios";
 
 
 const Profile = () => {
+
   const [showGraphic, setshowGraphic] = useState(true);
   const [clientInfo, setClientInfo] = useState({});
   const [buildingInfo, setBuildingInfo] = useState({});
 
-  // const handleGraphic = () => setshowGraphic(!showGraphic);
+  const [showGraphic, setshowGraphic] = useState(false);
+  const [showFormIncident, setshowFormIncident] = useState(false);
   const [pageNumber, setPageNumber] = useState(1);
+
+
+  // const handleGraphic = () => setshowGraphic(!showGraphic);
+
+  const handleDisplayInput = () => {
+    console.log('click');
+    setshowFormIncident(!showFormIncident);
+    console.log('showFormIncident', showFormIncident);
+  };
 
   function onItemClick({ pageNumber: itemPageNumber }) {
     setPageNumber(itemPageNumber);
@@ -72,17 +94,7 @@ const Profile = () => {
 
 
       <section className='profile_progressBar'>
-        <section className='step-bar'>
-          <div>
-            <p className='circle TitleM'>1</p><span></span>
-          </div>
-          <div></div>
-          <p className='circle TitleM'>2</p><span></span>
-          <p className='circle TitleM'>3</p><span></span>
-          <p className='circle TitleM'>4</p><span></span>
-          <p className='circle TitleM'>5</p>
-        </section>
-
+        <StepBar/>
 
         <ul className='legend'>
           <li className='legend_title'>Leyenda:</li>
@@ -150,7 +162,6 @@ const Profile = () => {
           <Outline onItemClick={onItemClick} />
           <Page pageNumber={pageNumber || 1} />
         </Document>
-        {/* <embed className='report' src='../../../../public/assets/Principios_de_seguridad.pdf' alt='report'/> */}
       </section>
       }
 
@@ -163,8 +174,11 @@ const Profile = () => {
 
 
         <section className='incidents_content'>
-          <p className='bodyXLBold'>Notificar incidencia <BsFillArrowDownSquareFill/></p>
-          <form className='incidens_form'>
+          <section className='input' onClick={handleDisplayInput}>
+            <p className='bodyXLBold'>Notificar incidencia</p>
+            <FaChevronDown/>
+          </section>
+          <form className={`incidens_form ${showFormIncident && 'bg-noVisible'}`}>
             <input className='bodyLRegular' type='text' placeholder='Insertar texto incidencia'></input>
             <button className='TitleXS' type='submit'>Enviar</button>
           </form>

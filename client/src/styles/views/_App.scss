@@ -24,6 +24,10 @@ main {
   display: none;
 }
 
+.bg-noVisible {
+  visibility: hidden;
+}
+
 .cta_btn {
   @include flexCenterCenter;
   @include TitleXS;
