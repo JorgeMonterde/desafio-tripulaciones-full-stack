@@ -1,8 +1,13 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import ResetPasswordModal from "./ResetPasswordModal/ResetPasswordModal";
+//contexts
+import { LoggedInContext } from "../../../../contexts/loggedInContext";
+
+
+
 
 
 
@@ -17,28 +22,15 @@ const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm({ 
     defaultValues: inputDefaultValues });
     const navigate = useNavigate();
-
-  const [visible, setVisible] = useState(false);
-  const changeVisibleState = () => {
-    setVisible(!visible);
-  };
-  const isVisible = {visible, changeVisibleState};
-
-  
     
-  const handleClick = async () => {
-    //logout
-    const authResponse = await axios.get("http://localhost:3000/auth/logout", { withCredentials: true });
-    console.log("auth response: ",authResponse)
-    if(authResponse.data.success){
-      //Redirect
-      console.log("Logout successfull");
-      navigate("/");
-    } else {
-      //Not logged out
-      console.log("Could not logout");
-    }
-  };
+    const [visible, setVisible] = useState(false);
+    const changeVisibleState = () => {
+      setVisible(!visible);
+    };
+    const isVisible = {visible, changeVisibleState};
+    const {loggedInState} = useContext(LoggedInContext);
+    
+  
     
     
     
@@ -54,6 +46,7 @@ const Login = () => {
       if(authResponse.data.success){
         //Redirect
         console.log("From client: You are logged in");
+        loggedInState.changeLoggedInState(true);
         navigate("/profile");
       } else {
         //Not logged in

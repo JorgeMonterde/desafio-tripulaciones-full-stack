@@ -1,12 +1,21 @@
+import {useState, useContext} from "react";
+import { useNavigate } from "react-router-dom";
 import { Navbar } from "@nextui-org/react";
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import UserIcon from '../../baseComponents/UserIcon/UserIcon';
+import axios from "axios";
+//contexts
+import { LoggedInContext } from "../../../../contexts/loggedInContext";
 
-const NavBar = () => {  
-  const [isUserLog, setIsUserLog] = useState(false);
-  /*agregar estado de sesion de usuario para cambiar  "isUserLog a true"*/
 
+
+
+
+const NavBar = () => { 
+  const {loggedInState} = useContext(LoggedInContext);
+  const navigate = useNavigate();
+  
+  
   const linksNavBar = [
     {
       name: "Servicios",
@@ -45,10 +54,24 @@ const NavBar = () => {
     }
   ];
 
-  const handleLogOut = () => {
-    setIsUserLog(false);
-    /*agregar código para cerrar sesión*/
+      
+  const handleLogOut = async () => {
+    //logout
+    const authResponse = await axios.get("http://localhost:3000/auth/logout", { withCredentials: true });
+    console.log("auth response: ",authResponse)
+    if(authResponse.data.success){
+      //Redirect
+      console.log("Logout successfull");
+      loggedInState.changeLoggedInState(false);
+      //navigate("/");
+    } else {
+      //Not logged out
+      console.log("Could not logout");
+    }
   };
+
+
+
 
   return (
     <>
@@ -58,8 +81,10 @@ const NavBar = () => {
           {linksNavBar.map((item) => (
               <Link className='navBar_link bodyMCAPS' to={item.link} key={item.name} >{item.name}</Link>
           ))}
-          {isUserLog ? <Link to="/"><button className='TitleXS logOut_btn' onClick={handleLogOut}>Salir</button></Link> : <Link to="login"><button className='TitleXS login_btn'>Entrar</button></Link>}
-          <Link to="/profile"><UserIcon  className='user_icon' content='User@email'/></Link>
+
+          {loggedInState.loggedIn ? <Link to="/"><button className='TitleXS logOut_btn' onClick={handleLogOut}>Salir</button></Link> : <Link to="login"><button className='TitleXS login_btn'>Entrar</button></Link>}
+          <UserIcon className='user_icon' content='User@email' />
+
         </Navbar.Content>
         <Navbar.Brand>
           <Navbar.Toggle showIn="xs" />

@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Modal from "../../baseComponents/Modal/Modal";
 
-const inputDefaultValues = {
+let inputDefaultValues = {
   // client fields
   first_name: '',
   surname: '',
@@ -27,17 +27,34 @@ const inputDefaultValues = {
   number_of_apartments: "",
   year_of_construction: "",
   cadastre_number:"",
-  energy_efficiency_certificate:""
+  energy_efficiency_certificate:"",
+  name_of_community: ""
 
 };
 
 
 const TechnicalForm = () => {
   const [inputValue, setInputValue] = useState({...inputDefaultValues});
-  const { register, handleSubmit, formState: { errors } } = useForm({
+  const {email} = useParams();
+
+  useEffect(() => {
+    const getLeadsInfo = async() => {
+      const response = await axios.get(`http://localhost:3000/api/leads/lead/${email}`, { withCredentials: true });
+
+      inputDefaultValues = {...inputDefaultValues, ...response.data.data};
+      setInputValue({...inputDefaultValues});
+
+      Object.keys(inputDefaultValues).forEach(key => {
+        setValue(key, inputDefaultValues[key]);
+
+      });
+    };
+    getLeadsInfo();
+  }, []);
+  
+  const { register, handleSubmit, formState: { errors }, setValue } = useForm({
     defaultValues: inputDefaultValues });
   const navigate = useNavigate();
-
 
   const [visible, setVisible] = useState(false);
   const [modalInfo, setModalInfo] = useState({});
@@ -48,9 +65,10 @@ const TechnicalForm = () => {
     setModalInfo({"title": title, "content": content});
   };
   const isVisible = {visible, changeVisibleState};
-
-
   
+  
+        
+
 
   //Submit function:
   const onSubmit = async(data) => {
@@ -68,8 +86,8 @@ const TechnicalForm = () => {
     console.log("auth response: ",clientResponse);
 
     //store building info
-    const {address, postal_code, city, province, community_type, cif, total_area, communal_areas_area, housing_area, number_of_apartments, year_of_construction, cadastre_number, energy_efficiency_certificate} = data;
-    const buildingData = {client_id, address, postal_code, city, province, community_type, cif, total_area, communal_areas_area, housing_area, number_of_apartments, year_of_construction, cadastre_number, energy_efficiency_certificate};
+    const {address, postal_code, city, province, community_type, cif, total_area, communal_areas_area, housing_area, number_of_apartments, year_of_construction, cadastre_number, energy_efficiency_certificate, name_of_community} = data;
+    const buildingData = {client_id, address, postal_code, city, province, community_type, cif, total_area, communal_areas_area, housing_area, number_of_apartments, year_of_construction, cadastre_number, energy_efficiency_certificate, name_of_community};
 
     const buildingResponse = await axios.post("http://localhost:3000/api/buildings/building", buildingData, { withCredentials: true });
     console.log("auth response: ",buildingResponse);
@@ -123,6 +141,7 @@ const TechnicalForm = () => {
           <section className='fields'>
             <label className='bodyXLBold' htmlFor='name'>Nombre *
               <input className='input bodyLRegular' type="text" id='name' placeholder="Nombre" onChange={handleChange} {...register("first_name", {
+                value: inputValue.first_name,
                 required: true,
                 minLength: 3,
                 maxLength: 20,
@@ -134,6 +153,7 @@ const TechnicalForm = () => {
           
             <label className='bodyXLBold' htmlFor='lastName'>Apellidos *
               <input className='input bodyLRegular' type="text" id='lastName' placeholder="Apellidos" onChange={handleChange} {...register("surname", {
+                value: inputValue.surname,
                 required: true,
                 minLength: 3,
                 maxLength: 20,
@@ -167,6 +187,7 @@ const TechnicalForm = () => {
           <section className='fields'>
             <label className='bodyXLBold' htmlFor='phone'>Teléfono *
               <input className='input bodyLRegular' type="number" id='phone' placeholder="número de teléfono" onChange={handleChange} {...register("telephone_num", {
+                value: inputValue.telephone_num,
                 required: "Verificar número de teléfono",
                 pattern: /(\+34|0034|34)?[ -]*(6|7)[ -]*([0-9][ -]*){8}/
               })} aria-invalid={errors.telephone_num ? "true" : "false"} />
@@ -175,6 +196,7 @@ const TechnicalForm = () => {
 
             <label className='bodyXLBold' htmlFor='email'>Correo electrónico *
               <input className='input bodyLRegular' type="email" id='email' placeholder="Correo electrónico" onChange={handleChange} {...register("email", {
+                value: inputValue.email,
                 required: "Verificar correo electrónico",
                 pattern: /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})*$/i
               })} aria-invalid={errors.email ? "true" : "false"} />
@@ -187,6 +209,7 @@ const TechnicalForm = () => {
           <section className='fields'>
             <label className='bodyXLBold' htmlFor='address'>Dirección de la comunidad *
               <input className='input bodyLRegular' type="text" id='address' placeholder="Dirección de la comunidad" onChange={handleChange} {...register("address", {
+                value: inputValue.address,
                 required: "Verificar dirección de la comunidad"
               })} aria-invalid={errors.address ? "true" : "false"} />
               {errors.address &&  <p className='text_error' role="alert">Campo obligatorio</p>}
@@ -194,6 +217,7 @@ const TechnicalForm = () => {
 
             <label className='bodyXLBold' htmlFor='zipCode'>C.P
               <input className='input bodyLRegular' type="number" id='zipCode' placeholder="Código postal" onChange={handleChange} {...register("postal_code", {
+                value: inputValue.postal_code,
                 pattern: /^(?:0[1-9]|[1-4]\d|5[0-2])\d{3}$/
               })} aria-invalid={errors.postal_code ? "true" : "false"} />
               {errors.postal_code &&  <p className='text_error' role="alert">{errors.postal_code?.message}</p>}
@@ -203,6 +227,7 @@ const TechnicalForm = () => {
           <section className='fields'>   
             <label className='bodyXLBold' htmlFor='zone'>Localidad
               <input className='input' type="text" id='zone' placeholder="Localidad" onChange={handleChange} {...register("city", {
+                value: inputValue.city,
                 pattern: /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]{3,20}/
               })} aria-invalid={errors.city ? "true" : "false"} />
               {errors.city &&  <p className='text_error' role="alert">{errors.city?.message}</p>}
@@ -210,6 +235,7 @@ const TechnicalForm = () => {
 
             <label className='bodyXLBold' htmlFor='province'>Provincia
               <input className='input' type="text" id='province' placeholder="Provincia" onChange={handleChange} {...register("province", {
+                value: inputValue.province,
                 minLength: 3,
                 maxLength: 20,
                 pattern: /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]{3,20}/
@@ -262,57 +288,32 @@ const TechnicalForm = () => {
             </label>
           </section> 
 
-        <section className='fields'>   
-          <label className='bodyXLBold'>Superficie de viviendas
-            <input className='input' type="text" placeholder="Superficie de viviendas" onChange={handleChange} {...register("housing_area")} aria-invalid={errors.housing_area ? "true" : "false"} />
-            {errors.housing_area &&  <p className='text_error' role="alert">{errors.housing_area?.message}</p>}
-          </label>
 
-          <label className='bodyXLBold'>Número de viviendas
-            <input className='input' type="text" placeholder="Número de viviendas" onChange={handleChange} {...register("number_of_apartments", {
-              maxLength: 20
-            })} aria-invalid={errors.number_of_apartments ? "true" : "false"} />
-            {errors.number_of_apartments &&  <p className='text_error' role="alert">{errors.number_of_apartments?.message}</p>}
-          </label>
-        </section> 
+          <section className='fields'>
+            <label  className='bodyXLBold' htmlFor='energyCertificate'>Certificación de eficiencia energética
+              <select name="energy_efficiency_certificate" id='energyCertificate' {...register("energy_efficiency_certificate")}>
+                <option value=""></option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="E">E</option>
+                <option value="F">F</option>
+                <option value="G">G</option>
+              </select>
+              {errors.energy_efficiency_certificate &&  <p className='text_error' role="alert">{errors.energy_efficiency_certificate?.message}</p>}
+            </label>
 
-        <section className='fields'>   
-          <label className='bodyXLBold'>Año de construcción
-            <input className='input' type="text" placeholder="Año de construcción" onChange={handleChange} {...register("year_of_construction")} aria-invalid={errors.year_of_construction ? "true" : "false"} />
-            {errors.year_of_construction &&  <p className='text_error' role="alert">{errors.year_of_construction?.message}</p>}
-          </label>
-
-          <label className='bodyXLBold'>Referencia catastral
-            <input className='input' type="text" placeholder="Referencia catastral" onChange={handleChange} {...register("cadastre_number", {
-              minLength: 3,
-              maxLength: 20
-            })} aria-invalid={errors.cadastre_number ? "true" : "false"} />
-            {errors.cadastre_number &&  <p className='text_error' role="alert">{errors.cadastre_number?.message}</p>}
-          </label>
-        </section> 
-
-        <section className='fields'>   
-          {/* <label className='bodyXLBold'>Certificación de eficiencia energética
-            <input className='input' type="text" placeholder="Certificación de eficiencia energética" onChange={handleChange} {...register("energy_efficiency_certificate", {
-              pattern: /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]{1,20}/
-            })} aria-invalid={errors.energy_efficiency_certificate ? "true" : "false"} />
-            {errors.energy_efficiency_certificate &&  <p className='text_error' role="alert">{errors.energy_efficiency_certificate?.message}</p>}
-          </label>
- */}
-          <label  className='bodyXLBold' htmlFor='energyCertificate'>Certificación de eficiencia energética
-            <select name="energy_efficiency_certificate" id='energyCertificate' {...register("energy_efficiency_certificate")}>
-              <option value=""></option>
-              <option value="A">A</option>
-              <option value="B">B</option>
-              <option value="C">C</option>
-              <option value="D">D</option>
-              <option value="E">E</option>
-              <option value="F">F</option>
-              <option value="G">G</option>
-            </select>
-            {errors.energy_efficiency_certificate &&  <p className='text_error' role="alert">{errors.energy_efficiency_certificate?.message}</p>}
-          </label>
-        </section> 
+            <label className='bodyXLBold' htmlFor='name_of_community'>Nombre de comunidad
+              <input className='input' type="text" id='name_of_community' placeholder="Nombre de comunidad" onChange={handleChange} {...register("name_of_community", {
+                value: inputValue.name_of_community,
+                minLength: 3,
+                maxLength: 20,
+                pattern: /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]{3,30}/
+              })} aria-invalid={errors.name_of_community ? "true" : "false"} />
+              {errors.name_of_community &&  <p className='text_error' role="alert">{errors.name_of_community?.message}</p>}
+            </label>
+          </section> 
 
 
 
