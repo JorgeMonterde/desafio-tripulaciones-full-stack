@@ -315,6 +315,127 @@ const TechnicalForm = () => {
             </label>
           </section> 
 
+          {/* community fields */}
+          <h2>Características de la comunidad</h2>
+
+          <section className='fields'>
+            <label  className='bodyXLBold'>¿Cuál ha sido su mantenimiento a lo largo de los años?
+            <input className='input' type="text" placeholder="" />
+            </label>
+          </section>
+          <section className='fields'>
+            <label  className='bodyXLBold'>¿Cuál es el tipo de estructura de los edificios (por ejemplo, hormigón, acero, madera)?
+            <input className='input' type="text" placeholder="" />
+            </label>
+          </section>
+          <section className='fields'>
+            <label  className='bodyXLBold'>¿Cuál es la composición actual del tejado o cubierta de los edificios en la urbanización?
+            <input className='input' type="text" placeholder="" />
+            </label>
+          </section>
+          <section className='fields'>
+            <label  className='bodyXLBold'>¿Cuál es la superficie total de las cubiertas de todos los edificios?
+            <input className='input' type="text" placeholder="" />
+            </label>
+          </section>
+          <section className='fields'>
+            <label  className='bodyXLBold'>¿Existen zonas comunes con grandes superficies acristaladas?
+            <input className='input' type="text" placeholder="" />
+            </label>
+          </section>
+          <section className='fields'>
+            <label  className='bodyXLBold'>¿Cuál es el consumo energético promedio de la urbanización?
+              <select name="energy_efficiency_certificate">
+                  <option value="Entre 0 y 5.000kW">Entre 0 y 5.000kW</option>
+                  <option value="Entre 5.000 y 10.000kW">Entre 5.000 y 10.000kW</option>
+                  <option value="Entre 10.000 y 100.000kW">Entre 10.000 y 100.000kW</option>
+                  <option value="Más de 100.000kW">Más de 100.000kW</option>
+              </select>
+            </label>
+          </section>
+          <section className='fields'>
+            <label  className='bodyXLBold'>¿Cuenta con garaje? ¿Es al aire libre, cubierto o subterráneo? ¿De cuántas plazas dispone? ¿Y plantas?
+            <input className='input' type="text" placeholder="" />
+            </label>
+          </section>
+          <section className='fields'>
+            <label  className='bodyXLBold'>¿Hay ascensores en los edificios? ¿Cuántos hay en cada edificio?
+            <input className='input' type="text" placeholder="" />
+            </label>
+          </section>
+          <section className='fields'>
+            <label  className='bodyXLBold'>¿Qué tipo de iluminación se utiliza en las zonas comunes (portal, descansillos, zonas de esparcimiento, etcétera)
+            <input className='input' type="text" placeholder="" />
+            </label>
+          </section>
+          <section className='fields'>
+            <label  className='bodyXLBold'>¿Cuenta la urbanización con piscina? ¿De qué tamaño? ¿Está ajardinada?
+            <input className='input' type="text" placeholder="" />
+            </label>
+          </section>
+          <section className='fields'>
+            <label  className='bodyXLBold'>¿Hay parques infantiles? ¿Cuenta con algún tipo de zona de sombra?
+            <input className='input' type="text" placeholder="" />
+            </label>
+          </section>
+          <section className='fields'>
+            <label  className='bodyXLBold'>¿Existen jardineras y zonas verdes? ¿Cuál es su superficie?
+            <input className='input' type="text" placeholder="" />
+            </label>
+          </section>
+          <section className='fields'>
+            <label  className='bodyXLBold'>¿Existen otras zonas de recreo como pistas deportivas, gimnasio u otros? ¿Cuál es su superficie?
+            <input className='input' type="text" placeholder="" />
+            </label>
+          </section>
+          <section className='fields'>
+            <label  className='bodyXLBold'>¿Existe algún estudio previo de eficiencia energética en la comunidad?
+            <input className='input' type="text" placeholder="" />
+            </label>
+          </section>
+          <section className='fields'>
+            <label  className='bodyXLBold'>¿Se han realizado análisis de puentes térmicos en la construcción actual?
+            <input className='input' type="text" placeholder="" />
+            </label>
+          </section>
+          <section className='fields'>
+            <label  className='bodyXLBold'>¿Existen restricciones legales o normativas que puedan afectar la implementación de cubiertas verdes o el uso de materiales ecosostenibles?
+            <input className='input' type="text" placeholder="" />
+            </label>
+          </section>
+          <section className='fields'>
+            <label  className='bodyXLBold'>¿Existe alguna patología o problema específico de aislamiento térmico en los edificios actualmente?
+            <input className='input' type="text" placeholder="" />
+            </label>
+          </section>
+          <section className='fields'>
+            <label  className='bodyXLBold'>¿Qué beneficios consideráis obtener mediante el aislamiento térmico y las soluciones sostenibles propuestas?
+              <select name="energy_efficiency_certificate">
+                  <option value="Reducción del consumo energético">Reducción del consumo energético</option>
+                  <option value="Ahorro de costos">Ahorro de costos</option>
+                  <option value="Mejora del confort interior">Mejora del confort interior</option>
+                  <option value="Reducción de ruido">Reducción de ruido</option>
+
+                  <option value="Reducción de ruido">Reducción de gases de efecto invernadero</option>
+                  <option value="Reducción de ruido">Mayor durabilidad de los edificios y las instalaciones</option>
+                  <option value="Reducción de ruido">Aumento del valor de las propiedades</option>
+              </select>
+            </label>
+          </section>
+          <section className='fields'>
+            <label  className='bodyXLBold'>¿Cuáles son las expectativas y opiniones generales de los residentes sobre la implementación de estas medidas?
+              <select name="energy_efficiency_certificate">
+                  <option value="Reducción del consumo energético">Reducción de costos de comunidad</option>
+                  <option value="Mayor confort y bienestar en los hogares">Mayor confort y bienestar en los hogares</option>
+                  <option value="Mayor confort y bienestar en las zonas comunes">Mayor confort y bienestar en las zonas comunes</option>
+                  <option value="Dejar de usar la calefacción y el aire acondicionado">Dejar de usar la calefacción y el aire acondicionado</option>
+                  <option value="Menor necesidad de mantenimiento y reparaciones">Menor necesidad de mantenimiento y reparaciones</option>
+                  <option value="Contribución a la protección del medio ambiente">Contribución a la protección del medio ambiente</option>
+                  <option value="Sentimiento de comunidad">Sentimiento de comunidad</option>
+                  <option value="Ser la envidia de mi barrio">Ser la envidia de mi barrio</option>
+              </select>
+            </label>
+          </section>
 
 
 
