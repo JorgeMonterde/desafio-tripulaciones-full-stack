@@ -41,8 +41,24 @@
   margin-bottom: 0;
 }
 
+@mixin TitleS {
+  font-family: BasierCircle;
+  font-size: 32px;
+  font-weight: 700;
+  overflow-wrap: break-word;
+  margin-bottom: 0;
+}
+
 @mixin TitleM {
   font-size: 42px;
+  font-family: 'Basier Circle';
+  font-weight: '700';
+  word-wrap: break-word;
+  margin-bottom: 0;
+}  
+
+@mixin TitleL {
+  font-size: 56px;
   font-family: 'Basier Circle';
   font-weight: '700';
   word-wrap: break-word;
@@ -105,6 +121,7 @@
   font-weight: 300;
   overflow-wrap: break-word;
   margin-bottom: 0;
+  line-height: 38.4px;
 }
 
 @mixin bodyMBold {

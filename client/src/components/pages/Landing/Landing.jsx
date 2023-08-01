@@ -11,11 +11,11 @@ const Landing = () => {
       <>
         <h3 className='TitleXL'>Ahorro</h3>
         <img className="marquee-star" src={Star} />
-        <h3 className='TitleXL'>Beneficios</h3>
+        <h3 className='TitleXL'>Silencio</h3>
         <img className="marquee-star" src={Star} />
-        <h3 className='TitleXL'>Title XL</h3>
+        <h3 className='TitleXL'>Durabilidad</h3>
         <img className="marquee-star" src={Star} />
-        <h3 className='TitleXL'>Beneficios</h3>
+        <h3 className='TitleXL'>Confort</h3>
         <img className="marquee-star" src={Star} />
       </>
     )
