@@ -1,14 +1,18 @@
+import PropTypes from 'prop-types';
 
-const StepBar = () => {
 
-  // const handleClick = () =>
+const StepBar = ({setPpdfName}) => {
+  
+  const handleClick = (e) => {
+    setPpdfName(e.target.className);
+  };
 
   return (
     <section className="steps_Wrapper">
       <ul className='steps'>
-        <li className='step_item'>
-          <span className='step_number'>1</span>
-          <p className='step_name'>Datos</p>
+        <li className='1_Datos' onClick={handleClick}>
+          <span>1</span>
+          <p>Datos</p>
         </li>
         <li className='step_item'>
           <span className='step_number'>2</span>
@@ -26,12 +30,13 @@ const StepBar = () => {
             <span className='step_number'>5</span>
             <p className='step_name'>Hoy</p>
         </li>
-        <li className='progress'>
-          <span className='indicator'></span>
-        </li>
       </ul>
     </section> 
   );
+};
+
+StepBar.propTypes = {
+  setPpdfName: PropTypes.func,
 };
 
 export default StepBar;

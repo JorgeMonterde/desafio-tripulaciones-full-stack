@@ -182,6 +182,17 @@
       height: 842px;
       width: 595px;
     }
+
+    .pdf_btns {
+      @include flexCenterCenter;
+      gap: 24px;
+
+      .arrow_btn {
+        height: 48px;
+        width: 48px;
+        border-radius: 50%
+      }
+    }
   }
 }
 

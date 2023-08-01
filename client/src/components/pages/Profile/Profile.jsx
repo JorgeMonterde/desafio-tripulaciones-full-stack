@@ -1,54 +1,65 @@
-import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import { FaChevronDown } from "react-icons/fa6";
-import { Document, Outline, Page } from 'react-pdf';
+import { Document, Page } from 'react-pdf';
 import { pdfjs } from 'react-pdf';
-import ContactBtn from '../../baseComponents/ContactBtn/ContactBtn';
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
+import { BsFillCaretRightFill, BsFillCaretLeftFill, BsXLg } from "react-icons/bs";
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
-import samplePDF from '../../../../public/assets/Principios_de_seguridad1.pdf';
+// import docDatos from '../../../../public/assets/pdfDocs/Paso_1_Datos.pdf';
+// import docAuditoria from '../../../../public/assets/pdfDocs/Paso_2_Auditoria.pdf';
 import StepBar from '../../baseComponents/StepBar/StepBar';
 import Collapse from '../../baseComponents/Collapse/Collapse';
 
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 // const steps = [
 //   {
 //     label: 'Datos',
 //     step: 1,
+//     document: '../../../../public/assets/pdfDocs/Paso_1_Datos.pdf',
 //   },
 //   {
 //     label: 'Auditoría',
 //     step: 2,
+//     document: docAuditoria,
 //   },
 //   {
 //     label: 'Propuesta',
 //     step: 3,
+//     document: '',
 //   },
 //   {
 //     label: 'Proyecto',
 //     step: 4,
+//     document: '',
 //   },
 //   {
 //     label: 'Hoy',
 //     step: 5,
+//     document: '',
 //   },
 // ]
 
+// const handlepdfDoc = () => 
 
 const Profile = () => {
   const [showGraphic, setshowGraphic] = useState(false);
-  const [showFormIncident, setshowFormIncident] = useState(false);
+  const [pageAmount, setPageAmount] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
-
-  // const handleGraphic = () => setshowGraphic(!showGraphic);
-
-  function onItemClick({ pageNumber: itemPageNumber }) {
-    setPageNumber(itemPageNumber);
+  const [pdfName, setPpdfName] = useState('');
+  
+  console.log('pdfName', pdfName);
+  const onDocumentLoadSuccess = ({ pageAmount: number }) => {
+    setPageAmount(pageAmount);
+    console.log("pageAmount", pageAmount);
   }
+
+  const handlePrevPage = () => setPageNumber(pageNumber - 1);
+
+  const handleNextPage = () => (pageNumber + 1);
+
+  const handleClosePdf = () => setshowGraphic(true);
 
   return (
     <>
-      <Link to="/contact"><ContactBtn/></Link>
       <section className='profile_header'>
         <img className='profile_avatar' src='../../../../public/assets/energyImg.avif'/>
         <article className='profile_headerText'>
@@ -60,7 +71,7 @@ const Profile = () => {
 
 
       <section className='profile_progressBar'>
-        <StepBar/>
+        <StepBar setPpdfName={setPpdfName}/>
 
         <ul className='legend'>
           <li className='legend_title'>Leyenda:</li>
@@ -82,7 +93,6 @@ const Profile = () => {
           </li>
         </ul>
       </section>
-
 
       {showGraphic  
       ?<section className='profile_temperature'>
@@ -124,10 +134,16 @@ const Profile = () => {
         </section>
       </section>
       :<section className='pdf_report'>
-        <Document file={samplePDF}>
-          <Outline onItemClick={onItemClick} />
-          <Page pageNumber={pageNumber || 1} />
+        
+        <button className='close_btn' onClick={handleClosePdf}><BsXLg/></button>
+        <Document file={`../../../../public/assets/pdfDocs/Paso_${pdfName}.pdf`}  onLoadSuccess={onDocumentLoadSuccess}>
+          <Page pageNumber={pageNumber} />
         </Document>
+        <section className='pdf_btns'>
+          {pageNumber > 1 &&  <button className='arrow_btn prev_page' onClick={handlePrevPage}><BsFillCaretLeftFill/></button>}
+          <p className='pdf_pages'>Página {pageNumber} de {pageAmount}</p>
+          {pageNumber < pageAmount && <button className='arrow_btn next_page' onClick={handleNextPage}><BsFillCaretRightFill/></button>}
+        </section>
       </section>
       }
 
@@ -140,7 +156,7 @@ const Profile = () => {
 
 
         <section className='incidents_content'>
-          <Collapse className={`incidens_form ${showFormIncident && 'bg-noVisible'}`}/>
+          <Collapse/>
         </section>
       </section>
     </>
