@@ -51,7 +51,6 @@ const Profile = () => {
   const [buildingInfo, setBuildingInfo] = useState({});
   const [city, setCity] = useState("");
 
-  const [showGraphic, setshowGraphic] = useState(false);
   const [showFormIncident, setshowFormIncident] = useState(false);
   const [pageNumber, setPageNumber] = useState(1);
 

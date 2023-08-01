@@ -99,17 +99,17 @@ const TechnicalForm = () => {
         const response = await axios.get(`http://localhost:3000/auth/email/recoverpassword/${email}`, { withCredentials: true });
 
         //show modal
-        changeModalInfo("Enhorabuena,","el formulario ha sido correctamente validado y ya hemos guardado su información en nuestra base de datos. Le hemos mandado un email con un link para completar su registro en la aplicacion. Si no lo ha recibido, póngase en contacto con nosotros.");
+        changeModalInfo("¡Genial! Parece que este proyecto es APTO.",'Gracias por tomarte el tiempo para respondernos al cuestionario. Te hemos enviado a tu email un correo con las credenciales para entrar en tu nueva cuenta el portal de usuario en "www.solsiete.com". Muy pronto alguien de nuestro equipo se pondrá en contacto contigo para dar los siguientes pasos.');
         changeVisibleState();
 
         //validation false: message and redirect to "home"
         //show modal
-        /* changeModalInfo("Lo sentimos,","la validación no ha resultado exitosa. Nos pondremos en contacto con usted lo antes posible.");
-        changeVisibleState(); */
-      
-    } else {
-      // Fail
-      console.log("From client: You could not send the form");
+        
+      } else {
+        // Fail
+        console.log("From client: You could not send the form");
+        changeModalInfo("¡Ops! Lo sentimos, parece que algo ha fallado. Por favor, inténtalo de nuevo en unos minutos.","Si prefieres contactar con nosotros personalmente, escríbenos un email a info@solsiete.com o llámanos al 600 600 600");
+        changeVisibleState();
     }
     console.log(data);
   };

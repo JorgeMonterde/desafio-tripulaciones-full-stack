@@ -42,14 +42,14 @@ const Form = (props) => {
       if(response2.data.success){
         console.log(`An email has been send to ${data.email}`);
         //show modal
-        changeModalInfo("Hemos recibido su solicitud.", "Nos pondremos en contacto con usted lo antes posible.");
+        changeModalInfo("¡Tu formulario de contacto ha sido rellenado con éxito!", "Te hemos enviado un email con un cuestionario de validación para valorar la viabilidad de un proyecto con SOL7. ¡Solo te llevará 5 minutos rellenarlo! Si prefieres contactar con nosotros personalmente, escríbenos un email a info@solsiete.com o llámanos al 600 600 600");
         changeVisibleState();
 
         //navigate("/catalogue");
       } else {
         console.log("We could not send you an email");
         //show modal
-        changeModalInfo("No se pudo enviar la solicitud.", "Contáctenos por otros medios y le atenderemos encantados.");
+        changeModalInfo("¡Ops! Lo sentimos, parece que algo ha fallado.", " Por favor, inténtalo de nuevo en unos minutos. Si prefieres contactar con nosotros personalmente, escríbenos un email a info@solsiete.com o llámanos al 600 600 600");
         changeVisibleState();
 
       }
