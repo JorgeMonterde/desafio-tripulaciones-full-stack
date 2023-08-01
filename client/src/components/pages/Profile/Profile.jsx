@@ -1,10 +1,7 @@
+import { useEffect, useState } from 'react';
 import { Document, Page } from 'react-pdf';
 import { pdfjs } from 'react-pdf';
 import { BsFillCaretRightFill, BsFillCaretLeftFill, BsXLg } from "react-icons/bs";
-import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import { BsAspectRatio, BsFillArrowDownSquareFill } from "react-icons/bs";
-import { FaChevronDown } from "react-icons/fa6";
 import LinesChart from "./LinesChart/LinesChart";
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 import 'react-pdf/dist/esm/Page/TextLayer.css';
@@ -13,60 +10,58 @@ import StepBar from '../../baseComponents/StepBar/StepBar';
 import Collapse from '../../baseComponents/Collapse/Collapse';
 import axios from "axios";
 
-// const steps = [
-//   {
-//     label: 'Datos',
-//     step: 1,
-//     document: '../../../../public/assets/pdfDocs/Paso_1_Datos.pdf',
-//   },
-//   {
-//     label: 'Auditoría',
-//     step: 2,
-//     document: docAuditoria,
-//   },
-//   {
-//     label: 'Propuesta',
-//     step: 3,
-//     document: '',
-//   },
-//   {
-//     label: 'Proyecto',
-//     step: 4,
-//     document: '',
-//   },
-//   {
-//     label: 'Hoy',
-//     step: 5,
-//     document: '',
-//   },
-// ]
 
-// const handlepdfDoc = () => 
+const steps = [
+  {
+    name: 'Datos',
+    number: 1,
+    document: '../../../../public/assets/pdfDocs/Paso_1_Datos.pdf',
+  },
+  {
+    name: 'Auditoría',
+    number: 2,
+    document: '../../../../public/assets/pdfDocs/Paso_2_Auditoria.pdf',
+  },
+  {
+    name: 'Propuesta',
+    number: 3,
+    document: '',
+  },
+  {
+    name: 'Proyecto',
+    number: 4,
+    document: '',
+  },
+  {
+    name: 'Hoy',
+    number: 5,
+    document: '',
+  },
+];
+
 
 const Profile = () => {
-  const [showFormIncident, setshowFormIncident] = useState(false);
+  const [pageAmount, setPageAmount] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
   const [showGraphic, setshowGraphic] = useState(true);
-  const [pageAmount, setPageAmount] = useState(null);
   const [pdfName, setPpdfName] = useState('');
   const [clientInfo, setClientInfo] = useState({});
   const [buildingInfo, setBuildingInfo] = useState({});
   const [city, setCity] = useState("");
-  const onDocumentLoadSuccess = ({ pageAmount: number }) => {
-    setPageAmount(pageAmount);
-    console.log("pageAmount", pageAmount);
+
+  const onDocumentLoadSuccess = ({_pdfInfo: {numPages}}) => {
+    setPageAmount(numPages);
   }
 
   const handlePrevPage = () => setPageNumber(pageNumber - 1);
-
-  const handleNextPage = () => (pageNumber + 1);
-
+  const handleNextPage = () => setPageNumber(pageNumber + 1);
   const handleClosePdf = () => setshowGraphic(true);
+  
+  const clickHandlerGenerator = (pdf) => () => {
+    setshowGraphic(false);
+    setPpdfName(pdf)
+  };
 
-
-  function onItemClick({ pageNumber: itemPageNumber }) {
-    setPageNumber(itemPageNumber);
-  }
 
   useEffect(() => {
     const getClientAndBuildingInfo = async() => {
@@ -83,6 +78,17 @@ const Profile = () => {
     getClientAndBuildingInfo();
   }, []);
 
+  const stepBarSteps = steps?.map(step => ({
+    name: step.name,
+    number: step.number,
+    clickHandler: clickHandlerGenerator(step.document),
+  }))
+
+
+  useEffect(() => {
+    setPageNumber(1);
+  }, [pdfName])
+ 
   return (
     <>
       <section className='profile_header'>
@@ -98,7 +104,8 @@ const Profile = () => {
 
 
       <section className='profile_progressBar'>
-        <StepBar setPpdfName={setPpdfName}/>
+        <StepBar steps={stepBarSteps}/>
+
 
         <ul className='legend'>
           <li className='legend_title'>Leyenda:</li>
@@ -121,8 +128,8 @@ const Profile = () => {
         </ul>
       </section>
 
-      {showGraphic  
-      ?<section className='profile_temperature'>
+
+      {showGraphic ? <section className='profile_temperature'>
         <article className='temp_header'>
           <h2 className='TitleM'>Estas son tus lecturas</h2>
           <p className='bodyXXLRegular'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
@@ -143,7 +150,6 @@ const Profile = () => {
             </article>
           </section>
 
-
           <section className='temp_graphic'>
             <img src='../../../../public/assets/Chart.png' alt='gráfica de temperaturas'/>
           </section>
@@ -160,27 +166,24 @@ const Profile = () => {
           </section>
         </section>
       </section>
-      :<section className='pdf_report'>
-        
+      :(pdfName && <section className='pdf_report'>
         <button className='close_btn' onClick={handleClosePdf}><BsXLg/></button>
-        <Document file={`../../../../public/assets/pdfDocs/Paso_${pdfName}.pdf`}  onLoadSuccess={onDocumentLoadSuccess}>
+        <Document file={`../../../../public/assets/pdfDocs/${pdfName}`}  onLoadSuccess={onDocumentLoadSuccess}>
           <Page pageNumber={pageNumber} />
         </Document>
         <section className='pdf_btns'>
-          {pageNumber > 1 &&  <button className='arrow_btn prev_page' onClick={handlePrevPage}><BsFillCaretLeftFill/></button>}
+          <button className='arrow_btn prev_page' disabled={pageNumber < 2} onClick={handlePrevPage}><BsFillCaretLeftFill/></button>
           <p className='pdf_pages'>Página {pageNumber} de {pageAmount}</p>
-          {pageNumber < pageAmount && <button className='arrow_btn next_page' onClick={handleNextPage}><BsFillCaretRightFill/></button>}
+          <button className='arrow_btn next_page' disabled={pageNumber >= pageAmount} onClick={handleNextPage}><BsFillCaretRightFill/></button>
         </section>
-      </section>
+      </section>)
       }
-
 
       <section className='profile_incidents'>
         <article className='incidents_header'>
           <h2 className='TitleM'>¿Algo no va bien?</h2>
           <p className='bodyXLRegular'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
         </article>
-
 
         <section className='incidents_content'>
           <Collapse/>
@@ -189,6 +192,5 @@ const Profile = () => {
     </>
   );
 };
-
 
 export default Profile;
