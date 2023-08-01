@@ -30,7 +30,7 @@ const Form = (props) => {
   //Submit function:
   const onSubmit = async(data) => {
     console.log("data???", data)
-    const response1 = await axios.post("http://localhost:3000/api/leads/lead", data, { withCredentials: true });
+    const response1 = await axios.post("/api/leads/lead", data, { withCredentials: true });
     console.log("auth response: ",response1)
 
     if(response1.data.success){
@@ -38,18 +38,18 @@ const Form = (props) => {
       console.log("From client: You have send the form");
       // send email to lead
       console.log("try send email to: ", data.email);
-      const response2 = await axios.get(`http://localhost:3000/api/leads/email/${data.email}`, { withCredentials: true });
+      const response2 = await axios.get(`/api/leads/email/${data.email}`, { withCredentials: true });
       if(response2.data.success){
         console.log(`An email has been send to ${data.email}`);
         //show modal
-        changeModalInfo("Hemos recibido su solicitud.", "Nos pondremos en contacto con usted lo antes posible.");
+        changeModalInfo("¡Tu formulario de contacto ha sido rellenado con éxito!", "Te hemos enviado un email con un cuestionario de validación para valorar la viabilidad de un proyecto con SOL7. ¡Solo te llevará 5 minutos rellenarlo! Si prefieres contactar con nosotros personalmente, escríbenos un email a info@solsiete.com o llámanos al 600 600 600");
         changeVisibleState();
 
         //navigate("/catalogue");
       } else {
         console.log("We could not send you an email");
         //show modal
-        changeModalInfo("No se pudo enviar la solicitud.", "Contáctenos por otros medios y le atenderemos encantados.");
+        changeModalInfo("¡Ops! Lo sentimos, parece que algo ha fallado.", " Por favor, inténtalo de nuevo en unos minutos. Si prefieres contactar con nosotros personalmente, escríbenos un email a info@solsiete.com o llámanos al 600 600 600");
         changeVisibleState();
 
       }
@@ -76,23 +76,22 @@ const Form = (props) => {
         <section className='fields'>
           <label className='bodyXLBold'>Nombre *
             <input className='input bodyLRegular' type="text" placeholder="Nombre" onChange={handleChange} {...register("first_name", {
-              required: true,
+              required: "Campo obligatorio",
               minLength: 3,
               maxLength: 20,
-              pattern: /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]{3,20}/,
-              message: "Verificar nombre"
+              pattern: {value: /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]{3,20}/, message: "Nombre inválido"}
             })} aria-invalid={errors.first_name ? "true" : "false"} />
-            {errors.first_name &&  <p className='text_error' role="alert">Campo obligatorio</p>}
+            {errors.first_name &&  <p className='text_error' role="alert">{errors.first_name.message}</p>}
           </label>
         
           <label className='bodyXLBold'>Apellidos *
             <input className='input bodyLRegular' type="text" placeholder="Apellidos" onChange={handleChange} {...register("surname", {
-              required: true,
+              required: "Campo obligatorio",
               minLength: 3,
               maxLength: 20,
-              pattern: /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]{3,20}/
+              pattern: {value: /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]{3,20}/, message: "Apellidos inválidos"}
             })} aria-invalid={errors.surname ? "true" : "false"} />
-            {errors.surname &&  <p className='text_error' role="alert">Campo obligatorio</p>}
+            {errors.surname &&  <p className='text_error' role="alert">{errors.surname?.message}</p>}
           </label>
         </section>
 
@@ -119,17 +118,17 @@ const Form = (props) => {
         
         <section className='fields'>
           <label className='bodyXLBold'>Teléfono *
-            <input className='input bodyLRegular' type="number" placeholder="número de teléfono" onChange={handleChange} {...register("telephone_num", {
-              required: "Verificar número de teléfono",
-              pattern: /(\+34|0034|34)?[ -]*(6|7)[ -]*([0-9][ -]*){8}/
+            <input className='input bodyLRegular' type="text" placeholder="+34 XXX XX XX XX" onChange={handleChange} {...register("telephone_num", {
+              required: "Campo obligatorio",
+              pattern: {value: /(\+34|0034|34)?[ -]*(6|7)[ -]*([0-9][ -]*){8}/, message: "Número de teléfono inválido"}
             })} aria-invalid={errors.telephone_num ? "true" : "false"} />
-            {errors.telephone_num &&  <p className='text_error' role="alert">Campo obligatorio</p>}
+            {errors.telephone_num &&  <p className='text_error' role="alert">{errors.telephone_num?.message}</p>}
           </label>
 
           <label className='bodyXLBold' htmlFor='email'>Correo electrónico *
             <input className='input bodyLRegular' type='email' id='email' placeholder='Correo electrónico' onChange={handleChange} {...register('email', {
-              required: 'Verificar correo electrónico',
-              pattern: /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})*$/i
+              required: "Campo obligatorio",
+              pattern: {value: /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})*$/i, message: "Correo electrónico inválido"}
             })} aria-invalid={errors.email ? 'true' : 'false'} />
             {errors.email &&  <p className='text_error' role='alert'>{errors.email?.message}</p>}
           </label>
@@ -144,8 +143,11 @@ const Form = (props) => {
           </label>
 
           <label className='bodyXLBold'>C.P
-            <input className='input bodyLRegular' type="number" placeholder="Código postal" onChange={handleChange} {...register("postal_code", {
-              pattern: /^(?:0[1-9]|[1-4]\d|5[0-2])\d{3}$/
+            <input className='input bodyLRegular' type="number" placeholder="XXXXX" onChange={handleChange} {...register("postal_code", {
+              required: "Campo obligatorio",
+              minLength: 3,
+              maxLength: 7,
+              pattern: {value: /^([0-9]*$)/, message: "Código postal inválido"}
             })} aria-invalid={errors.postal_code ? "true" : "false"} />
             {errors.postal_code &&  <p className='text_error' role="alert">{errors.postal_code?.message}</p>}
           </label>
@@ -154,7 +156,10 @@ const Form = (props) => {
         <section className='fields'>   
           <label className='bodyXLBold'>Localidad
             <input className='input' type="text" placeholder="Localidad" onChange={handleChange} {...register("city", {
-              pattern: /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]{3,20}/
+              required: "Campo obligatorio",
+              minLength: 3,
+              maxLength: 30,
+              pattern: {value: /^[a-zA-Z ]*$/, message: "Nombre de localidad inválido"}
             })} aria-invalid={errors.city ? "true" : "false"} />
             {errors.city &&  <p className='text_error' role="alert">{errors.city?.message}</p>}
           </label>
@@ -162,9 +167,10 @@ const Form = (props) => {
 
           <label className='bodyXLBold' htmlFor='province'>Provincia
             <input className='input' type='text' placeholder='Provincia' id='province' onChange={handleChange} {...register('province', {
+              required: "Campo obligatorio",
               minLength: 3,
-              maxLength: 20,
-              pattern: /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ]{3,20}/
+              maxLength: 30,
+              pattern: {value: /^[a-zA-Z ]*$/, message: "Nombre de provincia inválido"}
             })} aria-invalid={errors.province ? 'true' : 'false'} />
             {errors.province &&  <p className='text_error' role='alert'>{errors.province?.message}</p>}
           </label>
@@ -172,9 +178,12 @@ const Form = (props) => {
 
         <section className='form_checkboxes'>
           <section className='form_termsAndConditions'>
-            <input {...register('checkbox')} type='checkbox' id='termsAndConditions' value='Aceptar términos y condiciones' />
+            <input {...register('termsAndConditions', {
+              required: "Campo obligatorio",
+            })} type='checkbox' id='termsAndConditions' value='Aceptar términos y condiciones' />
             <label htmlFor='termsAndConditions' className='bodyLRegular'>Declaro haber leído y acepto los <a href='#'>Términos y condiciones</a> y la <a href='#'>Política de Privacidad</a></label>
           </section>
+            {errors.termsAndConditions &&  <p className='text_error checkbox_error' role='alert'>Acepte los términos y condiciones</p>}
           <section className='form_notifications'>
             <input {...register('checkbox')} type='checkbox' id='notifications' value='Recibir notificaciones' />
             <label htmlFor='notifications' className='bodyLRegular'>Consiento la utilización de mis datos con fines informativos y la introducción en la base de datos</label>

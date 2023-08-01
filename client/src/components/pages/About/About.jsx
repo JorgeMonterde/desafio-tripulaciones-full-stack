@@ -1,7 +1,41 @@
 import { BsLinkedin } from "react-icons/bs";
 import { team } from '../../../../team';
+import TextMarquee from "../../baseComponents/TextMarquee/TextMarquee";
+import Star from "../../../../public/assets/Star 2.png";
+
 
 const About = () => {
+  const passElements =  () => {
+    return <>
+      <h3>Mariangélica</h3>
+      <img className="marquee-star" src={Star} />
+      <h3>Jorge</h3>
+      <img className="marquee-star" src={Star} />
+      <h3>Pablo</h3>
+      <img className="marquee-star" src={Star} />
+      <h3>Annita</h3>
+      <img className="marquee-star" src={Star} />
+      <h3>Clara</h3>
+      <img className="marquee-star" src={Star} />
+      <h3>Romina</h3>
+      <img className="marquee-star" src={Star} />
+      <h3>Judit</h3>
+      <img className="marquee-star" src={Star} />
+      <h3>Alberto</h3>
+      <img className="marquee-star" src={Star} />
+      <h3>Braulio</h3>
+      <img className="marquee-star" src={Star} />
+      <h3>Christian</h3>
+      <img className="marquee-star" src={Star} />
+      <h3>Claudio</h3>
+      <img className="marquee-star" src={Star} />
+      <h3>Adrian</h3>
+      <img className="marquee-star" src={Star} />
+      <h3>Yvan</h3>
+      <img className="marquee-star" src={Star} />
+    </>
+  }
+
   return (
     <>
       <section className='about'>
@@ -21,7 +55,7 @@ const About = () => {
         </article>
       </section>
 
-      <h1 className='text_band'>* Nuestro equipo * Title M * Nuestro equipo * Title M * Nuestro equipo * Title M * Nuestro </h1>
+      <TextMarquee elements={passElements()}/>
 
       <section className='team'>
         {team?.length > 0 ? team.map(member =>  {

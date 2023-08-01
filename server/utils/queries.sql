@@ -18,14 +18,14 @@ CREATE TABLE users (
   logged boolean NOT NULL
 );
 
--- Account table
+/* -- Account table
 CREATE TABLE account (
   user_id int UNIQUE,
   account_holder varchar(200) NOT NULL,
   account_number varchar(200) NOT NULL UNIQUE
   FOREIGN KEY (user_id) REFERENCES users(user_id)
   ON DELETE CASCADE
-);
+); */
 
 -- Buildings table
 CREATE TABLE buildings (

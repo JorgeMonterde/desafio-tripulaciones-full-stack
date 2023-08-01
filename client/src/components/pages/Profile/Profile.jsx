@@ -1,15 +1,18 @@
-import { useState } from 'react';
 import { Document, Page } from 'react-pdf';
 import { pdfjs } from 'react-pdf';
 import { BsFillCaretRightFill, BsFillCaretLeftFill, BsXLg } from "react-icons/bs";
+import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { BsAspectRatio, BsFillArrowDownSquareFill } from "react-icons/bs";
+import { FaChevronDown } from "react-icons/fa6";
+import LinesChart from "./LinesChart/LinesChart";
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
-// import docDatos from '../../../../public/assets/pdfDocs/Paso_1_Datos.pdf';
-// import docAuditoria from '../../../../public/assets/pdfDocs/Paso_2_Auditoria.pdf';
 import StepBar from '../../baseComponents/StepBar/StepBar';
 import Collapse from '../../baseComponents/Collapse/Collapse';
+import axios from "axios";
 
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 // const steps = [
 //   {
 //     label: 'Datos',
@@ -41,12 +44,14 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/b
 // const handlepdfDoc = () => 
 
 const Profile = () => {
-  const [showGraphic, setshowGraphic] = useState(false);
-  const [pageAmount, setPageAmount] = useState(null);
+  const [showFormIncident, setshowFormIncident] = useState(false);
   const [pageNumber, setPageNumber] = useState(1);
+  const [showGraphic, setshowGraphic] = useState(true);
+  const [pageAmount, setPageAmount] = useState(null);
   const [pdfName, setPpdfName] = useState('');
-  
-  console.log('pdfName', pdfName);
+  const [clientInfo, setClientInfo] = useState({});
+  const [buildingInfo, setBuildingInfo] = useState({});
+  const [city, setCity] = useState("");
   const onDocumentLoadSuccess = ({ pageAmount: number }) => {
     setPageAmount(pageAmount);
     console.log("pageAmount", pageAmount);
@@ -58,16 +63,38 @@ const Profile = () => {
 
   const handleClosePdf = () => setshowGraphic(true);
 
+
+  function onItemClick({ pageNumber: itemPageNumber }) {
+    setPageNumber(itemPageNumber);
+  }
+
+  useEffect(() => {
+    const getClientAndBuildingInfo = async() => {
+      const clientResponse = await axios.get("/api/clients/client", { withCredentials: true });
+      setClientInfo(clientResponse.data.data);
+      
+      
+      const buildingResponse = await axios.get("/api/buildings/building", { withCredentials: true });
+      setBuildingInfo(buildingResponse.data.data);
+      console.log("info?????", clientResponse, buildingResponse);
+      setCity(buildingResponse.data.data.city);
+      console.log("city ", buildingResponse.data.data.city);
+    };
+    getClientAndBuildingInfo();
+  }, []);
+
   return (
     <>
       <section className='profile_header'>
         <img className='profile_avatar' src='../../../../public/assets/energyImg.avif'/>
         <article className='profile_headerText'>
-          <h2 className='TitleM'>Nombre de la comunidad</h2>
-          <p>Id de usuario</p>
-          <p>Dirección</p>
+          <h2 className='TitleM'>Nombre de la comunidad: {buildingInfo.name_of_community}</h2>
+          <p>Id de usuario: {clientInfo.client_id}</p>
+          <p>Dirección: {buildingInfo.address}</p>
           </article>
       </section>
+
+      <LinesChart city={buildingInfo.city}/>
 
 
       <section className='profile_progressBar'>

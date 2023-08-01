@@ -25,7 +25,7 @@ const ResetPasswordForm = () => {
     try {
       if(password === rep_password){
         //reset password
-        const authResponse = await axios.post("http://localhost:3000/auth/email/login", {email, password}, { withCredentials: true });
+        const authResponse = await axios.post("/auth/email/login", {email, password}, { withCredentials: true });
         console.log("auth response: ",authResponse);
     
         if(authResponse.data.success){
