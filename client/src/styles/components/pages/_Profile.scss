@@ -189,7 +189,7 @@
 .profile_incidents {
   @include flexCol;
   width: 100%;
-  height: 453px;
+  height: fit-content;
   gap: 48px;
   margin-bottom: 48px;
   padding: 80px 200px 24px;
@@ -217,6 +217,12 @@
     @include flexCol;
     gap: 8px;
     
+    .nextui-c-lfcDHB {
+      padding: 0.3rem 0;
+    }
+    .nextui-c-hPzDAx-iIEvbn-bordered-true {
+      border-radius: 0.2rem;
+    }
     .notification_form {
       @include flexCol;
       gap: 48px;

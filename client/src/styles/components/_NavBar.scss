@@ -37,7 +37,12 @@
   }
 
   .nextui-c-iWjDFM {
+    color: $primary-base-color;
     background-color: #FFFFFF;
+    padding: 10px;
+    gap: 10px;
+    border-radius: 0;
+    border-left: solid 1px $primary-base-color;
   }
 
   .transparent {
