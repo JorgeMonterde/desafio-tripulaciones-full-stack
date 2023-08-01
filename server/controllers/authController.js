@@ -5,7 +5,7 @@ let Clients = require("../models/clients");
 const transporter = require('../utils/nodemailer');
 const bcrypt = require('bcrypt');
 let jwtSecret = process.env.JWT_SECRET;
-let domain = process.env.DOMAIN;
+//let domain = process.env.DOMAIN;
 let frontendDomain = process.env.FRONTEND_DOMAIN;
 const saltRounds = 10;
 

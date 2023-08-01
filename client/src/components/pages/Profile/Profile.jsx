@@ -8,7 +8,6 @@ import { pdfjs } from 'react-pdf';
 import ContactBtn from '../../baseComponents/ContactBtn/ContactBtn';
 
 import LinesChart from "./LinesChart/LinesChart";
-import samplePDF from '../../../../public/assets/Principios_de_seguridad.pdf';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 import 'react-pdf/dist/esm/Page/TextLayer.css';
@@ -51,7 +50,6 @@ const Profile = () => {
   const [buildingInfo, setBuildingInfo] = useState({});
   const [city, setCity] = useState("");
 
-  const [showGraphic, setshowGraphic] = useState(false);
   const [showFormIncident, setshowFormIncident] = useState(false);
   const [pageNumber, setPageNumber] = useState(1);
 
@@ -64,11 +62,11 @@ const Profile = () => {
 
   useEffect(() => {
     const getClientAndBuildingInfo = async() => {
-      const clientResponse = await axios.get("http://localhost:3000/api/clients/client", { withCredentials: true });
+      const clientResponse = await axios.get("/api/clients/client", { withCredentials: true });
       setClientInfo(clientResponse.data.data);
       
       
-      const buildingResponse = await axios.get("http://localhost:3000/api/buildings/building", { withCredentials: true });
+      const buildingResponse = await axios.get("/api/buildings/building", { withCredentials: true });
       setBuildingInfo(buildingResponse.data.data);
       console.log("info?????", clientResponse, buildingResponse);
       setCity(buildingResponse.data.data.city);

@@ -28,7 +28,7 @@ const ResetPasswordModal = ({isVisible}) => {
     const {email} = data;
     console.log("data???", data)
     //Send email for reset password function
-    const authResponse = await axios.get(`http://localhost:3000/auth/email/recoverpassword/${email}`, { withCredentials: true });
+    const authResponse = await axios.get(`/auth/email/recoverpassword/${email}`, { withCredentials: true });
     console.log("auth response: ",authResponse);
 
     if(authResponse.data.success){

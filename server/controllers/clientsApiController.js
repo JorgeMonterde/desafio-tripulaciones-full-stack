@@ -8,7 +8,6 @@ const saltRounds = 10;
 const getClientInfo = async (req,res) => {
     try {
         let data = req.decoded.data;
-        //let data = await Clients.getClientByEmail(email);
         res.status(200).json({
             "success": true,
             "message": `Client info supplied`,
@@ -28,7 +27,6 @@ const getClientInfo = async (req,res) => {
 //POSTs
 //create client
 const createClient = async (req,res) => {
-    console.log("--->",req.body);
     let {first_name, surname, email, telephone_num, password, client_position} = req.body;
     const hashed_password = await bcrypt.hash(password, saltRounds);
     const clientInfo = { // "client_id" is automatically added by SQL DDBB
@@ -72,17 +70,6 @@ const createClient = async (req,res) => {
 const editClientProfile = async (req,res) => {
     try {
         let {client_id} = req.decoded.data;
-
-        /* let prevInfo = {...req.decoded.data};
-        let infoToUpdate = {...req.body};
-        Object.keys(prevInfo).forEach(key => {
-            if (!infoToUpdate[key]){
-                infoToUpdate[key] = prevInfo[key];
-            }
-        });
-        console.log("req.body: ", req.body);
-        console.log("prevInfo: ", prevInfo);
-        console.log("info to update: ", infoToUpdate); */
 
         let editedInfo = await Clients.update(req.body, { where: { "client_id": client_id } });
 

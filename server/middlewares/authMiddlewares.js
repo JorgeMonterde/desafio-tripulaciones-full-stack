@@ -8,15 +8,12 @@ const saltRounds = 10;
 
 
 const authCheck = (req, res, next) => {
-    console.log("Token", req.cookies["access-token"]);
     const token = req.cookies["access-token"];
     if(token){
         jwt.verify(token, jwtSecret, async (err, decoded) => {
-            console.log("decoded -----> ", decoded);
             let {email} = decoded;
             let data = await Clients.findOne({ where: { "email": email } });
             data = data.dataValues;
-            console.log("data: ",data)
             if(data.logged == true) {
                 req.decoded = decoded;
                 req.decoded.data = data;
