@@ -57,7 +57,7 @@ const NavBar = () => {
       
   const handleLogOut = async () => {
     //logout
-    const authResponse = await axios.get("http://localhost:3000/auth/logout", { withCredentials: true });
+    const authResponse = await axios.get("/auth/logout", { withCredentials: true });
     console.log("auth response: ",authResponse)
     if(authResponse.data.success){
       //Redirect

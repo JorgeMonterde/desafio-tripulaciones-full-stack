@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-const apiKey = import.meta.env.VITE_API_KEY;
+const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
 import { Line } from 'react-chartjs-2';
 
 

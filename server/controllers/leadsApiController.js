@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 const Leads = require("../models/leads");
 const transporter = require('../utils/nodemailer');
 const saltRounds = 10;
+let frontendDomain = process.env.FRONTEND_DOMAIN;
 
 
 //GETs
@@ -42,7 +43,7 @@ const sendEmail = async (req,res) => {
             from: process.env.GMAIL_SENDER,
             to: email,
             subject: "Email from our webpage",
-            text: `Visit the following url to continue: http://localhost:5173/technical-form/${email}/`,
+            text: `Visit the following url to continue: ${frontendDomain}/technical-form/${email}/`,
             auth: {
                 user: process.env.GMAIL_SENDER,
                 refreshToken: process.env.REFRESH_TOKEN,
@@ -110,7 +111,6 @@ const createLead = async (req,res) => {
     }
 };
 
-
 //DELETEs
 // Delete a lead from DDBB (admin)
 const deleteLead = async (req,res) => {
@@ -132,8 +132,6 @@ const deleteLead = async (req,res) => {
         });
     }
 };
-
-
 
  
 module.exports = {
