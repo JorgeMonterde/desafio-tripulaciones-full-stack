@@ -1,9 +1,5 @@
-$small_medium: 600px;
-$small_large: 720px;
-$large_large: 1279px;
-
 @mixin small_medium {
-  @media (min-width: #{$small_medium}) {
+  @media (min-width: 600px) {
     @content;
   }
 }
@@ -15,13 +11,13 @@ $large_large: 1279px;
 }
 
 @mixin large_medium {
-  @media (min-width: 720px) {
+  @media (max-width: 1279px) {
     @content;
   }
 }
 
 @mixin large_large {
-  @media (min-width: 1279px) {
+  @media (min-width: 1280px) {
     @content;
   }
 }
