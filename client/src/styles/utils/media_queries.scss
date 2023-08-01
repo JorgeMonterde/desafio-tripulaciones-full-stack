@@ -1,5 +1,34 @@
+<<<<<<< HEAD
 @mixin tablet {
   @media screen and (min-width: 768px) {
     @content;
   }
+=======
+$small_medium: 600px;
+$small_large: 720px;
+$large_large: 1279px;
+
+@mixin small_medium {
+  @media (min-width: #{$small_medium}) {
+    @content;
+  }
+}
+
+@mixin small_large {
+  @media (min-width: 720px) {
+    @content;
+  }
+}
+
+@mixin large_medium {
+  @media (min-width: 720px) {
+    @content;
+  }
+}
+
+@mixin large_large {
+  @media (min-width: 1279px) {
+    @content;
+  }
+>>>>>>> 9a2f24fb3eb5f378599c9e0439ed52163d24995c
 }

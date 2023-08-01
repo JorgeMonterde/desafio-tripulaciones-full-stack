@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import '../utils/variables.scss';
 
 .navBar {
@@ -22,4 +23,74 @@
     margin: 0;
     padding: 0;
   }
+=======
+@import '../utils/variables.scss';
+@import '../utils/mixins.scss';
+@import '../utils/media_queries.scss';
+
+.nextui-c-hhqfap {
+  display: flex;
+  justify-content: space-between;
+  place-content: center;
+  width: 100vw;
+  font-size: 1.2rem;
+  padding: 0 96px;
+
+  .nextui-navbar-container {
+    height: 88px;
+    padding: 0;
+  }
+  
+  .navBar_link {
+    @include bodyMCAPS;
+    color: #000201;
+  }
+  
+  .TitleXS {
+    @include flexCenterCenter;
+    @include TitleXS;
+    width: 150px;
+    height: 48px;
+  }
+  
+  .logOut_btn {
+    background-color: #FFFFFF;
+    margin: 0;
+  }
+  
+  .login_btn {
+    margin: 0;
+  }
+
+  .nextui-c-iWjDFM {
+    background-color: #FFFFFF;
+  }
+
+  .transparent {
+    background-color: transparent;
+    width: 100vw;
+  }
+
+  .nextui-c-iTPCAT-dusCa-isOpen-true {
+    padding-bottom: 0;
+    height: fit-content;
+    opacity: 0.9;
+  }
+
+  .collapse > ul {
+    @include flexCol;
+    gap: 1rem;
+    width: 100%;
+  }
+  .nextui-navbar-toggle {
+    .line {
+      height: 0.1rem;
+    }
+  }
+  .nextui-c-egxOLa.navBar_layer {
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+  }
+>>>>>>> 9a2f24fb3eb5f378599c9e0439ed52163d24995c
 }

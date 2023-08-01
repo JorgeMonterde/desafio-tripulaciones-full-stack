@@ -1,0 +1,66 @@
+@import '../../utils/mixins.scss';
+
+.sevices_header {
+  @include flexCol;
+  padding: 96px 200px;
+  gap: 48px;
+
+  .service {
+    @include flexCol;
+    gap: 16px;
+
+    .TitleM {
+      @include TitleM;
+    }
+
+    .service_content {
+      display: flex;
+      gap: 24px;
+      justify-content: space-between;
+
+      .service_img {
+        min-width: 400px;
+        height: 48px;
+        background-color: dimgrey;
+      }
+      
+      .bodyLRegular {
+        @include bodyLRegular;
+        text-align: left;
+      }
+    }
+  }
+}
+
+.sevices_benefits {
+  @include flexCol;
+  text-align: left;
+  width: 100%;
+  padding: 0 260px 96px;
+  gap: 24px;
+
+  .TitleM {
+    @include TitleM;
+  }
+
+  .benefict {
+    display: flex;
+    width: 100%;
+    padding: 16px;
+    gap: 24px;
+    border-top: solid 1px;
+    border-bottom: solid 1px;
+
+    img {
+      width: 100px;
+      height: 100px;
+    }
+
+    .benefict_content {
+      @include flexCol;
+      gap: 10px;
+      justify-content: center;
+    }
+
+  }
+}

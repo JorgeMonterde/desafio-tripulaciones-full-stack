@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @mixin flexCol {
   display: flex;
   flex-direction: column;
@@ -6,4 +7,137 @@
 @mixin flexWrap {
   display: flex;
   flex-wrap: wrap;
+=======
+@mixin grid-1-col {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+@mixin grid-2-col {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@mixin flexCol {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin flexCenterCenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flexWrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@mixin inputStyle {
+  min-width: 294px;
+  max-width: 490px;
+  width: 100%;
+  margin: 0px;
+  padding-left: 0.4rem;
+  border: solid 0.01px gray;
+}
+
+@mixin TitleXS {
+  font-family: BasierCircle;
+  font-size: 24px;
+  font-weight: 700;
+  overflow-wrap: break-word;
+  margin-bottom: 0;
+}
+
+@mixin TitleM {
+  font-size: 42px;
+  font-family: 'Basier Circle';
+  font-weight: '700';
+  word-wrap: break-word;
+  margin-bottom: 0;
+}  
+
+@mixin TitleXL {
+  font-family: BasierCircle;
+  font-size: 64px;
+  font-weight: 700;
+  overflow-wrap: break-word;
+  margin-bottom: 0;
+}
+
+@mixin bodyMCAPS {
+  font-family: Orkney;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: uppercase;
+  overflow-wrap: break-word;
+  margin-bottom: 0;
+}
+
+@mixin bodySRegular {
+  font-family: Orkney;
+  font-size: 14px;
+  font-weight: 300;
+  overflow-wrap: break-word;
+  margin-bottom: 0;
+}
+
+
+@mixin bodyMRegular {
+  font-family: Orkney;
+  font-size: 16px;
+  font-weight: 300;
+  overflow-wrap: break-word;
+  margin-bottom: 0;
+}
+
+@mixin bodyLRegular {
+  font-family: Orkney;
+  font-size: 20px;
+  font-weight: 300;
+  overflow-wrap: break-word;
+  margin-bottom: 0;
+}
+
+@mixin bodyXLRegular {
+  font-family: Orkney;
+  font-size: 24px;
+  font-weight: 300;
+  overflow-wrap: break-word;
+  margin-bottom: 0;
+}
+
+@mixin bodyXXLRegular {
+  font-family: Orkney;
+  font-size: 32px;
+  font-weight: 300;
+  overflow-wrap: break-word;
+  margin-bottom: 0;
+}
+
+@mixin bodyMBold {
+  font-family: Orkney;
+  font-size: 16px;
+  font-weight: 700;
+  overflow-wrap: break-word;
+  margin-bottom: 0;
+}
+
+@mixin bodyXLBold {
+  font-family: Orkney;
+  font-size: 24px;
+  font-weight: 700;
+  overflow-wrap: break-word;
+  margin-bottom: 0;
+}
+
+@mixin bodyXXLBold {
+  font-family: Orkney;
+  font-size: 32px;
+  font-weight: 700;
+  overflow-wrap: break-word;
+  margin-bottom: 0;
+>>>>>>> 9a2f24fb3eb5f378599c9e0439ed52163d24995c
 }

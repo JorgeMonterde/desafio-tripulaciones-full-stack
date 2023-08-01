@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import '../../utils/mixins.scss';
 @import '../../utils/variables.scss';
 
@@ -16,4 +17,119 @@
     margin-bottom: 0.2rem;
     color: $danger_color;
   }
+=======
+@import '../../utils/mixins.scss';
+@import '../../utils/variables.scss';
+@import '../../utils/media_queries.scss';
+
+
+.form_contact {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+  font-size: 1.2rem;
+  margin: auto;
+  padding: 0 24px;
+  gap: 32px;
+  width: 80%;
+
+  .fields {
+    display: flex;
+    justify-content: space-between;
+    gap: 60px;
+    width: 100%;
+
+    .bodyXLBold {
+      @include bodyXLBold;
+      width: 100%;
+    }
+
+    .bodyLRegular {
+      @include bodyLRegular;
+    }
+  }
+
+  .form_checkboxes {
+    display: flex;
+    width: 100%;
+    padding: 2rem;
+    gap: 2rem;
+    flex-direction: column;
+   
+    .form_termsAndConditions{
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+      width: 100%;
+
+
+      .bodyLRegular {
+        @include bodyLRegular;
+        flex-direction: row;
+        width: 100%;
+
+        a {
+          margin: 0 1rem;
+        }
+      }
+    }
+
+
+    .form_notifications {
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+      width: 100%;
+
+
+      label {
+        flex-direction: row;
+        width: 100%;
+      }
+    }
+  }
+
+
+  label {
+    @include flexCol;
+   
+    input {
+      @include inputStyle;
+    }
+
+
+    select {
+      @include inputStyle;
+    }
+  }
+
+
+  p.text_error {
+    font-size: 1rem;
+    height: 1.4rem;
+    margin-bottom: 0.2rem;
+    color: $danger_color;
+  }
+
+
+  @include small_medium {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: start;
+ 
+    label {
+      width: 45%;
+ 
+      input {
+        @include inputStyle;
+      }
+
+
+      select {
+        @include inputStyle;
+      }
+    }
+  }
+>>>>>>> 9a2f24fb3eb5f378599c9e0439ed52163d24995c
 }

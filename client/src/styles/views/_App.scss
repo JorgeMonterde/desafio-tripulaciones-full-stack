@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import '../utils/mixins.scss';
  
 #root {
@@ -21,4 +22,41 @@ main {
   min-height: 80vh;
   margin-bottom: 3rem;
   width: 100vw;
+=======
+@import '../utils/mixins.scss';
+ 
+#root {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  width: 100vw;
+  font-size: 62.5%;
+}
+
+html {
+  width: 100%;
+}
+
+main {
+  @include flexCol;
+  align-items: center;
+  height: 100%;
+  min-height: 80vh;
+  width: 100vw;
+}
+
+.hidden {
+  display: none;
+}
+
+.bg-noVisible {
+  visibility: hidden;
+}
+
+.cta_btn {
+  @include flexCenterCenter;
+  @include TitleXS;
+  width: 150px;
+  height: 48px;
+>>>>>>> 9a2f24fb3eb5f378599c9e0439ed52163d24995c
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //Basecomponents scss
 @import './components/baseComponents/Form';
 
@@ -11,4 +12,30 @@
 @import './components/pages/Home';
 
 //general scss
+=======
+//Basecomponents scss
+@import './components/baseComponents/ClaimCard';
+@import './components/baseComponents/Form';
+@import './components/baseComponents/Modal';
+@import './components/baseComponents/ContactBtn';
+@import './components/baseComponents/StepBar';
+
+
+//Components scss
+@import './components/Footer';
+@import './components/Header';
+@import './components/NavBar';
+
+//Components/pages scss
+@import './components/pages/About';
+@import './components/pages/Catalogue';
+@import './components/pages/Landing';
+@import './components/pages/Login';
+@import './components/pages/Profile';
+@import './components/pages/StudyCases';
+@import './components/pages/Contact';
+@import './components/pages/TechnicalForm';
+
+//general scss
+>>>>>>> 9a2f24fb3eb5f378599c9e0439ed52163d24995c
 @import './views/App';

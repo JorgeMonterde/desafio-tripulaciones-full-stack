@@ -1,0 +1,64 @@
+@import '../../utils/mixins.scss';
+@import '../../utils/mixins.scss';
+
+.claim_container {
+  @include flexCol;
+  place-content: center;
+  width: 100%;
+  height: fit-content;
+  gap: 2rem;
+  margin: 48px 0;
+  padding: 48px 176.5px;
+  background-image: url("../../../../public/assets/energyImg.avif");
+  background-size: "contain";
+  background-repeat: "no-repeat";
+
+  .TitleXL {
+    @include TitleXL;
+    color: white;
+  }
+  .bodyXXLRegular {
+    @include bodyXXLRegular;
+    color: white;
+  }
+
+  .claimCta_btn {
+    max-width: fit-content;
+    margin: 0 auto;
+    padding: 0.8rem 3rem;
+    font-size: 1.2rem;
+  }
+}
+
+.cards_container {
+  @include flexCol;
+  padding: 0 200px 48px;
+  width: 100%;
+  gap: 32px;
+
+  .card_img_text {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    text-align: left;
+  
+    .card_img {
+      width: 400px;
+      height: 192px;
+    }
+  
+    .card_text {
+      font-size: 1.2rem;
+      text-align: left;
+      width: 100%;
+      overflow: hidden;
+    }
+  }
+}
+
+.text_band {
+  @include TitleXL;
+  overflow: hidden;
+  padding: 24px 0;
+  margin: 0 0 48px 0;
+}
