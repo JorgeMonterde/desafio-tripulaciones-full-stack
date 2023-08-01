@@ -1,64 +1,67 @@
-import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import { BsAspectRatio, BsFillArrowDownSquareFill } from "react-icons/bs";
-import { FaChevronDown } from "react-icons/fa6";
-
-import { Document, Outline, Page } from 'react-pdf';
+import { useEffect, useState } from 'react';
+import { Document, Page } from 'react-pdf';
 import { pdfjs } from 'react-pdf';
-import ContactBtn from '../../baseComponents/ContactBtn/ContactBtn';
-
+import { BsFillCaretRightFill, BsFillCaretLeftFill, BsXLg } from "react-icons/bs";
 import LinesChart from "./LinesChart/LinesChart";
-
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
-import samplePDF from '../../../../public/assets/Principios_de_seguridad1.pdf';
 import StepBar from '../../baseComponents/StepBar/StepBar';
 import Collapse from '../../baseComponents/Collapse/Collapse';
-
-
 import axios from "axios";
 
-// const steps = [
-//   {
-//     label: 'Datos',
-//     step: 1,
-//   },
-//   {
-//     label: 'Auditoría',
-//     step: 2,
-//   },
-//   {
-//     label: 'Propuesta',
-//     step: 3,
-//   },
-//   {
-//     label: 'Proyecto',
-//     step: 4,
-//   },
-//   {
-//     label: 'Hoy',
-//     step: 5,
-//   },
-// ]
+
+const steps = [
+  {
+    name: 'Datos',
+    number: 1,
+    document: '../../../../public/assets/pdfDocs/Paso_1_Datos.pdf',
+  },
+  {
+    name: 'Auditoría',
+    number: 2,
+    document: '../../../../public/assets/pdfDocs/Paso_2_Auditoria.pdf',
+  },
+  {
+    name: 'Propuesta',
+    number: 3,
+    document: '',
+  },
+  {
+    name: 'Proyecto',
+    number: 4,
+    document: '',
+  },
+  {
+    name: 'Hoy',
+    number: 5,
+    document: '',
+  },
+];
 
 
 const Profile = () => {
-
+  const [pageAmount, setPageAmount] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
   const [showGraphic, setshowGraphic] = useState(true);
+  const [pdfName, setPpdfName] = useState('');
   const [clientInfo, setClientInfo] = useState({});
   const [buildingInfo, setBuildingInfo] = useState({});
   const [city, setCity] = useState("");
 
-  const [showFormIncident, setshowFormIncident] = useState(false);
-  const [pageNumber, setPageNumber] = useState(1);
-
-
-  // const handleGraphic = () => setshowGraphic(!showGraphic);
-
-  function onItemClick({ pageNumber: itemPageNumber }) {
-    setPageNumber(itemPageNumber);
+  const onDocumentLoadSuccess = ({_pdfInfo: {numPages}}) => {
+    setPageAmount(numPages);
   }
+
+  const handlePrevPage = () => setPageNumber(pageNumber - 1);
+  const handleNextPage = () => setPageNumber(pageNumber + 1);
+  const handleClosePdf = () => setshowGraphic(true);
+  
+  const clickHandlerGenerator = (pdf) => () => {
+    setshowGraphic(false);
+    setPpdfName(pdf)
+  };
+
 
   useEffect(() => {
     const getClientAndBuildingInfo = async() => {
@@ -75,9 +78,19 @@ const Profile = () => {
     getClientAndBuildingInfo();
   }, []);
 
+  const stepBarSteps = steps?.map(step => ({
+    name: step.name,
+    number: step.number,
+    clickHandler: clickHandlerGenerator(step.document),
+  }))
+
+
+  useEffect(() => {
+    setPageNumber(1);
+  }, [pdfName])
+ 
   return (
     <>
-      <Link to="/contact"><ContactBtn/></Link>
       <section className='profile_header'>
         <img className='profile_avatar' src='../../../../public/assets/energyImg.avif'/>
         <article className='profile_headerText'>
@@ -91,7 +104,8 @@ const Profile = () => {
 
 
       <section className='profile_progressBar'>
-        <StepBar/>
+        <StepBar steps={stepBarSteps}/>
+
 
         <ul className='legend'>
           <li className='legend_title'>Leyenda:</li>
@@ -115,8 +129,7 @@ const Profile = () => {
       </section>
 
 
-      {showGraphic  
-      ?<section className='profile_temperature'>
+      {showGraphic ? <section className='profile_temperature'>
         <article className='temp_header'>
           <h2 className='TitleM'>Estas son tus lecturas</h2>
           <p className='bodyXXLRegular'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
@@ -137,7 +150,6 @@ const Profile = () => {
             </article>
           </section>
 
-
           <section className='temp_graphic'>
             <img src='../../../../public/assets/Chart.png' alt='gráfica de temperaturas'/>
           </section>
@@ -154,14 +166,18 @@ const Profile = () => {
           </section>
         </section>
       </section>
-      :<section className='pdf_report'>
-        <Document file={samplePDF}>
-          <Outline onItemClick={onItemClick} />
-          <Page pageNumber={pageNumber || 1} />
+      :(pdfName && <section className='pdf_report'>
+        <button className='close_btn' onClick={handleClosePdf}><BsXLg/></button>
+        <Document file={`../../../../public/assets/pdfDocs/${pdfName}`}  onLoadSuccess={onDocumentLoadSuccess}>
+          <Page pageNumber={pageNumber} />
         </Document>
-      </section>
+        <section className='pdf_btns'>
+          <button className='arrow_btn prev_page' disabled={pageNumber < 2} onClick={handlePrevPage}><BsFillCaretLeftFill/></button>
+          <p className='pdf_pages'>Página {pageNumber} de {pageAmount}</p>
+          <button className='arrow_btn next_page' disabled={pageNumber >= pageAmount} onClick={handleNextPage}><BsFillCaretRightFill/></button>
+        </section>
+      </section>)
       }
-
 
       <section className='profile_incidents'>
         <article className='incidents_header'>
@@ -169,14 +185,12 @@ const Profile = () => {
           <p className='bodyXLRegular'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
         </article>
 
-
         <section className='incidents_content'>
-          <Collapse className={`incidens_form ${showFormIncident && 'bg-noVisible'}`}/>
+          <Collapse/>
         </section>
       </section>
     </>
   );
 };
-
 
 export default Profile;

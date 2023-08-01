@@ -24,10 +24,11 @@ const QueryModel = (props) => {
          .finally(setLoading(false));
   }, [])
   
-  return (
-    <div className='model_response'>
-      { loading ? <Loading/> : modelResponse }
-    </div>
+  return (  
+    <section className='model_response'>
+      <img src='../../../../../public/assets/Favicon_Fav.png' alt='logo sol7' className='iconBot_sol7'/>
+      { loading ? <Loading/> :<article className='chatbot_message'>{modelResponse}</article>  }
+    </section>
   );
 };
 

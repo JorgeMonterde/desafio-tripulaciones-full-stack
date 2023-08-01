@@ -23,8 +23,8 @@ const steps = [
   }, {
     id: '3',
     options: [
-      { value: 1, label: 'si', trigger: 'anotherQuestion' },
-      { value: 2, label: 'no', trigger: '4' }
+      { value: 1, label: 'Si', trigger: 'anotherQuestion' },
+      { value: 2, label: 'No', trigger: '4' }
     ],
   }, {
     id: '4',
@@ -39,20 +39,20 @@ const steps = [
 
 // Creating our own theme
 const theme = {
-    background: '#C9FF8F',
-    headerBgColor: '#197B22',
+    background: '#fff',
+    headerBgColor: '#069a8e',
     headerFontSize: '20px',
-    botBubbleColor: '#0F3789',
+    botBubbleColor: '#e5e6e6',
     headerFontColor: 'white',
-    botFontColor: 'white',
-    userBubbleColor: '#FF5733',
-    userFontColor: 'white',
+    botFontColor: '#11181c',
+    userBubbleColor: '#e5e6e6',
+    userFontColor: '#11181c',
 };
  
 // Set some properties of the bot
 const config = {
-    botAvatar: 'https://images.unsplash.com/photo-1529704193007-e8c78f0f46f9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8ZW5lcmd5fGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60',
-    userAvatar: '../../../../public/assets/logo.png',
+    botAvatar: '../../../../public/assets/Favicon_Fav.png',
+    userAvatar: '../../../../public/assets/Logo_Fav User.png',
     floating: true,
 };
 
@@ -63,11 +63,12 @@ const Chatbot = () => {
     <article>
         <ThemeProvider theme={theme}>
           <ChatBot
-            headerTitle="sol7"
+            headerTitle="Habla con nosotros"
             steps={steps}
             opened={isChatbotOpen}
             handleEnd={() => setIsChatbotOpen(false)}
             toggleFloating={() => setIsChatbotOpen(!isChatbotOpen)}
+            placeholder='Escribe aquí tu mensaje'
             {...config}
           />
         </ThemeProvider>
