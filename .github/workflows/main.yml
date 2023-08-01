@@ -1,0 +1,180 @@
+name: Deploy App Runner Services # Name of the workflow ...
+
+on:
+  push:
+    branches: [ deploy2 ] # Trigger workflow on git push to deploy branch
+  workflow_dispatch: # Allow manual invocation of the workflow
+env:
+  COOKIE_SECRET: ${{ secrets.COOKIE_SECRET }}
+  JWT_SECRET: ${{ secrets.JWT_SECRET }}
+  MYSQL_port: ${{ secrets.MYSQL_port }}
+  MYSQL_HOST: ${{ secrets.MYSQL_HOST }}
+  MYSQL_USER: ${{ secrets.MYSQL_USER }}
+  MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
+  MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+  PORT: ${{ secrets.PORT }}
+  DOMAIN: ${{ secrets.DOMAIN }}
+  FRONTEND_DOMAIN: ${{ secrets.FRONTEND_DOMAIN }}
+
+jobs:
+  deploy-server:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: Configure AWS credentials
+        id: aws-credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-region: ${{ secrets.AWS_REGION }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Build, tag, and push image to Amazon ECR
+        id: build-server-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: server
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          cd ./server
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
+      - name: Deploy server to App Runner
+        id: deploy-server-apprunner
+        uses: awslabs/amazon-app-runner-deploy@main
+        with:
+          service: app-runner-desafio-server
+          source-connection-arn: ${{ secrets.AWS_CONNECTION_SOURCE_ARN }}
+          repo: https://github.com/${{ github.repository }}
+          branch: ${{ github.ref }}
+          image: ${{ steps.build-desafio_server-image.outputs.image }}
+          access-role-arn: ${{ secrets.ROLE_ARN }}
+          runtime: NODEJS_16
+          build-command: npm install
+          start-command: npm start
+          region: ${{ secrets.AWS_REGION }}
+          cpu: 1
+          memory: 2
+          port: 3000
+          wait-for-service-stability: true
+
+      - name: App Runner output
+        run: echo "App runner output ${{ steps.deploy-server-apprunner.outputs.service-id }}"
+
+      - name: Deploy server to App Runner
+        id: deploy-server-apprunner
+        uses: awslabs/amazon-app-runner-deploy@main
+        with:
+          service: app-runner-desafio-server
+          source-connection-arn: ${{ secrets.AWS_CONNECTION_SOURCE_ARN }}
+          repo: https://github.com/${{ github.repository }}
+          branch: ${{ github.ref }}
+          image: ${{ steps.build-desafio_server-image.outputs.image }}
+          access-role-arn: ${{ secrets.ROLE_ARN }}
+          runtime: NODEJS_16
+          build-command: npm install
+          start-command: npm start
+          region: ${{ secrets.AWS_REGION }}
+          cpu: 1
+          memory: 2
+          port: 8080
+          wait-for-service-stability: true
+
+      - name: App Runner output
+        run: echo "App runner output ${{ steps.deploy-server-apprunner.outputs.service-id }}"
+
+  deploy-client:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: Configure AWS credentials
+        id: aws-credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-region: ${{ secrets.AWS_REGION }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+        - name: Login to Amazon ECR
+          id: login-ecr
+          uses: aws-actions/amazon-ecr-login@v1   
+        
+        - name: Build, tag, and push image to Amazon ECR
+          id: build-client-image
+          env:
+            ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+            ECR_REPOSITORY: client
+            IMAGE_TAG: ${{ github.sha }}
+          run: |
+            cd ./client
+            docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+            docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+            echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+  
+  deploy-to-apprunner:
+    needs: [deploy-server, deploy-client]
+    runs-on: ubuntu-latest
+        
+    steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-region: ${{ secrets.AWS_REGION }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      
+      - name: Deploy server to App Runner
+        id: deploy-server-apprunner
+        uses: awslabs/amazon-app-runner-deploy@main        
+        with:
+          service: app-runner-image-deploy-service
+          source-connection-arn: ${{ secrets.AWS_CONNECTION_SOURCE_ARN }}
+          repo: https://github.com/${{ github.repository }}
+          branch: ${{ github.ref }}
+          image: ${{ steps.build-server-image.outputs.image }}          
+          access-role-arn: ${{ secrets.ROLE_ARN }}
+          runtime: NODEJS_12
+          build-command: npm install
+          start-command: npm start         
+          region: ${{ secrets.AWS_REGION }}
+          cpu: 1
+          memory: 2
+          port: 3000
+          wait-for-service-stability: true
+     
+      - name: Deploy to App Runner
+        id: deploy-client-apprunner
+        uses: awslabs/amazon-app-runner-deploy@main
+        with:
+          service: app-runner-desafio-client
+          source-connection-arn: ${{ secrets.AWS_CONNECTION_SOURCE_ARN }}
+          repo: https://github.com/${{ github.repository }}
+          branch: ${{ github.ref }}
+          image: ${{ steps.build-desafio_client-image.outputs.image }}
+          access-role-arn: ${{ secrets.ROLE_ARN }}
+          runtime: NODEJS_16
+          build-command: npm install
+          start-command: npm run dev
+          region: ${{ secrets.AWS_REGION }}
+          cpu: 1
+          memory: 2
+          port: 5173
+          wait-for-service-stability: true
+
+      - name: App Runner output
+        run: echo "App runner output ${{ steps.deploy-client-apprunner.outputs.service-id }}"
