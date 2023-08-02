@@ -11,15 +11,6 @@ import { LoggedInContext } from "../../../../contexts/loggedInContext";
 
 
 
-
-
-
-
-
-
-
-
-
 const NavBar = () => { 
   const {loggedInState} = useContext(LoggedInContext);
   const navigate = useNavigate();
@@ -110,10 +101,10 @@ const NavBar = () => {
           {linksCollapse.map((item) => (
             <Link to={item.link} key={item.name}>{item.name}</Link>
           ))}
-          {loggedInState.loggedIn ? <button onClick={navigateToProfile}> MI PERFIL </button> : ""}
-          {loggedInState.loggedIn ? <button onClick={handleLogOut}> SALIR </button> : <button onClick={navigateToLogin}> ENTRAR </button>} 
+          {loggedInState.loggedIn ? <a className="hmenu-profile-link" onClick={navigateToProfile}> MI PERFIL </a> : ""}
+          {loggedInState.loggedIn ? <a className="hmenu-profile-link" onClick={handleLogOut}> SALIR </a> : <a className="hmenu-profile-link" onClick={navigateToLogin}> ENTRAR </a>} 
 
-          <UserIcon className='user_icon' content='User@email' />
+          {/* <UserIcon className='user_icon' content='User@email' /> */}
 
           
         </Navbar.Collapse>
