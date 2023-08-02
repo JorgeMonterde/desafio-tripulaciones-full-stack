@@ -1,3 +1,7 @@
+@import '../../utils/variables.scss';
+@import '../../utils/mixins.scss';
+
+
 .marquee{
   display: flex;
   overflow:hidden;
@@ -5,7 +9,7 @@
   position:relative;
   user-select: none;
   width:100%;
-  background: black;
+  background: $neutral-black;
 
 }
 
@@ -19,8 +23,13 @@
 }
 
 .marquee-text h3{
-  color: #000201;
+  color: $neutral-black;
 }
+.marquee .marquee-star{
+  padding: 10px;
+  margin: 0 24px;
+}
+
 
 @keyframes scroll {
   from {
@@ -32,5 +41,5 @@
 }
 
 .scroll {
-  animation: scroll 10s linear infinite;
+  animation: scroll $marquee-speed linear infinite;
 }

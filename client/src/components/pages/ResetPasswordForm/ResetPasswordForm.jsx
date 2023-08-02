@@ -81,7 +81,7 @@ const ResetPasswordForm = () => {
     <>
       <section className='reset_section'>
         <form className='form_login' onSubmit={handleSubmit(onSubmit)}>
-          <label className='bodyXLBold' htmlFor='password'>Contraseña *
+          <label className='bodyXLBold' htmlFor='password'>Nueva contraseña *
             <input className='input bodyLRegular' type="password" id='password' placeholder="Contraseña" onChange={handleChange} {...register("password", {
               required: "Introduzca su contraseña"
             })} aria-invalid={errors.password ? "true" : "false"} />
