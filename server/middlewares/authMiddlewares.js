@@ -8,6 +8,7 @@ const saltRounds = 10;
 
 
 const authCheck = (req, res, next) => {
+    console.log("OOOOOO: ",req.cookies);
     const token = req.cookies["access-token"];
     if(token){
         jwt.verify(token, jwtSecret, async (err, decoded) => {

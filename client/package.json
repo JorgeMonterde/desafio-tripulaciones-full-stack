@@ -13,6 +13,7 @@
     "@nextui-org/react": "^1.0.0-beta.13",
     "axios": "^1.4.0",
     "chart.js": "^4.3.2",
+    "desafio-tripulaciones-full-stack": "file:..",
     "dotenv": "^16.3.1",
     "normalize": "^0.3.1",
     "prop-types": "^15.8.1",
@@ -36,6 +37,5 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.1",
     "vite": "^4.4.0"
-  },
-  "proxy": "http://127.0.0.1:3000/"
+  }
 }

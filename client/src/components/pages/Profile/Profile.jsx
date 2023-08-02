@@ -11,6 +11,7 @@ import Collapse from '../../baseComponents/Collapse/Collapse';
 import axios from "axios";
 
 
+
 const steps = [
   {
     name: 'Datos de la comunidad',
@@ -92,7 +93,7 @@ const Profile = () => {
   return (
     <>
       <section className='profile_header'>
-        <img className='profile_avatar' src='../../../../public/assets/userPicture.jpg'/>
+        <img className='profile_avatar' src='../../../../public/assets/Profile/userPicture.jpg'/>
         <article className='profile_headerText'>
           <h2 className='TitleM'>{buildingInfo.name_of_community}</h2>
           <p className='bodyLRegular'><span className='bold'>Id de usuario: </span>{clientInfo.client_id}</p>
@@ -139,13 +140,13 @@ const Profile = () => {
             <article className='temp_meassure'>
               <p className='temp_label'>Temperatura exterior</p>
               <div className='temp_box temp_exterior'>
-                <p className='temp_text'>36ºC</p>
+                <p className='temp_text'>33ºC</p>
               </div>
             </article>
             <article className='temp_meassure'>
               <p className='temp_label'>Temperatura interior</p>
               <div className='temp_box temp_interior'>
-                <p className='temp_text'>29ºC</p>
+                <p className='temp_text'>28,3ºC</p>
               </div>
             </article>
           </section>
@@ -161,7 +162,7 @@ const Profile = () => {
             <p>kg de CO2 evitado</p>
             <img src='../../../../public/assets/Tree.png' alt='Icono de arbol'/>
             <p className='temp_text'>29ºC</p>
-            <p>Temperatura interior</p>
+            <p>Árboles salvados</p>
          
           </section>
         </section>
