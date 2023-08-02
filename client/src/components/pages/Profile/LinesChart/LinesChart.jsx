@@ -101,12 +101,5 @@ export default function LinesChart(props) {
         }
     };
 
-
-
-
-
-
-
-
     return <Line data={data} options={options}/>
 }

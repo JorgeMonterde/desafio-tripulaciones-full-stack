@@ -32,7 +32,7 @@ const Login = () => {
     
   
     
-    
+  
     
   //Submit function:
   const onSubmit = async(data) => {
@@ -41,8 +41,8 @@ const Login = () => {
     //log in 
     try {
       const authResponse = await axios.post("/auth/email/login", {email, password}, { withCredentials: true });
-      console.log("auth response: ",authResponse)
-  
+      console.log("auth response: ",authResponse);
+
       if(authResponse.data.success){
         //Redirect
         console.log("From client: You are logged in");
