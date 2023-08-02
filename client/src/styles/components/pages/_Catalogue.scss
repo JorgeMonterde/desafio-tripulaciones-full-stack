@@ -1,5 +1,6 @@
 @import '../../utils/mixins.scss';
 @import '../../utils/variables.scss';
+@import '../../utils/media_queries.scss';
 
 .sevices_header {
   @include flexCol;
@@ -199,3 +200,8 @@
     }
   }
 }
+
+@include tablet {}
+@include Desktop {}
+@include large_screens {}
+  

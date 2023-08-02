@@ -1,16 +1,11 @@
 import {/*useState,*/ useContext} from "react";
 // import { useNavigate } from "react-router-dom";
-import { AiFillFacebook, AiOutlineInstagram, AiOutlineTwitter } from "react-icons/ai";
 import { Navbar } from "@nextui-org/react";
 import { Link } from 'react-router-dom';
 import UserIcon from '../../baseComponents/UserIcon/UserIcon';
 import axios from "axios";
 //contexts
 import { LoggedInContext } from "../../../../contexts/loggedInContext";
-
-
-
-
 
 const NavBar = () => { 
   const {loggedInState} = useContext(LoggedInContext);
@@ -72,8 +67,6 @@ const NavBar = () => {
   };
 
 
-
-
   return (
     <>
       <Navbar className='navBar' isBordered>
@@ -95,12 +88,6 @@ const NavBar = () => {
           ))}
 
           <UserIcon className='user_icon' content='User@email' />
-
-          <ul className='rrss'>
-            <li className='collapse_icon'><a href='https://github.com/desafioteam1/full-stack/tree/develop'><AiFillFacebook/></a></li>
-            <li className='collapse_icon'><a href='https://github.com/desafioteam1/full-stack/tree/develop'><AiOutlineInstagram /></a></li>
-            <li className='collapse_icon'><a href='https://github.com/desafioteam1/full-stack/tree/develop'><AiOutlineTwitter /></a></li>
-          </ul>
         </Navbar.Collapse>
       </Navbar>
     </>

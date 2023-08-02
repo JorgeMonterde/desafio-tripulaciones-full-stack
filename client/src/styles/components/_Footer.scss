@@ -13,7 +13,8 @@
     @include flexCol;
     gap: 6px;
     margin-left: 38.4px;
-    
+    width: 100%;
+
     a {
       padding: 3px 10px 0;
     }
@@ -65,6 +66,28 @@
   }
 }
 
+@include tablet_medium {
+  .footer {
+    align-items: center;
+    padding: 60px 24px 12px;
+
+    .footer_links { 
+      flex-direction: row;
+      justify-content: center;
+    }
+
+    .footer_RRSS {
+      flex-direction: row;
+      margin-bottom: 0;
+
+      .icon {
+        width: 38.4px;
+        height: 38.4px;
+      }
+    }
+  }
+}
+
 @include Desktop {
   .footer {
     height: 126px;
@@ -109,8 +132,9 @@
     .footer_links {
       @include bodySRegular;
       flex-direction: row;
-      justify-content: right;
+      justify-content: center;
       align-items: center;
+      margin: 0;
       gap: 12px;
       height: 48px;
       margin: auto;

@@ -7,7 +7,8 @@
   display: flex;
   justify-content: space-between;
   place-content: center;
-  width: 100vw;
+  min-width: 390px;
+  width: 100%;
   padding: 0 24px;
 
   .nextui-navbar-container {
@@ -19,8 +20,7 @@
     @include flexCol;
     justify-content: right;
     width: 200px;
-    min-height: 500px;
-    padding: 5px 8px 8px 0px;
+    min-height: fit-content;
     padding-bottom: 0;
     margin-left: auto;
     height: fit-content;
@@ -32,7 +32,7 @@
     justify-content: right;
     gap: 12px;
     width: 100%;
-    min-height: 487px;
+    min-height: fit-content;
 
     a {
       @include bodyMCAPS;
@@ -52,8 +52,9 @@
     }
 
     .navBar_logo {
-      max-height: 82px;
-      max-width: 140px;
+      min-width: 98px;
+      width: 100%;
+      max-width: 111px;
       padding: 5px 8px 12px;
       margin-left: 35%;
     }
@@ -62,7 +63,6 @@
     width: 100vw;
     margin: 0;
     padding: 0;
-
   }
 
   .nextui-c-iWjDFM {
@@ -98,8 +98,14 @@
   }
 
   .nextui-c-hhqfap .nextui-c-iWjDFM {
+    border: none;
     margin-left: 0;
   }
+
+  .nextui-tooltip-button {
+    border-left: 1px solid $primary-base-color;
+  }
+
 }
 
 @include Desktop {

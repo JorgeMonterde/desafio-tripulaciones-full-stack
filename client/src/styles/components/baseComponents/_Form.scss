@@ -100,23 +100,23 @@
   }
 
 
-  @include tablet_mini {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    text-align: start;
+  // @include tablet_mini {
+  //   flex-direction: row;
+  //   flex-wrap: wrap;
+  //   justify-content: center;
+  //   text-align: start;
  
-    label {
-      width: 45%;
+  //   label {
+  //     width: 45%;
  
-      input {
-        @include inputStyle;
-      }
+  //     input {
+  //       @include inputStyle;
+  //     }
 
 
-      select {
-        @include inputStyle;
-      }
-    }
-  }
+  //     select {
+  //       @include inputStyle;
+  //     }
+  //   }
+  // }
 }
