@@ -2,85 +2,245 @@
 @import '../../utils/media_queries.scss';
 
 
-
 .claim_container {
   @include flexCol;
-  place-content: center;
+  min-width: 390px;
   width: 100%;
-  height: fit-content;
-  gap: 2rem;
-  margin: 48px 0;
-  padding: 48px 176.5px;
+  height: 160px;
+  padding: 10px;
+  gap: 10px;
   background-image: url("../../../../public/assets/landing/landingCover.webp");
   background-size: cover;
   background-repeat: no-repeat;
+  margin: 24px 0;
 
-  .TitleXL {
-    @include TitleXL;
+  .TitleS {
+    @include TitleS;
     color: white;
   }
-  .bodyXXLRegular {
-    @include bodyXXLRegular;
+  .bodyMRegular {
+    @include bodyMRegular;
     color: white;
-  }
-
-  .claimCta_btn {
-    max-width: fit-content;
-    margin: 0 auto;
-    padding: 0.8rem 3rem;
-    font-size: 1.2rem;
-  }
-
-  @include large_medium {
-  
-    .claimCta_btn.cta_btn.bodyXXLBold {
-      display: none;
-    }
-  }
-}
-
-.cards_container {
-  @include flexCol;
-  padding: 0 200px 48px;
-  width: 100%;
-  gap: 60px;
-
-  .card_img_text {
-    display: flex;
-    justify-content: space-between;
-    gap: 16px;
-    text-align: left;
-  
-    .TitleM {
-      @include TitleM;
-    }
-    .card_img {
-      width: 400px;
-      height: 192px;
-    }
-  
-    .card_text {
-      @include bodyXXLRegular;
-      text-align: left;
-      width: 100%;
-      overflow: hidden;
-    }
   }
 }
 
 .marquee {
-  padding: 24px 0;
-  margin: 0 0 48px 0;
-  padding: 24px 0;
-  background-color: #069A8E;
-
-  h3.TitleXL {
-    @include TitleXL;
-    color: #000201;
-  }
-
-  .marquee-star {
-    height: 50px;
-    width: 50px;
+  height: 80px;
+  background-color: $primary-base-color;
+  
+  .marquee-text > h3 {
+    @include TitleM;
+    margin: 0;
+    color: $neutral-black;
   }
 }
+
+.case_content {
+  padding: 24px;
+  text-align: left;
+
+  .TitleS {
+    @include TitleS;
+    color: white;
+  }
+
+  .bodyMRegular {
+    @include bodyMRegular;
+    color: white;
+  }
+}
+
+.card_img {
+  width: 100%;
+  padding: 0 24px 36px;
+}
+
+.cta_btn {
+  position: sticky;
+  bottom: 48px;
+  margin: 0;
+  z-index: 1;
+}
+
+@include tablet {
+  .claim_container {
+    height: fit-content;
+    padding: 24px 0;
+
+    .TitleL  {
+      @include TitleL;
+    }
+
+    .bodyXLRegular  {
+      @include bodyXLRegular;
+    }
+  }
+  
+  .marquee {
+    .marquee-text {
+      @include TitleS;
+    }
+  }
+  .case_content {
+    padding: 32px 24px;
+  }
+}
+
+// .claim_container {
+//   @include flexCol;
+//   place-content: center;
+//   width: 100%;
+//   height: fit-content;
+//   gap: 2rem;
+//   margin: 48px 0;
+//   padding: 48px 176.5px;
+//   background-image: url("../../../../public/assets/landing/landingCover.webp");
+//   background-size: cover;
+//   background-repeat: no-repeat;
+
+//   .TitleXL {
+//     @include TitleXL;
+//     color: white;
+//   }
+//   .bodyXXLRegular {
+//     @include bodyXXLRegular;
+//     color: white;
+//   }
+
+//   .claimCta_btn {
+//     max-width: fit-content;
+//     margin: 0 auto;
+//     padding: 0.8rem 3rem;
+//     font-size: 1.2rem;
+//   }
+
+  
+// }
+
+// .cards_container {
+//   @include flexCol;
+//   padding: 0 200px 48px;
+//   width: 100%;
+//   gap: 60px;
+
+//   .card_img_text {
+//     display: flex;
+//     justify-content: space-between;
+//     gap: 16px;
+//     text-align: left;
+  
+//     .TitleM {
+//       @include TitleM;
+//     }
+//     .card_img {
+//       width: 400px;
+//       height: 192px;
+//     }
+  
+//     .card_text {
+//       @include bodyXXLRegular;
+//       text-align: left;
+//       width: 100%;
+//       overflow: hidden;
+//     }
+//   }
+// }
+
+// .marquee {
+//   padding: 24px 0;
+//   margin: 0 0 48px 0;
+//   padding: 24px 0;
+//   background-color: #069A8E;
+
+//   h3.TitleXL {
+//     @include TitleXL;
+//     color: #000201;
+//   }
+
+//   .marquee-star {
+//     height: 50px;
+//     width: 50px;
+//   }
+// }
+
+// .claim_container {
+//   @include flexCol;
+//   place-content: center;
+//   width: 100%;
+//   height: fit-content;
+//   gap: 2rem;
+//   margin: 48px 0;
+//   padding: 48px 176.5px;
+//   background-image: url("../../../../public/assets/landing/landingCover.webp");
+//   background-size: cover;
+//   background-repeat: no-repeat;
+
+//   .TitleXL {
+//     @include TitleXL;
+//     color: white;
+//   }
+//   .bodyXXLRegular {
+//     @include bodyXXLRegular;
+//     color: white;
+//   }
+
+//   .claimCta_btn {
+//     max-width: fit-content;
+//     margin: 0 auto;
+//     padding: 0.8rem 3rem;
+//     font-size: 1.2rem;
+//   }
+
+//   @include large_medium {
+  
+//     .claimCta_btn.cta_btn.bodyXXLBold {
+//       display: none;
+//     }
+//   }
+// }
+
+// .cards_container {
+//   @include flexCol;
+//   padding: 0 200px 48px;
+//   width: 100%;
+//   gap: 60px;
+
+//   .card_img_text {
+//     display: flex;
+//     justify-content: space-between;
+//     gap: 16px;
+//     text-align: left;
+  
+//     .TitleM {
+//       @include TitleM;
+//     }
+//     .card_img {
+//       width: 400px;
+//       height: 192px;
+//     }
+  
+//     .card_text {
+//       @include bodyXXLRegular;
+//       text-align: left;
+//       width: 100%;
+//       overflow: hidden;
+//     }
+//   }
+// }
+
+// .marquee {
+//   padding: 24px 0;
+//   margin: 0 0 48px 0;
+//   padding: 24px 0;
+//   background-color: #069A8E;
+
+//   h3.TitleXL {
+//     @include TitleXL;
+//     color: #000201;
+//   }
+
+//   .marquee-star {
+//     height: 50px;
+//     width: 50px;
+//   }
+// }

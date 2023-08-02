@@ -1,22 +1,22 @@
-@mixin small_medium {
+@mixin tablet_mini {
   @media (min-width: 600px) {
     @content;
   }
 }
 
-@mixin small_large {
-  @media (min-width: 720px) {
+@mixin tablet {
+  @media (min-width: 650px) {
     @content;
   }
 }
 
-@mixin large_medium {
+@mixin Desktop {
   @media (max-width: 1279px) {
     @content;
   }
 }
 
-@mixin large_large {
+@mixin large_screens {
   @media (min-width: 1280px) {
     @content;
   }

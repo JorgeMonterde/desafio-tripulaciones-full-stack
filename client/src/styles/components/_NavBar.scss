@@ -2,73 +2,171 @@
 @import '../utils/mixins.scss';
 @import '../utils/media_queries.scss';
 
+
 .nextui-c-hhqfap {
   display: flex;
   justify-content: space-between;
   place-content: center;
   width: 100vw;
-  font-size: 1.2rem;
-  padding: 0 96px;
+  padding: 0 24px;
 
   .nextui-navbar-container {
-    height: 88px;
+    height: 66px;
     padding: 0;
-  }
-  
-  .navBar_link {
-    @include bodyMCAPS;
-    color: #000201;
-  }
-  
-  .TitleXS {
-    @include flexCenterCenter;
-    @include TitleXS;
-    width: 150px;
-    height: 48px;
-  }
-  
-  .logOut_btn {
-    background-color: #FFFFFF;
-    margin: 0;
-  }
-  
-  .login_btn {
-    margin: 0;
-  }
-
-  .nextui-c-iWjDFM {
-    color: $primary-base-color;
-    background-color: #FFFFFF;
-    padding: 10px;
-    gap: 10px;
-    border-radius: 0;
-    border-left: solid 1px $primary-base-color;
-  }
-
-  .transparent {
-    background-color: transparent;
-    width: 100vw;
   }
 
   .nextui-c-iTPCAT-dusCa-isOpen-true {
+    @include flexCol;
+    justify-content: right;
+    width: 200px;
+    min-height: 500px;
+    padding: 5px 8px 8px 0px;
     padding-bottom: 0;
+    margin-left: auto;
     height: fit-content;
-    opacity: 0.9;
   }
 
   .collapse > ul {
     @include flexCol;
-    gap: 1rem;
+    padding: 0;
+    justify-content: right;
+    gap: 12px;
     width: 100%;
-  }
-  .nextui-navbar-toggle {
-    .line {
-      height: 0.1rem;
+    min-height: 487px;
+
+    a {
+      @include bodyMCAPS;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      color: $neutral-black;
+      width: 180px;
+      min-height: 48px;
+      text-align: right;
     }
-  }
+    
+    li {
+      display: flex;
+      justify-content: right;
+      margin-left: 35%;
+    }
+
+    .navBar_logo {
+      max-height: 82px;
+      max-width: 140px;
+      padding: 5px 8px 12px;
+      margin-left: 35%;
+    }
+  } 
   .nextui-c-egxOLa.navBar_layer {
     width: 100vw;
     margin: 0;
     padding: 0;
+
+  }
+
+  .nextui-c-iWjDFM {
+    flex-direction: row-reverse;  
+    justify-content: center;
+    margin-left: 35%;
+    border-radius: 0;
+    background-color: transparent;
+    color: $primary-base-color;
+    height: fit-content;
+    padding: 10px;
+    gap: 10px;
+    border-top: 1px solid $primary-base-color;
+    min-width: 138.3px;
+    height: 48px;
+
+    .nextui-button-text {
+      gap: 10px;
+    }
   }
 }
+
+@include tablet {
+  .nextui-c-jklhtj {
+    gap: 16px;
+    margin-left: auto;
+
+    a {
+      @include bodySRegular;
+      color: $neutral-black;
+      padding: 4px 8px;
+    }
+  }
+
+  .nextui-c-hhqfap .nextui-c-iWjDFM {
+    margin-left: 0;
+  }
+}
+
+@include Desktop {
+  .nextui-c-hhqfap {
+    @include bodyMCAPS;
+    height: 88px;
+    padding: 0 96px;
+    gap: 12px;
+  }
+}
+
+
+
+//   .navBar_link {
+//     @include bodyMCAPS;
+//     color: #000201;
+//   }
+
+//   .TitleXS {
+//     @include flexCenterCenter;
+//     @include TitleXS;
+//     width: 150px;
+//     height: 48px;
+//   }
+
+//   .logOut_btn {
+//     background-color: #FFFFFF;
+//     margin: 0;
+//   }
+
+//   .login_btn {
+//     margin: 0;
+//   }
+
+//   .nextui-c-iWjDFM {
+//     color: $primary-base-color;
+//     background-color: #FFFFFF;
+//     padding: 10px;
+//     gap: 10px;
+//     border-radius: 0;
+//     border-left: solid 1px $primary-base-color;
+//   }
+
+//   .transparent {
+//     background-color: transparent;
+//     width: 100vw;
+//   }
+
+//   .nextui-c-iTPCAT-dusCa-isOpen-true {
+//     padding-bottom: 0;
+//     height: fit-content;
+//     opacity: 0.9;
+//   }
+
+//   .collapse > ul {
+//     @include flexCol;
+//     gap: 1rem;
+//     width: 100%;
+//   }
+//   .nextui-navbar-toggle {
+//     .line {
+//       height: 0.1rem;
+//     }
+//   }
+//   .nextui-c-egxOLa.navBar_layer {
+//     width: 100vw;
+//     margin: 0;
+//     padding: 0;
+//   }
+// }

@@ -5,23 +5,26 @@ import axios from "axios";
 
 
 const QueryModel = (props) => {
-  console.log('props', props);
+  // console.log('props', props);
   const { steps, method, questionParam = false } = props;
   const userQuestion = steps?.question?.value;
   const queryParamStr = questionParam ? `?question=${userQuestion}` : '';
-  console.log('steps', steps);
+  // console.log('steps', steps);
   const [modelResponse, setModelResponse] = useState('');
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
-    axios[method](`http://localhost:3000/${queryParamStr}`)
-         .then(res => {
-          setModelResponse(res.data)
-          console.log(res.data);
-         })
-         .catch(e => setModelResponse(e.message))
-         .finally(setLoading(false));
+    if (queryParamStr) {
+
+      axios[method](`https://isrtmyit2d.eu-west-1.awsapprunner.com/${queryParamStr}`)
+           .then(res => {
+            setModelResponse(res.data)
+            console.log(res.data);
+           })
+           .catch(e => setModelResponse(e.message))
+           .finally(setLoading(false));
+    }
   }, [])
   
   return (  

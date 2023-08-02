@@ -109,7 +109,7 @@
     }
   
   
-    @include small_medium {
+    @include tablet_mini {
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: center;
