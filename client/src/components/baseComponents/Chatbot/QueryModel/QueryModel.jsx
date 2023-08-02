@@ -26,7 +26,7 @@ const QueryModel = (props) => {
   
   return (  
     <section className='model_response'>
-      <img src='../../../../../public/assets/Favicon_Fav.png' alt='logo sol7' className='iconBot_sol7'/>
+      <img src='../../../../../public/assets/Chatbot/chatbotLogo.png' alt='logo sol7' className='iconBot_sol7'/>
       { loading ? <Loading/> :<article className='chatbot_message'>{modelResponse}</article>  }
     </section>
   );

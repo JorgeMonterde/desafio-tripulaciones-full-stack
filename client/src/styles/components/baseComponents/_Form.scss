@@ -9,6 +9,7 @@
   text-align: start;
   font-size: 1.2rem;
   margin: auto;
+  margin-bottom: 48px;
   padding: 0 24px;
   gap: 32px;
   width: 80%;
@@ -19,8 +20,10 @@
     gap: 60px;
     width: 100%;
 
-    .bodyXLBold {
+    .label_input {
+      @include flexCol;
       @include bodyXLBold;
+      gap: 8px;
       width: 100%;
     }
 
@@ -49,10 +52,13 @@
         width: 100%;
 
         a {
+          color: $primary-base-color;
           margin: 0 1rem;
         }
       }
     }
+
+  
 
 
     .form_notifications {
@@ -75,6 +81,8 @@
    
     input {
       @include inputStyle;
+      border: solid 0.01px $neutral-gray2;
+
     }
 
 
@@ -88,7 +96,7 @@
     font-size: 1rem;
     height: 1.4rem;
     margin-bottom: 0.2rem;
-    color: $danger_color;
+    color: $semantic-error;
   }
 
 

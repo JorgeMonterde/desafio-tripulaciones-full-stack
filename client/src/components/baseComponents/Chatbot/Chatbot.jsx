@@ -51,8 +51,8 @@ const theme = {
  
 // Set some properties of the bot
 const config = {
-    botAvatar: '../../../../public/assets/Favicon_Fav.png',
-    userAvatar: '../../../../public/assets/Logo_Fav User.png',
+    botAvatar: '../../../../public/assets/Chatbot/chatbotLogo.png',
+    userAvatar: '../../../../public/assets/Chatbot/Logo_FavUser.png',
     floating: true,
 };
 

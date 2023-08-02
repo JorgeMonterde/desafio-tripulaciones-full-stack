@@ -24,9 +24,15 @@
     gap: 24px;
     width: 100%;
 
-
+    .TitleM {
+      @include TitleM;
+    }
     p {
       @include bodyLRegular;
+
+      .bold {
+        font-weight: 700;
+      }
     }
   }
 }
@@ -40,12 +46,11 @@
 
 
   .legend {
-    display: flex;
+    @include bodyMRegular;
+    @include flexCenterCenter;
     padding: 24px 0;
     flex-direction: row;
     gap: 48px;
-    justify-content: center;
-    align-items: center;
 
 
     .legend_title {
@@ -87,10 +92,12 @@
 
 
   .temp_header {
+    @include flexCol;
     text-align: left;
     width: 100%;
     padding: 24px 200px 48px;
     margin: 48px 0;
+    gap: 10px;
  
     h2 {
       @include TitleM;
@@ -121,25 +128,27 @@
           font-size: 1.3rem;
         }
         .temp_box {
+          @include flexCol;
           height: 72.8px;
           width: 228.8px;
-          display: flex;
           justify-content: center;
           align-items: center;
-          border: solid 0.244rem black;
-          border-radius: 10.4px;
+          border: solid 3.9px black;
+          border-radius: 40px;
          
          
           .temp_text {
-            font-size: 3.413rem;
+            @include TitleM;
           }
         }
         .temp_exterior {
+          @include TitleL;
           background-color: #ee740d;
         }
 
 
         .temp_interior {
+          @include TitleL;
           background-color:#47d3ff;
         }
       }
@@ -151,13 +160,15 @@
  
     .temp_savedTrees {
       .temp_box {
-        height: 72.8px;
-        width: 228.8px;
-        display: flex;
+        @include flexCol;
         justify-content: center;
         align-items: center;
-        border: solid 0.244rem black;
-        border-radius: 10.4px;
+        height: 72.8px;
+        width: 228.8px;
+        justify-content: center;
+        align-items: center;
+        border: solid 3.9px black;
+        border-radius: 40px;
         background-color: #009b72;
  
         .temp_text {
@@ -173,14 +184,16 @@
 }
 
 .pdf_report {
-  height: fit-content;
-  width: 100%;
-  margin: center;
-  padding: 24px 96px;
+  margin: 24px 96px;
+  padding: 48px;
+  background-color: $neutral-gray1;
 
-  .close_btn {
-    margin-left: 90%;
-    background-color: #fff;
+  .pdf__Page__textContent  {
+    padding: 48px;
+  }
+
+  .cta_btn {
+    margin-left: 73%;
   }
 
   .report {
@@ -190,12 +203,28 @@
 
   .pdf_btns {
     @include flexCenterCenter;
+    position: relative;
+    bottom: 65px;
     gap: 24px;
 
-    .arrow_btn {
+    .arrow_rigth {
+      @include flexCenterCenter;
+      width: 75px;
       height: 48px;
-      width: 48px;
-      border-radius: 50%
+      border-radius: 0px 40px 40px 0px;
+      border: 3px solid $neutral-black;
+      background: $primary-color-ligth;
+    }
+
+    .arrow_left {
+      display: flex;
+      width: 75px;
+      height: 48px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 40px 0 0 40px;
+      border: 3px solid $neutral-black;
+      background: var(--primary-light, #A1E3D8);
     }
   }
 }
@@ -224,6 +253,7 @@
 
     .bodyXLRegular {
       @include bodyXLRegular;
+      text-align: left;
     }
   }
 
