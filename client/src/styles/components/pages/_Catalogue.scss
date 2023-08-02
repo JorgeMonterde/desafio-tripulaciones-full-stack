@@ -126,7 +126,7 @@
     }
   }
 }
-  
+
 .beneficts_list {
   @include flexCol;
   text-align: left;
@@ -188,101 +188,3 @@
     }
   }
 }
-
-.cta_btn {
-  position: sticky;
-  bottom: 48px;
-  margin: 0;
-  z-index: 1;
-}
-
-@include tablet {
-  .sevices_header  {
-    gap: 32px;
-  }
-
-  .sevices_benefits .benefict {
-    margin: 24px;
-  }
-
-  .beneficts_list {
-    .benefict_content {
-      .TitleS {
-        @include TitleS;
-      }
-    }
-  }
-}
-
-@mixin tablet_medium {
-  .sevices_header  {
-    gap: 32px;
-  }
-
-  .sevices_benefits .benefict {
-    margin: 24px;
-  }
-
-  .beneficts_list {
-    .benefict_content {
-      .TitleS {
-        @include TitleS;
-      }
-    }
-  }
-}
-
-@include Desktop {
-  .sevices_header  {
-    padding: 48px 200px 0;
-
-    .TitleL {
-      @include TitleL;
-      align-items: length;
-    }
-
-    .service {
-      display: flex;
-
-      .service_content {
-        flex-direction: row;
-
-        .bodyXLRegular {
-          @include bodyXLRegular;
-          align-items: length;
-        }
-      }
-    }
-  }
-
-  .sevices_benefits .benefict {
-    padding: 24px 200px;
-  }
-
-  .marquee {
-    .marquee-text {
-      @include TitleXL;
-    }
-    .marquee-star {
-      height: 36px;   
-      width: 36px;
-    }
-  }
-
-  .sevice_energy {
-    .service {
-      padding: 48px 200px 96px;
-    }
-  }
-  .beneficts_list {
-    padding: 96px 200px;
-    width: 100%;
-    .benefict_content {
-      .TitleS {
-        @include TitleS;
-      }
-    }
-  }
-}
-
-@include large_screens {}

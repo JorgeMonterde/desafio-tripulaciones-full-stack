@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { Document, Page } from 'react-pdf';
 import { pdfjs } from 'react-pdf';
 import { BsChevronRight, BsChevronLeft} from "react-icons/bs";
@@ -9,6 +9,11 @@ import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import StepBar from '../../baseComponents/StepBar/StepBar';
 import Collapse from '../../baseComponents/Collapse/Collapse';
 import axios from "axios";
+//contexts
+import { ClientInfoContext } from "../../../../contexts/clientInfoContext";
+
+
+
 
 
 const steps = [
@@ -45,9 +50,12 @@ const Profile = () => {
   const [pageNumber, setPageNumber] = useState(1);
   const [showGraphic, setshowGraphic] = useState(true);
   const [pdfName, setPpdfName] = useState('');
-  const [clientInfo, setClientInfo] = useState({});
+  //const [clientInfo, setClientInfo] = useState({});
   const [buildingInfo, setBuildingInfo] = useState({});
   const [city, setCity] = useState("");
+  const {clientInfoState} = useContext(ClientInfoContext);
+  console.log("clinet info state: ", clientInfoState);
+  const {clientInfo, changeClientInfoState} = clientInfoState;
 
   const onDocumentLoadSuccess = ({_pdfInfo: {numPages}}) => {
     setPageAmount(numPages);
@@ -64,9 +72,10 @@ const Profile = () => {
 
 
   useEffect(() => {
+    //If state is empty:...
     const getClientAndBuildingInfo = async() => {
       const clientResponse = await axios.get("/api/clients/client", { withCredentials: true });
-      setClientInfo(clientResponse.data.data);
+      changeClientInfoState(clientResponse.data.data);
       
       
       const buildingResponse = await axios.get("/api/buildings/building", { withCredentials: true });
@@ -75,7 +84,12 @@ const Profile = () => {
       setCity(buildingResponse.data.data.city);
       console.log("city ", buildingResponse.data.data.city);
     };
-    getClientAndBuildingInfo();
+    console.log("building info here: ", buildingInfo);
+    console.log("keys: ", Object.keys(buildingInfo).length);
+    if(!Object.keys(buildingInfo).length){
+      getClientAndBuildingInfo();
+
+    }
   }, []);
 
   const stepBarSteps = steps?.map(step => ({
@@ -91,17 +105,16 @@ const Profile = () => {
  
   return (
     <>
+    
+
       <section className='profile_header'>
-        <img className='profile_avatar' src='../../../../public/assets/userPicture.jpg'/>
+        <img className='profile_avatar' src='../../../../public/assets/Profile/userPicture.jpg'/>
         <article className='profile_headerText'>
           <h2 className='TitleM'>{buildingInfo.name_of_community}</h2>
           <p className='bodyLRegular'><span className='bold'>Id de usuario: </span>{clientInfo.client_id}</p>
           <p className='bodyLRegular'><span className='bold'>Dirección: </span>{buildingInfo.address}</p>
           </article>
       </section>
-
-      <LinesChart city={buildingInfo.city}/>
-
 
       <section className='profile_progressBar'>
         <StepBar steps={stepBarSteps}/>
@@ -128,7 +141,6 @@ const Profile = () => {
         </ul>
       </section>
 
-
       {showGraphic ? <section className='profile_temperature'>
         <article className='temp_header'>
           <h2 className='TitleM'>Tus lecturas en tiempo real</h2>
@@ -139,29 +151,30 @@ const Profile = () => {
             <article className='temp_meassure'>
               <p className='temp_label'>Temperatura exterior</p>
               <div className='temp_box temp_exterior'>
-                <p className='temp_text'>36ºC</p>
+                <p className='temp_text'>33ºC</p>
               </div>
             </article>
             <article className='temp_meassure'>
               <p className='temp_label'>Temperatura interior</p>
               <div className='temp_box temp_interior'>
-                <p className='temp_text'>29ºC</p>
+                <p className='temp_text'>28,3ºC</p>
               </div>
             </article>
           </section>
 
           <section className='temp_graphic'>
-            <img src='../../../../public/assets/Chart.png' alt='gráfica de temperaturas'/>
+            <LinesChart city={buildingInfo.city}/>
+            {/* <img src='../../../../public/assets/Chart.png' alt='gráfica de temperaturas'/> */}
           </section>
          
           <section className='temp_savedTrees'>
             <div className='temp_box '>
-              <p className='temp_text'>4500</p>
+              <p className='temp_text'>35045</p>
             </div>
-            <p>kg de CO2 evitado</p>
+            <p>kg de CO2 evitados</p>
             <img src='../../../../public/assets/Tree.png' alt='Icono de arbol'/>
-            <p className='temp_text'>29ºC</p>
-            <p>Temperatura interior</p>
+            <p className='temp_text'>1584</p>
+            <p>Árboles salvados</p>
          
           </section>
         </section>
@@ -179,17 +192,18 @@ const Profile = () => {
       </section>)
       }
 
-      <section className='profile_incidents'>
-        <article className='incidents_header'>
-          <h2 className='TitleM'>¿Algo no va bien?</h2>
-          <p className='bodyXLRegular'>Pregúntale a nuestro chatbot, si tu problema no se soluciona, rellena el formulario inferior.
-¿No puedes esperar? Puedes llamar  al (+34) 919 01 72 57 de lunes a viernes de 9:00 a 20:00</p>
-        </article>
+        <section className='profile_incidents'>
+          <article className='incidents_header'>
+            <h2 className='TitleM'>¿Algo no va bien?</h2>
+            <p className='bodyXLRegular'>Pregúntale a nuestro chatbot, si tu problema no se soluciona, rellena el formulario inferior.
+  ¿No puedes esperar? Puedes llamar  al (+34) 919 01 72 57 de lunes a viernes de 9:00 a 20:00</p>
+          </article>
 
-        <section className='incidents_content'>
-          <Collapse/>
+          <section className='incidents_content'>
+            <Collapse/>
+          </section>
         </section>
-      </section>
+      
     </>
   );
 };

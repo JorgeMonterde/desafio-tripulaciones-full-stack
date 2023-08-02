@@ -32,7 +32,7 @@ const Login = () => {
     
   
     
-    
+  
     
   //Submit function:
   const onSubmit = async(data) => {
@@ -41,8 +41,8 @@ const Login = () => {
     //log in 
     try {
       const authResponse = await axios.post("/auth/email/login", {email, password}, { withCredentials: true });
-      console.log("auth response: ",authResponse)
-  
+      console.log("auth response: ",authResponse);
+
       if(authResponse.data.success){
         //Redirect
         console.log("From client: You are logged in");
@@ -92,12 +92,12 @@ const Login = () => {
             })} aria-invalid={errors.password ? "true" : "false"} />
           </label>
           {errors.password && <p className='text_error' role="alert">{errors.password?.message}</p>}
-        </form>
-        <p className='bodyMRegular'>¿Has olvidado tu contraseña? Haz click <a onClick={changeVisibleState}>aquí </a> para resetearla</p>
-        <ResetPasswordModal isVisible={isVisible} />
+          <p className='bodyMRegular'>¿Has olvidado tu contraseña? Haz click <a onClick={changeVisibleState}>aquí </a> para resetearla</p>
+          <ResetPasswordModal isVisible={isVisible} />
 
-        {loginErrorMessage? <p className='text_error'>{loginErrorMessage}</p> : ""}
-        <button className='cta_btn' type="submit">Enviar</button>
+          {loginErrorMessage? <p className='text_error'>{loginErrorMessage}</p> : ""}
+          <button className='cta_btn' type="submit">Enviar</button>
+        </form>
       </section>
     </section>
   )
