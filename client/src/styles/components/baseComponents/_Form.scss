@@ -9,6 +9,7 @@
   text-align: start;
   font-size: 1.2rem;
   margin: auto;
+  margin-bottom: 48px;
   padding: 0 24px;
   gap: 32px;
   width: 80%;
@@ -19,8 +20,10 @@
     gap: 60px;
     width: 100%;
 
-    .bodyXLBold {
+    .label_input {
+      @include flexCol;
       @include bodyXLBold;
+      gap: 8px;
       width: 100%;
     }
 
@@ -49,10 +52,13 @@
         width: 100%;
 
         a {
+          color: $primary-base-color;
           margin: 0 1rem;
         }
       }
     }
+
+  
 
 
     .form_notifications {
@@ -75,6 +81,8 @@
    
     input {
       @include inputStyle;
+      border: solid 0.01px $neutral-gray2;
+
     }
 
 
@@ -110,5 +118,17 @@
         @include inputStyle;
       }
     }
+  }
+
+  .cta_btn {
+    @include flexCenterCenter;
+    min-width: fit-content;
+    min-height: fit-content;
+    width: 150px;
+    height: 48px;
+    border-radius: 40px;
+    border: 3px solid $neutral-black;
+    background: $primary-color-ligth;
+    margin: 24px 0;
   }
 }

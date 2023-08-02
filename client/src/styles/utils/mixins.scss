@@ -1,3 +1,5 @@
+@import '../utils/variables.scss';
+
 @mixin grid-1-col {
   display: grid;
   grid-template-columns: 1fr;
@@ -29,8 +31,12 @@
   max-width: 490px;
   width: 100%;
   margin: 0px;
-  padding-left: 0.4rem;
-  border: solid 0.01px gray;
+  min-height: 36px;
+  padding: 4px 12px 0px 12px;
+  border: none;
+  border-radius: 10px;
+  color:  $neutral-gray2;
+  background-color: $neutral-gray3;
 }
 
 @mixin TitleXS {

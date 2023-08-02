@@ -4,17 +4,19 @@
 
 .form_header {
   @include flexCol;
-  padding: 48px 120px;
-  gap: 24px;
+  padding: 48px 96px;
+  gap: 10px;
   text-align: left;
   width: 100%;
 
   .TitleM {
     @include TitleM;
+    margin: 0 24px;
   }
 
   .bodyXLRegular {
     @include bodyXLRegular;
+    margin: 0 24px;
   }
 }
 
@@ -29,7 +31,6 @@
   .header_question {
     @include flexCol;
     gap: 10px;
-    text-align: left;
   
     .TitleM {
       @include TitleM;
@@ -42,11 +43,16 @@
 
   .contact_us {
     display: flex;
-    width: 100%;
-    gap: 48px;
     text-align: left;
+    width: 60%;
+    gap: 48px;
+    margin: auto;
     
-    section {
+    .contact_data {
+      @include flexCol;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
       width: 100%;
 
       .TitleXS {
@@ -64,4 +70,6 @@
   overflow: hidden;
   padding: 24px 0;
   margin: 0 0 48px 0;
+  width: 100%;
+  background-color: #069A8E;
 }
