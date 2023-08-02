@@ -29,7 +29,7 @@ const Catalogue = () => {
           <h2 className='TitleS TitleL'>Estudio Energético</h2>
           <section className='service_content'>
             <img className='service_img' src='../../../../public/assets/Catalogue/ant-design_audit-outlined.png'/>
-            <p className='bodyLRegular bodyLRegular bodyXXLRegular'>Realizamos una completa auditoría de las instalaciones para asegurarnos de que podremos ofrecerte el mejor ahorro energético con nuestros servicios de aislamiento ecosostenible.
+            <p className='bodyLRegular bodyXLRegular bodyXXLRegular'>Realizamos una completa auditoría de las instalaciones para asegurarnos de que podremos ofrecerte el mejor ahorro energético con nuestros servicios de aislamiento ecosostenible.
             Con este estudio podremos determina qué materiales son los ideales para solucionar el problema de gestión térmica de tu edificio y de las zonas comunes.
             Establecemos también la previsión temporal del proyecto y un informe detallado de cómo afectará al ahorro energético de tu comunidad en comparación con la situación previa.</p>
           </section>
@@ -99,7 +99,7 @@ const Catalogue = () => {
         <article className='service'>
             <h2 className='TitleS TitleL'>Seguimiento activo</h2>
             <section className='service_content'>
-              <img className='service_img' src='../../../../public/assets/energyImg.avif'/>
+              <img className='service_img' src='../../../../public/assets/Catalogue/seguimientoACtico.png'/>
               <p className='bodyLRegular bodyXXLRegular'>Parte de nuestro servicio integral de mejora para la climatización de edificios vecinales y zonas comunes es la instalación de un sistema de termómetros inteligentes interconectados que recopilarán datos en tiempo real para ofrecerte la mejor lectura de la temperatura interior y exterior.
               Mantendremos a la comunidad informada de las variaciones de temperatura para que estén prevenidos frente a las olas de calor.</p>
             </section>
@@ -181,6 +181,8 @@ const Catalogue = () => {
         </section>
       </article>
     </section>
+
+    <button className='cta_btn titleXS' type="submit">Enviar</button>
     </>
   );
 };
