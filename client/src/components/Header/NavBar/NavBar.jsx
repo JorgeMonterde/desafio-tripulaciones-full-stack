@@ -115,11 +115,7 @@ const NavBar = () => {
 
           <UserIcon className='user_icon' content='User@email' />
 
-          <ul className='rrss'>
-            <li className='collapse_icon'><a href='https://github.com/desafioteam1/full-stack/tree/develop'><AiFillFacebook/></a></li>
-            <li className='collapse_icon'><a href='https://github.com/desafioteam1/full-stack/tree/develop'><AiOutlineInstagram /></a></li>
-            <li className='collapse_icon'><a href='https://github.com/desafioteam1/full-stack/tree/develop'><AiOutlineTwitter /></a></li>
-          </ul>
+          
         </Navbar.Collapse>
       </Navbar>
     </>
