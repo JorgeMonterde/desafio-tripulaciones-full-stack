@@ -5,14 +5,24 @@
 .footer {
   display: flex;
   justify-content: space-between;
+  align-items: end;
   width: 100%;
-  padding: 80px 24px 24px 12px;
+  padding: 80px 24px 12px 24px;
   gap: 12px;
 
+  .footer_certificates {
+    @include flexCol;
+    gap: 8px;
+    
+    li > img {
+      height: 40px;
+      width: 84px;
+    }
+  }
   .footer_links {
     @include flexCol;
     gap: 6px;
-    margin-left: 38.4px;
+    margin: 0;
     width: 100%;
 
     a {
@@ -22,11 +32,9 @@
   
   .footer_RRSS {
     @include flexCol;
-    height: fit-content;
+    margin: 10px;
+    gap: 10px;
     
-    li {
-      height: fit-content;
-    }
     .icon {
       width: 2.4rem;
       height: 2.4rem;

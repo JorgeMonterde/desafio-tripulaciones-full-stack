@@ -2,43 +2,46 @@
 @import '../../utils/variables.scss';
 @import '../../utils/media_queries.scss';
 
+
+
 .sevices_header {
   @include flexCol;
-  padding: 96px 200px 0;
-  gap: 48px;
+  padding: 24px;
+  gap: 24px;
 
   .service {
     @include flexCol;
     gap: 32px;
 
-    .TitleL {
-      @include TitleL;
+    .TitleS {
+      @include TitleS;
       text-align: left;
     }
 
     .service_content {
-      display: flex;
-      gap: 24px;
-      justify-content: space-between;
+      @include flexCol;
+      align-items: center;
+      text-align: left;
+      gap: 16px;
 
       .service_img {
-        min-width: 400px;
-        height: 48px;
-        background-color: dimgrey;
+        width: 100px;
+        height: 100px
       }
       
-      .bodyXXLRegular {
-        @include bodyXXLRegular;
-        text-align: left;
+      p.bodyMRegular {
+        @include bodyMRegular;
+        line-height: 20px;
       }
     }
 
-    
     .service_section {
+      @include flexCol;
       padding: 0 48px;
+      gap: 16px;
 
-      .TitleM {
-        @include TitleM;
+      .TitleS {
+        @include TitleS;
         text-align: left;
         border-bottom: solid 4px $secondary-color;
       }
@@ -47,63 +50,50 @@
         @include bodyXXLRegular;
         text-align: left
       }
-    }
+    } 
   }
 }
 
-
 .sevices_benefits {
-  @include flexCol;
-  text-align: left;
-  width: 100%;
-  padding: 0 200px 48px;
-  gap: 24px;
-  margin-top: 24px;
-
   
   .benefict {
-    display: flex;
-    justify-content: left;
-    width: 100%;
-    padding: 0 48px;
-    margin-bottom: 24px;
-    gap: 16px;
-    
-    .TitleS {
-      @include TitleS;
-    }
-
-    .bodyXLRegular {
-      @include bodyXLRegular;
-    }
+    @include flexCol;
+    text-align: left;
+    gap: 24px;
+    margin: 0 24px;
 
     .benefict_content {
       @include flexCol;
-      gap: 24px;
+      gap: 16px;
+      margin-top: 24px;
+    .TitleS {
+        @include TitleS;
+      }
     }
-  }
 
-  img {
-    min-width: 384px;
-    min-height: 304px;
+    img {
+      height: 304px;
+      min-width: 280px;
+      flex: 1 0 0;
+    }
   }
 }
 
 .service_eco {
   @include flexCol;
-  padding: 24px 48px;
+  text-align: left;
+  padding: 24px 48px 0;
   gap: 24px;
 
-  .TitleM {
-    @include TitleM;
-    text-align: left;
+  .TitleS {
+    @include TitleS;
     border-bottom: solid 4px $primary-base-color;
   }
 
   .service_content {
 
-    .bodyXXLRegular {
-      @include bodyXXLRegular;
+    p.bodyMRegular {
+      @include bodyMRegular;
       text-align: left;
     }
   }
@@ -113,52 +103,50 @@
   .service {
     @include flexCol;
     text-align: left;
-    width: 100%;
-    padding: 0 200px 144px;
-    gap: 32px;
+    gap: 24px;
+    padding: 16px 24px 24px;
     
-    .TitleL {
-      @include TitleL;
-      text-align: left;
+    .TitleS {
+      @include TitleS;
     }
   
     .service_content {
-      display: flex;
+      @include flexCol;
+      flex-direction: column;
+      align-items: center;
       gap: 24px;
   
       .service_img {
         height: 100px;
         width: 100px;
       }
-      .bodyXXLRegular {
-        @include bodyXXLRegular;
-        text-align: left;
+      .bodyLRegular {
+        @include bodyLRegular;
       }     
-  }
+    }
   }
 }
   
 .beneficts_list {
   @include flexCol;
-  align-items: flex-start;
-  margin-bottom: 48px;
-  padding: 0 260px;
-  margin-top: 96px;
+  text-align: left;
+  padding: 24px;
 
   .title_outLine {
-    @include TitleL;
+    @include TitleS;
     width: fit-content;
     padding: 16px 40px;
     margin: 0 auto 48px;
     border-radius: 90px;
     border: 5px solid $primary-base-color;
   }
-  .TitleS {
-    @include TitleS;
-    text-align: left;
+  .bodyLBold {
+    @include bodyLBold;
   }
   .benefict_content {
-    @include flexCenterCenter;
+    display: flex;
+    width: 100%;
+    align-items: center;
     text-align: left;
     padding: 16px;
     gap: 24px;
@@ -202,6 +190,7 @@
 }
 
 @include tablet {}
+@mixin tablet_medium {}
 @include Desktop {}
 @include large_screens {}
   
