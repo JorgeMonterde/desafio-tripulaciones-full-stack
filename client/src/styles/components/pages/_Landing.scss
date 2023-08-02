@@ -1,6 +1,8 @@
 @import '../../utils/mixins.scss';
 @import '../../utils/media_queries.scss';
 
+
+
 .claim_container {
   @include flexCol;
   place-content: center;
@@ -10,8 +12,8 @@
   margin: 48px 0;
   padding: 48px 176.5px;
   background-image: url("../../../../public/assets/landing/landingCover.webp");
-  background-size: "contain";
-  background-repeat: "no-repeat";
+  background-size: cover;
+  background-repeat: no-repeat;
 
   .TitleXL {
     @include TitleXL;

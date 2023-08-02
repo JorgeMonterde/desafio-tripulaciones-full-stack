@@ -15,12 +15,12 @@ const steps = [
   {
     name: 'Datos de la comunidad',
     number: 1,
-    document: '../../../../public/assets/pdfDocs/Paso_1_Datos.pdf',
+    document: '../../../../public/assets/Profile/pdfDocs/Paso_1_Datos.pdf',
   },
   {
     name: 'Resultado de la auditoría',
     number: 2,
-    document: '../../../../public/assets/pdfDocs/Paso_2_Auditoria.pdf',
+    document: '../../../../public/assets/Profile/pdfDocs/Paso_2_Auditoria.pdf',
   },
   {
     name: 'Propuesta y presupuesto',
@@ -92,7 +92,7 @@ const Profile = () => {
   return (
     <>
       <section className='profile_header'>
-        <img className='profile_avatar' src='../../../../public/assets/energyImg.avif'/>
+        <img className='profile_avatar' src='../../../../public/assets/userPicture.jpg'/>
         <article className='profile_headerText'>
           <h2 className='TitleM'>{buildingInfo.name_of_community}</h2>
           <p className='bodyLRegular'><span className='bold'>Id de usuario: </span>{clientInfo.client_id}</p>
@@ -168,7 +168,7 @@ const Profile = () => {
       </section>
       :(pdfName && <section className='pdf_report'>
         <button className='cta_btn' onClick={handleClosePdf}>Cerrar</button>
-        <Document file={`../../../../public/assets/pdfDocs/${pdfName}`}  onLoadSuccess={onDocumentLoadSuccess}>
+        <Document file={pdfName}  onLoadSuccess={onDocumentLoadSuccess}>
           <Page pageNumber={pageNumber} />
         </Document>
         <section className='pdf_btns'>
