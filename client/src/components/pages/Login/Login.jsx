@@ -71,27 +71,34 @@ const Login = () => {
   
   return (
     <section className='login_section'>
-      <form className='form_login grid-1' onSubmit={handleSubmit(onSubmit)}>
-        <label className='bodyXLBold' htmlFor='email'>Correo electrónico *
-          <input className='input bodyLRegular' type="email" id='email' placeholder="xxxxx@xxxxx.xx" onChange={handleChange} {...register("email", {
-            required: "Campo obligatorio", 
-            pattern: {value: /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})*$/i, message: "Correo electrónico inválido"}
-          })} aria-invalid={errors.email ? "true" : "false"} />
-        </label>
-        {errors.email && <p className='text_error' role="alert">{errors.email?.message}</p>}
+      <section className='login_card'>
+        <article className='login_header'>
+          <h2 className='TitleL'>Estudio Energético</h2>
+          <p className='bodyXLRegular'>Si has completado el formulario de contacto, tendrás un correo con las instrucciones para conseguir tus datos de acceso</p>
+        </article>
 
-        <label className='bodyXLBold' htmlFor='password'>Contraseña *
-          <input className='input bodyLRegular' type="password" id='password' placeholder="Contraseña" onChange={handleChange} {...register("password", {
-            required: "Introduzca contraseña",
-          })} aria-invalid={errors.password ? "true" : "false"} />
-        </label>
-        {errors.password && <p className='text_error' role="alert">{errors.password?.message}</p>}
-        <a onClick={changeVisibleState}>¿Ha olvidado su contraseña?</a>
+        <form className='form_login grid-1' onSubmit={handleSubmit(onSubmit)}>
+          <label className='bodyXLBold' htmlFor='email'>Correo electrónico *
+            <input className='input_login' type="email" id='email' placeholder="xxxxx@xxxxx.xx" onChange={handleChange} {...register("email", {
+              required: "Campo obligatorio", 
+              pattern: {value: /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})*$/i, message: "Correo electrónico inválido"}
+            })} aria-invalid={errors.email ? "true" : "false"} />
+          </label>
+          {errors.email && <p className='text_error' role="alert">{errors.email?.message}</p>}
+
+          <label className='bodyXLBold' htmlFor='password'>Contraseña *
+            <input className='input_login' type="password" id='password' placeholder="Contraseña" onChange={handleChange} {...register("password", {
+              required: "Introduzca contraseña",
+            })} aria-invalid={errors.password ? "true" : "false"} />
+          </label>
+          {errors.password && <p className='text_error' role="alert">{errors.password?.message}</p>}
+        </form>
+        <p className='bodyMRegular'>¿Has olvidado tu contraseña? Haz click <a onClick={changeVisibleState}>aquí </a> para resetearla</p>
         <ResetPasswordModal isVisible={isVisible} />
 
         {loginErrorMessage? <p className='text_error'>{loginErrorMessage}</p> : ""}
-        <button className='TitleXS cta_btn' type="submit">Enviar</button>
-      </form>
+        <button className='cta_btn' type="submit">Enviar</button>
+      </section>
     </section>
   )
   

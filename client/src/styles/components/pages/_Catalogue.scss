@@ -1,16 +1,18 @@
 @import '../../utils/mixins.scss';
+@import '../../utils/variables.scss';
 
 .sevices_header {
   @include flexCol;
-  padding: 96px 200px;
+  padding: 96px 200px 0;
   gap: 48px;
 
   .service {
     @include flexCol;
-    gap: 16px;
+    gap: 32px;
 
-    .TitleM {
-      @include TitleM;
+    .TitleL {
+      @include TitleL;
+      text-align: left;
     }
 
     .service_content {
@@ -24,43 +26,176 @@
         background-color: dimgrey;
       }
       
-      .bodyLRegular {
-        @include bodyLRegular;
+      .bodyXXLRegular {
+        @include bodyXXLRegular;
         text-align: left;
+      }
+    }
+
+    
+    .service_section {
+      padding: 0 48px;
+
+      .TitleM {
+        @include TitleM;
+        text-align: left;
+        border-bottom: solid 4px $secondary-color;
+      }
+
+      .bodyXXLRegular {
+        @include bodyXXLRegular;
+        text-align: left
       }
     }
   }
 }
 
+
 .sevices_benefits {
   @include flexCol;
   text-align: left;
   width: 100%;
-  padding: 0 260px 96px;
+  padding: 0 200px 48px;
   gap: 24px;
+  margin-top: 24px;
 
-  .TitleM {
-    @include TitleM;
-  }
-
+  
   .benefict {
     display: flex;
+    justify-content: left;
     width: 100%;
-    padding: 16px;
-    gap: 24px;
-    border-top: solid 1px;
-    border-bottom: solid 1px;
+    padding: 0 48px;
+    margin-bottom: 24px;
+    gap: 16px;
+    
+    .TitleS {
+      @include TitleS;
+    }
 
-    img {
-      width: 100px;
-      height: 100px;
+    .bodyXLRegular {
+      @include bodyXLRegular;
     }
 
     .benefict_content {
       @include flexCol;
-      gap: 10px;
-      justify-content: center;
+      gap: 24px;
+    }
+  }
+
+  img {
+    min-width: 384px;
+    min-height: 304px;
+  }
+}
+
+.service_eco {
+  @include flexCol;
+  padding: 24px 48px;
+  gap: 24px;
+
+  .TitleM {
+    @include TitleM;
+    text-align: left;
+    border-bottom: solid 4px $primary-base-color;
+  }
+
+  .service_content {
+
+    .bodyXXLRegular {
+      @include bodyXXLRegular;
+      text-align: left;
+    }
+  }
+}
+
+.sevice_energy {
+  .service {
+    @include flexCol;
+    text-align: left;
+    width: 100%;
+    padding: 0 200px 144px;
+    gap: 32px;
+    
+    .TitleL {
+      @include TitleL;
+      text-align: left;
+    }
+  
+    .service_content {
+      display: flex;
+      gap: 24px;
+  
+      .service_img {
+        height: 100px;
+        width: 100px;
+      }
+      .bodyXXLRegular {
+        @include bodyXXLRegular;
+        text-align: left;
+      }     
+  }
+  }
+}
+  
+.beneficts_list {
+  @include flexCol;
+  align-items: flex-start;
+  margin-bottom: 48px;
+  padding: 0 260px;
+  margin-top: 96px;
+
+  .title_outLine {
+    @include TitleL;
+    width: fit-content;
+    padding: 16px 40px;
+    margin: 0 auto 48px;
+    border-radius: 90px;
+    border: 5px solid $primary-base-color;
+  }
+  .TitleS {
+    @include TitleS;
+    text-align: left;
+  }
+  .benefict_content {
+    @include flexCenterCenter;
+    text-align: left;
+    padding: 16px;
+    gap: 24px;
+    border-top: solid 1px $neutral-black ;
+    border-bottom: solid 1px $neutral-black ;
+
+    .service_img {
+      display: flex;
+      height: 100px;
+      width: 100px;
     }
 
+    .bodyXLRegular {
+      @include bodyXLRegular;
+    }
+  }
+
+  .confort {
+    @include flexCol;
+    align-items: center;
+    padding: 16px;
+    gap: 16px;
+
+    .confort_content {
+      @include flexCenterCenter;
+      text-align: left;
+      padding: 16px;
+      gap: 24px;
+
+      .service_img {
+        display: flex;
+        height: 100px;
+        width: 100px;
+      }
+
+      .bodyXLRegular {
+        @include bodyXLRegular;
+      }
+    }
   }
 }

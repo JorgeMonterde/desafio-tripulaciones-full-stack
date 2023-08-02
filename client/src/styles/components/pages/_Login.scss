@@ -1,33 +1,71 @@
 @import '../../utils/mixins.scss';
+@import '../../utils/variables.scss';
+
 
 .login_section {
   @include flexCol;
-  margin: auto;
-  
-  .form_login {
-    @include grid-1-col;
-    text-align: left;
+  background-color: $primary-color-dark;
+  min-height: 100vh;
+  min-width: 100vw;
+  padding: 48px 0;
+
+  .login_card {
+    @include flexCol;
+    padding: 48px 60px;
+    border-radius: 30px;
+    background: var(--neutrals-white, #FCFCFC);
+    max-width: 800px;
     margin: auto;
-    gap: 16px;
-  
-    .bodyXLBold {
-      @include bodyXLBold;
+
+    .login_header {
       @include flexCol;
-      gap: 8px;
+      gap: 10px;
+      margin-bottom: 48px;
+
+      .TitleL {
+        @include TitleL;
+        text-align: left;
+      }
   
-      
-      .input.bodyLRegular {
-        @include bodyLRegular;
-        @include inputStyle;
+      .bodyXLRegular {
+        @include bodyXXLRegular;
+        text-align: left;
+      } 
+    }
+
+    .form_login {
+      @include grid-1-col;
+      text-align: left;
+      gap: 60px;
+      margin-bottom: 32px;
+    
+      .bodyXLBold {
+        @include bodyXLBold;
+        @include flexCol;
+        gap: 8px;
+    
+        
+        #email, #password {
+          @include bodyLRegular;
+          @include inputStyle;
+          max-width: 800px;
+        }
+      }
+    }
+
+    .bodyMRegular {
+      @include bodyMRegular;
+      text-align: left;
+      margin-bottom: 48px;
+
+      a {
+        color: $primary-base-color;
       }
     }
   
-    .TitleXS {
-      @include flexCenterCenter;
-      @include TitleXS;
-      width: 150px;
-      height: 48px;
+    .cta_btn {
       margin: auto;
     }
   }
+  
 }

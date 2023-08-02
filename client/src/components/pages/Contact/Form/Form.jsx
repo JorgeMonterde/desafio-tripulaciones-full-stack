@@ -74,7 +74,7 @@ const Form = (props) => {
     <>
       <form className='form_contact' onSubmit={handleSubmit(onSubmit)}>
         <section className='fields'>
-          <label className='bodyXLBold'>Nombre *
+          <label className='bodyXLBold label_input'>Nombre *
             <input className='input bodyLRegular' type="text" placeholder="Nombre" onChange={handleChange} {...register("first_name", {
               required: "Campo obligatorio",
               minLength: 3,
@@ -84,7 +84,7 @@ const Form = (props) => {
             {errors.first_name &&  <p className='text_error' role="alert">{errors.first_name.message}</p>}
           </label>
         
-          <label className='bodyXLBold'>Apellidos *
+          <label className='bodyXLBold label_input'>Apellidos *
             <input className='input bodyLRegular' type="text" placeholder="Apellidos" onChange={handleChange} {...register("surname", {
               required: "Campo obligatorio",
               minLength: 3,
@@ -96,7 +96,7 @@ const Form = (props) => {
         </section>
 
         <section className='fields'>    
-          <label  className='bodyXLBold'>Función *
+          <label  className='bodyXLBold label_input'>Función *
             <select name="lead_position" {...register("lead_position", {required: {
               value: true,
               message: 'Campo obligatorio'
@@ -108,7 +108,7 @@ const Form = (props) => {
             {errors.lead_position &&  <p className='text_error' role="alert">{errors.lead_position?.message}</p>}
           </label>
 
-          <label className='bodyXLBold'>Tipo de comunidad
+          <label className='bodyXLBold label_input'>Tipo de comunidad
             <select name="community_type" {...register("community_type")}>
               <option value="admin">Un único edificio</option>
               <option value="president">Urbanización</option>
@@ -117,7 +117,7 @@ const Form = (props) => {
         </section>
         
         <section className='fields'>
-          <label className='bodyXLBold'>Teléfono *
+          <label className='bodyXLBold label_input'>Teléfono *
             <input className='input bodyLRegular' type="text" placeholder="+34 XXX XX XX XX" onChange={handleChange} {...register("telephone_num", {
               required: "Campo obligatorio",
               pattern: {value: /(\+34|0034|34)?[ -]*(6|7)[ -]*([0-9][ -]*){8}/, message: "Número de teléfono inválido"}
@@ -125,7 +125,7 @@ const Form = (props) => {
             {errors.telephone_num &&  <p className='text_error' role="alert">{errors.telephone_num?.message}</p>}
           </label>
 
-          <label className='bodyXLBold' htmlFor='email'>Correo electrónico *
+          <label className='bodyXLBold label_input' htmlFor='email'>Correo electrónico *
             <input className='input bodyLRegular' type='email' id='email' placeholder='Correo electrónico' onChange={handleChange} {...register('email', {
               required: "Campo obligatorio",
               pattern: {value: /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})*$/i, message: "Correo electrónico inválido"}
@@ -135,14 +135,14 @@ const Form = (props) => {
         </section>
 
         <section className='fields'>
-          <label className='bodyXLBold' htmlFor='address'>Dirección de la comunidad *
+          <label className='bodyXLBold label_input' htmlFor='address'>Dirección de la comunidad *
             <input className='input bodyLRegular' type='text' id='address' placeholder='Dirección de la comunidad' onChange={handleChange} {...register('address', {
               required: 'Verificar dirección de la comunidad'
             })} aria-invalid={errors.address ? 'true' : 'false'} />
             {errors.address &&  <p className='text_error' role='alert'>Campo obligatorio</p>}
           </label>
 
-          <label className='bodyXLBold'>C.P
+          <label className='bodyXLBold label_input'>C.P
             <input className='input bodyLRegular' type="number" placeholder="XXXXX" onChange={handleChange} {...register("postal_code", {
               required: "Campo obligatorio",
               minLength: 3,
@@ -154,7 +154,7 @@ const Form = (props) => {
         </section>
        
         <section className='fields'>   
-          <label className='bodyXLBold'>Localidad
+          <label className='bodyXLBold label_input'>Localidad
             <input className='input' type="text" placeholder="Localidad" onChange={handleChange} {...register("city", {
               required: "Campo obligatorio",
               minLength: 3,
@@ -165,7 +165,7 @@ const Form = (props) => {
           </label>
 
 
-          <label className='bodyXLBold' htmlFor='province'>Provincia
+          <label className='bodyXLBold label_input' htmlFor='province'>Provincia
             <input className='input' type='text' placeholder='Provincia' id='province' onChange={handleChange} {...register('province', {
               required: "Campo obligatorio",
               minLength: 3,

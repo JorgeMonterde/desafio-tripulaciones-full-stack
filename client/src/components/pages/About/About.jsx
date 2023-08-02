@@ -39,20 +39,23 @@ const About = () => {
   return (
     <>
       <section className='about'>
-        <article className='about_us'>
-          <h1 className='TitleM'>MISIÓN</h1>
-          <p className='bodyLRegular'>busca potenciar el ahorro energético mediante un servicio integral de análisis, instalación y seguimiento para nuestros clientes. Nuestra oferta de soluciones ecosostenibles son aptas para muchos tipos diferentes de comunidades.</p>
-        </article>
+        <p className='bodyLRegular'>El corazón de nuestra empresa es un equipo multidisciplinar altamente cualificado formado por profesionales que te ofrecerán el mejor servicio y soluciones ecosostenibles para tu comunidad.</p>
+        <section className='about_values'>
+          <article className='about_us'>
+            <h1 className='TitleM'>MISIÓN</h1>
+            <p className='bodyLRegular'>busca potenciar el ahorro energético mediante un servicio integral de análisis, instalación y seguimiento para nuestros clientes. Nuestra oferta de soluciones ecosostenibles son aptas para muchos tipos diferentes de comunidades.</p>
+          </article>
 
-        <article className='about_us'>
-          <h1 className='TitleM'>VISIÓN</h1>
-          <p className='bodyLRegular'>Nos esforzamos por ser líderes en el sector del ahorro energético y una compañía de referencia que lucha por mejorar la huella de carbono de las personas en el ecosistema.</p>
-        </article>
+          <article className='about_us'>
+            <h1 className='TitleM'>VISIÓN</h1>
+            <p className='bodyLRegular'>Nos esforzamos por ser líderes en el sector del ahorro energético y una compañía de referencia que lucha por mejorar la huella de carbono de las personas en el ecosistema.</p>
+          </article>
 
-        <article className='about_us'>
-          <h1 className='TitleM'>VALORES</h1>
-          <p className='bodyLRegular'>Seguridad, Comfort, Cuidado del Medioambiente, Compromiso y Cuidado al Detalle.</p>
-        </article>
+          <article className='about_us'>
+            <h1 className='TitleM'>VALORES</h1>
+            <p className='bodyLRegular'>Seguridad, Comfort, Cuidado del Medioambiente, Compromiso y Cuidado al Detalle.</p>
+          </article>
+        </section>
       </section>
 
       <TextMarquee elements={passElements()}/>
@@ -74,6 +77,16 @@ const About = () => {
                 </article>
         }): null}
       </section>
+
+      <TextMarquee elements={passElements()}/>
+
+      <article className='fleet'>
+            <h1 className='TitleS'>Contamos con nuestro propio equipo</h1>
+          <section className='flote_content'>
+            <p className='bodyMRegular'>Nos hacemos cargo de todo el proceso de principio a fin para que tú no tengas que preocuparte por nada.</p>
+            <img src='../../../../public/assets/About/fleet.jpg'/>
+          </section>
+        </article>
     </>
   );
 };

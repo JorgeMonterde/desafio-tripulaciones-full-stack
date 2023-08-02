@@ -1,23 +1,39 @@
 @import '../../utils/mixins.scss';
 
+
 .about {
-  display: flex;
-  gap: 48px;
+  @include flexCol;
+  min-width: 320px;
   padding: 48px 96px;
+  align-items: flex-start;
+  gap: 24px;
+  align-self: stretch;
 
-  .about_us {
-    @include flexCol;
-    gap: 16px;
-    width: 100%;
-    height: fit-content;
+  .bodyLRegular {
+    @include bodyLRegular;
+    text-align: left;
+  } 
 
-    .TitleM {
-      @include TitleM;
-      margin: 0;
-    }
-
-    .bodyLRegular {
-      @include bodyLRegular;
+  .about_values {
+    display: flex;
+    gap: 8px;
+    padding: 0 96px;
+  
+    .about_us {
+      @include flexCol;
+      gap: 16px;
+      width: 100%;
+      height: fit-content;
+  
+      .TitleM {
+        @include TitleM;
+        text-align: center;
+      }
+      
+      .bodyLRegular {
+        @include bodyLRegular;
+        text-align: left;
+      }
     }
   }
 }
@@ -75,6 +91,34 @@
           height: 24px;
         }
       }
+    }
+  }
+}
+
+.fleet {
+  @include flexCol;
+  padding: 24px 96px;
+  justify-content: center;
+  align-items: center;
+  gap: 24px; 
+  width: 100%;
+
+  .TitleS {
+    @include TitleS;
+  }
+
+  .flote_content {
+    @include flexCol;
+    gap: 24px;
+
+    .bodyMRegular {
+      @include bodyMRegular;
+    }
+
+    img {
+      width: 741px;
+      height: 496px;  
+      border-radius: 30px;
     }
   }
 }
