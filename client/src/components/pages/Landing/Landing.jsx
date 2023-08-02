@@ -26,8 +26,8 @@ const Landing = () => {
       <Link to="/contact"><ContactBtn/></Link>
 
       <article className='claim_container'>
-        <p className='TitleXL'>Transformando comunidades</p>
-        <p className='bodyXXLRegular'>Creamos soluciones energéticas sostenibles</p>
+        <p className='TitleS TitleL TitleXL TitleXXL'>Transformando comunidades</p>
+        <p className='bodyMRegular bodyXLRegular bodyXXLRegular'>Creamos soluciones energéticas sostenibles</p>
         <Link to="/contact"><button className='claimCta_btn hidden'>Quiero saber más</button></Link>
       </article>
 
@@ -42,12 +42,12 @@ const Landing = () => {
           <img className='card_img' src='../../../../public/assets/Landing/landingEstética.webp'  alt='imagen de fondo'/>
         </article>
 
-        <article className='card_img_text'>
-          <img className='card_img' src='../../../../public/assets/Landing/landingMateriales.webp'  alt='Card background'/>
+        <article className='card_img_text card_img_reverse'>
           <section className='case_content'>
             <h1 className='TitleM'>Materiales ecosostenibles. </h1>
             <p className='card_text'> Proporcionamos las últimas tecnologías ecosostenibles con materiales que ayudan a reducir el gasto energético de los edificios a la vez que aportan un toque verde y moderno.</p>
           </section>
+          <img className='card_img' src='../../../../public/assets/Landing/landingMateriales.webp'  alt='Card background'/>
         </article>
       
         <article className='card_img_text'>
@@ -58,6 +58,8 @@ const Landing = () => {
           <img className='card_img' src='../../../../public/assets/Landing/landingCompromiso.webp'  alt='Card background'/>
         </article>
       </section>
+
+      <button className='cta_btn'>Contacta</button>
 
       <Chatbot/>
     </>

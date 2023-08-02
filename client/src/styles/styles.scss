@@ -1,3 +1,6 @@
+//general scss
+@import './views/App';
+
 //Basecomponents scss
 @import './components/baseComponents/ClaimCard';
 @import './components/baseComponents/Form';
@@ -8,7 +11,6 @@
 @import './components/baseComponents/Chatbot';
 @import './components/baseComponents/TextMarquee';
 
-
 //Components scss
 @import './components/Footer';
 @import './components/Header';
@@ -17,12 +19,9 @@
 //Components/pages scss
 @import './components/pages/About';
 @import './components/pages/Catalogue';
-@import './components/pages/Landing';
 @import './components/pages/Login';
 @import './components/pages/Profile';
 @import './components/pages/StudyCases';
 @import './components/pages/Contact';
 @import './components/pages/TechnicalForm';
-
-//general scss
-@import './views/App';
+@import './components/pages/Landing';

@@ -15,9 +15,13 @@ html {
 main {
   @include flexCol;
   align-items: center;
-  height: 100%;
-  min-height: 80vh;
-  width: 100vw;
+  min-width: 390px;
+  width: 100%;
+  min-height: 100vh;
+  
+  // @include tablet {
+  //   min-width: 100vw;
+  // }
 }
 
 .hidden {
@@ -38,5 +42,7 @@ main {
   border-radius: 40px;
   border: 3px solid $neutral-black;
   background: $primary-color-ligth;
-  margin: 24px 0;
+  position: sticky;
+  bottom: 48px;
+  z-index: 1;
 }
