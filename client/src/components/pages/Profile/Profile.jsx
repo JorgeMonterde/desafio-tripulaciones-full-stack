@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Document, Page } from 'react-pdf';
 import { pdfjs } from 'react-pdf';
-import { BsFillCaretRightFill, BsFillCaretLeftFill, BsXLg } from "react-icons/bs";
+import { BsChevronRight, BsChevronLeft} from "react-icons/bs";
 import LinesChart from "./LinesChart/LinesChart";
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 import 'react-pdf/dist/esm/Page/TextLayer.css';
@@ -13,27 +13,27 @@ import axios from "axios";
 
 const steps = [
   {
-    name: 'Datos',
+    name: 'Datos de la comunidad',
     number: 1,
     document: '../../../../public/assets/pdfDocs/Paso_1_Datos.pdf',
   },
   {
-    name: 'Auditoría',
+    name: 'Resultado de la auditoría',
     number: 2,
     document: '../../../../public/assets/pdfDocs/Paso_2_Auditoria.pdf',
   },
   {
-    name: 'Propuesta',
+    name: 'Propuesta y presupuesto',
     number: 3,
     document: '',
   },
   {
-    name: 'Proyecto',
+    name: 'Ejecución del proyecto',
     number: 4,
     document: '',
   },
   {
-    name: 'Hoy',
+    name: 'Seguimiento',
     number: 5,
     document: '',
   },
@@ -94,9 +94,9 @@ const Profile = () => {
       <section className='profile_header'>
         <img className='profile_avatar' src='../../../../public/assets/energyImg.avif'/>
         <article className='profile_headerText'>
-          <h2 className='TitleM'>Nombre de la comunidad: {buildingInfo.name_of_community}</h2>
-          <p>Id de usuario: {clientInfo.client_id}</p>
-          <p>Dirección: {buildingInfo.address}</p>
+          <h2 className='TitleM'>{buildingInfo.name_of_community}</h2>
+          <p className='bodyLRegular'><span className='bold'>Id de usuario: </span>{clientInfo.client_id}</p>
+          <p className='bodyLRegular'><span className='bold'>Dirección: </span>{buildingInfo.address}</p>
           </article>
       </section>
 
@@ -131,8 +131,8 @@ const Profile = () => {
 
       {showGraphic ? <section className='profile_temperature'>
         <article className='temp_header'>
-          <h2 className='TitleM'>Estas son tus lecturas</h2>
-          <p className='bodyXXLRegular'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
+          <h2 className='TitleM'>Tus lecturas en tiempo real</h2>
+          <p className='bodyXXLRegular'>Enn este espacio puedes comprobar en tiempo real la temperatura registrada por los termómetros instalados en tu comunidad, así como el CO2 que habéis conseguido evitar y los árboles que habéis salvado desde que se ejecutó el proyecto:</p>
         </article>
         <section className='profile_temp'>
           <section className='temp_user'>
@@ -167,14 +167,14 @@ const Profile = () => {
         </section>
       </section>
       :(pdfName && <section className='pdf_report'>
-        <button className='close_btn' onClick={handleClosePdf}><BsXLg/></button>
+        <button className='cta_btn' onClick={handleClosePdf}>Cerrar</button>
         <Document file={`../../../../public/assets/pdfDocs/${pdfName}`}  onLoadSuccess={onDocumentLoadSuccess}>
           <Page pageNumber={pageNumber} />
         </Document>
         <section className='pdf_btns'>
-          <button className='arrow_btn prev_page' disabled={pageNumber < 2} onClick={handlePrevPage}><BsFillCaretLeftFill/></button>
+          <button className='arrow_left prev_page' disabled={pageNumber < 2} onClick={handlePrevPage}><BsChevronLeft/></button>
           <p className='pdf_pages'>Página {pageNumber} de {pageAmount}</p>
-          <button className='arrow_btn next_page' disabled={pageNumber >= pageAmount} onClick={handleNextPage}><BsFillCaretRightFill/></button>
+          <button className='arrow_rigth next_page' disabled={pageNumber >= pageAmount} onClick={handleNextPage}><BsChevronRight/></button>
         </section>
       </section>)
       }
@@ -182,7 +182,8 @@ const Profile = () => {
       <section className='profile_incidents'>
         <article className='incidents_header'>
           <h2 className='TitleM'>¿Algo no va bien?</h2>
-          <p className='bodyXLRegular'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
+          <p className='bodyXLRegular'>Pregúntale a nuestro chatbot, si tu problema no se soluciona, rellena el formulario inferior.
+¿No puedes esperar? Puedes llamar  al (+34) 919 01 72 57 de lunes a viernes de 9:00 a 20:00</p>
         </article>
 
         <section className='incidents_content'>

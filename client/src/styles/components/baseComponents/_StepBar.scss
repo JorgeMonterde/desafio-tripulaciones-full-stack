@@ -6,7 +6,7 @@
   .steps {
     display: flex;
     list-style-type: none;
-    padding: 8px 16px;
+    padding: 24px 0;
     gap: 20px;
     position: relative;
     z-index: 10;
@@ -21,6 +21,7 @@
       text-align: center;
       min-width: 170px;
       position: relative;
+      gap: 16px;
   
       .step_number {
         @include flexCenterCenter;
@@ -56,6 +57,9 @@
       
       .step_name {
         @include bodyLRegular;
+        max-width: 150px;
+        line-height: 24px;
+        text-align: center;
       }
 
       .step_number:focus {
