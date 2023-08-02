@@ -29,12 +29,13 @@
     .icon {
       width: 2.4rem;
       height: 2.4rem;
+      color: $neutral-black;
     }
   }
 
   a {
     display: inline-block;
-    color: #6a6969;
+    color: $neutral-black;
   }
 }
 
@@ -43,13 +44,94 @@
     justify-content: space-evenly;
     padding: 60px 48px 12px;
     gap: 0;
-    
+
     .footer_links {
       margin-left: 0;
       margin: auto;
+
+      li > a {
+        color: $neutral-black;
+      }
+    }
+
+    .footer_RRSS {
+      .icon {
+        color: $neutral-black;
+      }
     }
   }
   .card_img {
     padding: 0 48px 32px;
+  }
+}
+
+@include Desktop {
+  .footer {
+    height: 126px;
+    padding: 0 96px 24px;
+    align-items: end;
+
+    .footer_links {
+      @include bodySRegular;
+      flex-direction: row;
+      align-items: center;
+      gap: 12px;
+      height: 48px;
+      margin: 0;
+      
+      li > a {
+        color: $neutral-black;
+        margin: 0;
+      }
+    }
+
+    .footer_RRSS {
+      flex-direction: row;
+      justify-content: space-between;
+      height: 38.4px;
+      width: 133px;
+      margin: 0;
+
+      .icon {
+        margin: 0;
+        color: $neutral-black;
+      }
+    }
+  }
+}
+
+@include large_screens {
+  .footer {
+    width: 100vw;
+    justify-content: space-around;
+    padding: 0 200px 24px;
+
+    .footer_links {
+      @include bodySRegular;
+      flex-direction: row;
+      justify-content: right;
+      align-items: center;
+      gap: 12px;
+      height: 48px;
+      margin: auto;
+      
+      li > a {
+        color: $neutral-black;
+        margin: 0;
+      }
+    }
+
+    .footer_RRSS {
+      flex-direction: row;
+      justify-content: space-between;
+      height: 38.4px;
+      width: 133px;
+      margin: 0;
+
+      .icon {
+        margin: 0;
+        color: $neutral-black;
+      }
+    }
   }
 }

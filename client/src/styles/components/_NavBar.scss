@@ -105,68 +105,19 @@
 @include Desktop {
   .nextui-c-hhqfap {
     @include bodyMCAPS;
-    height: 88px;
+    height: 100%;
     padding: 0 96px;
     gap: 12px;
   }
+
+  .nextui-c-hhqfap .nextui-c-iWjDFM {
+    border: none;
+  }
+  .nextui-tooltip-button {
+    border-left: 1px solid $primary-base-color;
+  }
 }
 
+@include large_screens {
 
-
-//   .navBar_link {
-//     @include bodyMCAPS;
-//     color: #000201;
-//   }
-
-//   .TitleXS {
-//     @include flexCenterCenter;
-//     @include TitleXS;
-//     width: 150px;
-//     height: 48px;
-//   }
-
-//   .logOut_btn {
-//     background-color: #FFFFFF;
-//     margin: 0;
-//   }
-
-//   .login_btn {
-//     margin: 0;
-//   }
-
-//   .nextui-c-iWjDFM {
-//     color: $primary-base-color;
-//     background-color: #FFFFFF;
-//     padding: 10px;
-//     gap: 10px;
-//     border-radius: 0;
-//     border-left: solid 1px $primary-base-color;
-//   }
-
-//   .transparent {
-//     background-color: transparent;
-//     width: 100vw;
-//   }
-
-//   .nextui-c-iTPCAT-dusCa-isOpen-true {
-//     padding-bottom: 0;
-//     height: fit-content;
-//     opacity: 0.9;
-//   }
-
-//   .collapse > ul {
-//     @include flexCol;
-//     gap: 1rem;
-//     width: 100%;
-//   }
-//   .nextui-navbar-toggle {
-//     .line {
-//       height: 0.1rem;
-//     }
-//   }
-//   .nextui-c-egxOLa.navBar_layer {
-//     width: 100vw;
-//     margin: 0;
-//     padding: 0;
-//   }
-// }
+}
