@@ -136,17 +136,13 @@ const Catalogue = () => {
         </section>
       </article>
 
-      <section className='confort'>
-      <img className='img_divisor' src='../../../../public/assets/Catalogue/fluent_people-community-48-regular.svg'/>
-
-      <article className='confort_content'>
+      <article className='benefict_content'>
         <img className='service_img' src='../../../../public/assets/Catalogue/fluent_people-community-48-regular.svg'/>
         <section>
           <h2 className='TitleL'>Mayor confort y bienestar en las zonas comunes</h2>
           <p className='bodyXLRegular'>Body/L Regular: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore </p>
         </section>
       </article>
-      </section>
 
       <article className='benefict_content'>
         <img className='service_img' src='../../../../public/assets/Catalogue/fluent_speaker-1-24-regular.svg'/>

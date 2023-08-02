@@ -1,7 +1,8 @@
 @import '../../utils/mixins.scss';
+@import '../../utils/variables.scss';
 
 .study_cases {
-  display: flex;
+  @include flexCol;
   width: 100%;
   padding: 48px 200px;
   gap: 48px;
@@ -11,20 +12,31 @@
     gap: 16px;
 
     img {
-      width: 520px;
-      height: 520px;
+      min-width: 280px;
+      min-height: 280px;
+      width: 435px;
+      height: 319px;
     }
 
+    .TitleL_center {
+      @include TitleL; 
+    }
+
+    .TitleL {
+      @include TitleL; 
+      text-align: left;
+    }
     .case_content {
-      @include flexCol;
-      gap: 24px;
+      display: flex;
+      justify-content: left;
+      width: 100%;
+      gap: 10px;
       
-      .TitleM {
-        @include TitleM; 
-      }
       
-      .bodyLRegular {
-        @include bodyLRegular;
+      
+      .bodyXLRegular {
+        @include bodyXLRegular;
+        text-align: left;
       }
     }
   }
