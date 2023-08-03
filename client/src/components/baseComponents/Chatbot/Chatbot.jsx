@@ -1,12 +1,46 @@
 import ChatBot from 'react-simple-chatbot';
 import { ThemeProvider } from 'styled-components';
-import QueryModel from './QueryModel/QueryModel';
+// import QueryModel from './QueryModel/QueryModel';
 import { useState } from 'react';
  
+// const steps = [
+//   {
+//     id: '1',
+//     component: <QueryModel method='get'/>,
+//     trigger: 'question'
+//   }, {
+//       id: 'question',
+//       user: true,
+//       trigger: 'response',
+//   }, {
+//       id: 'response',
+//       component: <QueryModel method='post' questionParam={true}/>,
+//       trigger: '2',
+//   }, {
+//     id: '2',
+//     message: '¿Tienes otra pregunta?',
+//     trigger: '3'
+//   }, {
+//     id: '3',
+//     options: [
+//       { value: 1, label: 'Si', trigger: 'anotherQuestion' },
+//       { value: 2, label: 'No', trigger: '4' }
+//     ],
+//   }, {
+//     id: '4',
+//     message: 'gracias por visitarnos',
+//     trigger: 'question'
+//   }, {
+//     id: 'anotherQuestion',
+//     message: '¿Cuál es tu pregunta?',
+//     trigger: 'question'
+//   }
+// ];
+
 const steps = [
   {
     id: '1',
-    component: <QueryModel method='get'/>,
+    component: '¡Hola! Soy el asistente virtual de solsiete. ¿En qué puedo ayudarte hoy?',
     trigger: 'question'
   }, {
       id: 'question',
@@ -14,7 +48,7 @@ const steps = [
       trigger: 'response',
   }, {
       id: 'response',
-      component: <QueryModel method='post' questionParam={true}/>,
+      component: 'Puedes rellenar el formulario de contacto para comprobar si tu edificio es válido. Una vez aceptado',
       trigger: '2',
   }, {
     id: '2',

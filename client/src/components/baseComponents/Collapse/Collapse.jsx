@@ -5,7 +5,7 @@ const Collapse = () => {
       <CollapseNext bordered title="Notificar incidencia">
         <form className='notification_form'>
           <input className='bodyLRegular input' type='text' placeholder='Insertar texto incidencia'></input>
-          <button className='TitleXS cta_btn' type='submit'>Enviar</button>
+          <button className='cta_incidents' type='submit'>Enviar</button>
         </form>
       </CollapseNext>
   );

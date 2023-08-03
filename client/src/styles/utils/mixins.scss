@@ -163,3 +163,18 @@
   overflow-wrap: break-word;
   margin-bottom: 0;
 }
+
+@mixin CTA_btn {
+  @include flexCenterCenter;
+  @include TitleXS;
+  min-width: fit-content;
+  min-height: fit-content;
+  width: 150px;
+  height: 48px;
+  border-radius: 40px;
+  border: 3px solid $neutral-black;
+  background: $primary-color-ligth;
+  position: sticky;
+  bottom: 48px;
+  z-index: 5;
+}

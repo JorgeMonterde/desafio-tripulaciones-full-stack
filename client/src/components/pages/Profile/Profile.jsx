@@ -48,7 +48,7 @@ const steps = [
 const Profile = () => {
   const [pageAmount, setPageAmount] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
-  const [showGraphic, setshowGraphic] = useState(true);
+  const [showGraphic, setshowGraphic] = useState(false);
   const [pdfName, setPpdfName] = useState('');
   //const [clientInfo, setClientInfo] = useState({});
   const [buildingInfo, setBuildingInfo] = useState({});
@@ -119,7 +119,6 @@ const Profile = () => {
       <section className='profile_progressBar'>
         <StepBar steps={stepBarSteps}/>
 
-
         <ul className='legend'>
           <li className='legend_title'>Leyenda:</li>
           <li>
@@ -164,7 +163,6 @@ const Profile = () => {
 
           <section className='temp_graphic'>
             <LinesChart city={buildingInfo.city}/>
-            {/* <img src='../../../../public/assets/Chart.png' alt='gráfica de temperaturas'/> */}
           </section>
          
           <section className='temp_savedTrees'>
@@ -180,7 +178,7 @@ const Profile = () => {
         </section>
       </section>
       :(pdfName && <section className='pdf_report'>
-        <button className='cta_btn' onClick={handleClosePdf}>Cerrar</button>
+        <button className='cta_pdf' onClick={handleClosePdf}>Cerrar</button>
         <Document file={pdfName}  onLoadSuccess={onDocumentLoadSuccess}>
           <Page pageNumber={pageNumber} />
         </Document>
@@ -194,8 +192,8 @@ const Profile = () => {
 
         <section className='profile_incidents'>
           <article className='incidents_header'>
-            <h2 className='TitleM'>¿Algo no va bien?</h2>
-            <p className='bodyXLRegular'>Pregúntale a nuestro chatbot, si tu problema no se soluciona, rellena el formulario inferior.
+            <h2 className='incident_title'>¿Algo no va bien?</h2>
+            <p className='incident_contacts'>Pregúntale a nuestro chatbot, si tu problema no se soluciona, rellena el formulario inferior.
   ¿No puedes esperar? Puedes llamar  al (+34) 919 01 72 57 de lunes a viernes de 9:00 a 20:00</p>
           </article>
 
