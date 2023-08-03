@@ -3,7 +3,6 @@
 @import '../../utils/media_queries.scss';
 
 
-
 .sevices_header {
   @include flexCol;
   padding: 24px;
@@ -186,5 +185,148 @@
         @include bodyXLRegular;
       }
     }
+  }
+}
+
+// @media (min-width: 650px) {}
+// @media (min-width: 768px) {}
+
+@media (min-width: 1279px) {
+  .sevices_header {
+    align-items: start;
+    text-align: left;
+    padding: 48px 200px;
+    gap: 48px;
+    
+    .service {
+      margin-top: 24px;
+      .service_section {
+        text-align: left;
+        padding: 24px 48px;
+    
+        .TitleM {
+          @include TitleM;
+        }
+    
+        .bodyXLRegular {
+          @include bodyXLRegular;
+        }
+      }
+      .TitleL {
+        @include TitleL;
+      }
+
+      .bodyXXLRegular {
+        @include bodyXXLRegular;
+      }
+
+      .service_content  {
+        display: flex;
+        flex-direction: row;
+        align-items: start;
+
+      }  
+    }
+  }
+  
+  .sevices_benefits {
+    flex-direction: row;
+    margin: 0;
+    padding: 24px 200px;
+
+    .beneficts {
+      .benefict {
+        .benefict_content {
+          .TitleS {
+            @include TitleS;
+          }
+    
+          .bodyXLRegular {
+            @include bodyXLRegular;
+          }
+        }
+      }
+      .service_eco {
+        padding: 0;
+    
+        .TitleM {
+          @include TitleM;
+        }
+    
+        .service_content {
+          .bodyXLRegular {
+            @include bodyXLRegular;
+          }
+        }
+      }
+    }
+  }
+
+  .sevice_energy {
+    padding: 96px 200px;
+    .service {
+      .service_content {
+        display: flex;
+        flex-direction: row;
+        .TitleM {
+          @include TitleM;
+        }
+    
+        p.bodyXXLRegular {
+          @include bodyXXLRegular;
+        }
+      }
+    }
+  }
+
+  .beneficts_list {
+    padding: 96px 260px;
+    width: 100%;
+
+    .title_outLine {
+      width: 508px 69px;
+    }
+
+    .benefict_content {
+      .TitleS {
+        @include TitleS;
+      }
+    }
+  }
+
+  .marquee {
+    background-color: #A1E3D8;
+
+    .marquee-text {
+      background-color: #A1E3D8;
+
+      .TitleXL {
+        @include TitleXL;
+      }
+
+      .marquee-star {
+        height: 50px;
+        width: 50px;
+      }
+    }
+  }
+}
+
+@media (min-width: 1512px) {
+  .sevices_benefits {
+    min-width: 100vw;
+    margin: auto;
+  }
+  .service_section {
+    font-size: 24px;
+  }
+  .sevice_energy {
+    min-width: 100vw;
+    margin: auto;
+  }
+
+  .beneficts_list {
+    min-width: 100vw;
+    margin: auto;
   }
 }

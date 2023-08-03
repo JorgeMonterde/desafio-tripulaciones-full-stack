@@ -111,7 +111,7 @@
 @include Desktop {
   .nextui-c-hhqfap {
     @include bodyMCAPS;
-    height: 100%;
+    min-width: 100vw;
     padding: 0 96px;
     gap: 12px;
   }
@@ -121,6 +121,12 @@
   }
   .nextui-tooltip-button {
     border-left: 1px solid $primary-base-color;
+  }
+
+  .sevices_header {
+    min-width: 100vw;
+    width: 100%;
+    margin: auto;
   }
 }
 

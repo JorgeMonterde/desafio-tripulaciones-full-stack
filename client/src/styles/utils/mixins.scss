@@ -58,7 +58,7 @@
 @mixin TitleM {
   font-size: 42px;
   font-family: 'Basier Circle';
-  font-weight: '700';
+  font-weight: 700;
   word-wrap: break-word;
   margin-bottom: 0;
   text-align: left;
@@ -67,7 +67,7 @@
 @mixin TitleL {
   font-size: 56px;
   font-family: 'Basier Circle';
-  font-weight: '700';
+  font-weight: 700;
   word-wrap: break-word;
   margin-bottom: 0;
 }  

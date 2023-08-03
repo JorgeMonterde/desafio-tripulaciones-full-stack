@@ -10,6 +10,8 @@
 
 html {
   width: 100%;
+  font-family: 'Orkney', sans-serif;
+  font-family: 'Basier Circle', sans-serif;
 }
 
 main {
@@ -18,10 +20,6 @@ main {
   min-width: 390px;
   width: 100%;
   min-height: 100vh;
-  
-  // @include tablet {
-  //   min-width: 100vw;
-  // }
 }
 
 .hidden {
