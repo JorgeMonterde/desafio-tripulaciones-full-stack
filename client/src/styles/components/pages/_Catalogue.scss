@@ -12,7 +12,7 @@
     @include flexCol;
     gap: 32px;
 
-    .TitleS {
+    .service_title {
       @include TitleS;
       text-align: left;
     }
@@ -28,7 +28,7 @@
         height: 100px
       }
       
-      p.bodyMRegular {
+      .service_desc {
         @include bodyMRegular;
         line-height: 20px;
       }
@@ -39,13 +39,13 @@
       padding: 0 48px;
       gap: 16px;
 
-      .TitleS {
+      .servise_title {
         @include TitleS;
         text-align: left;
         border-bottom: solid 4px $secondary-color;
       }
 
-      .bodyXXLRegular {
+      .servise_desc {
         @include bodyXXLRegular;
         text-align: left
       }
@@ -65,8 +65,13 @@
       @include flexCol;
       gap: 16px;
       margin-top: 24px;
-    .TitleS {
+
+      .benefict_title {
         @include TitleS;
+      }
+
+      .benefict_desc {
+        @include bodyXLRegular; 
       }
     }
 
@@ -84,14 +89,14 @@
   padding: 24px 48px 0;
   gap: 24px;
 
-  .TitleS {
+  .solution_title {
     @include TitleS;
     border-bottom: solid 4px $primary-base-color;
   }
 
   .service_content {
 
-    p.bodyMRegular {
+    .servise_desc {
       @include bodyMRegular;
       text-align: left;
     }
@@ -105,23 +110,26 @@
     gap: 24px;
     padding: 16px 24px 24px;
     
-    .TitleS {
+    .track_Title {
       @include TitleS;
     }
   
     .service_content {
-      @include flexCol;
-      flex-direction: column;
-      align-items: center;
-      gap: 24px;
-  
-      .service_img {
-        height: 100px;
-        width: 100px;
+
+      .sevice_track {
+        @include flexCol;
+        text-align: left;
+        align-items: center;
+        gap: 24px;
+    
+        .service_img {
+          height: 100px;
+          width: 100px;
+        }
+        .track_desc {
+          @include bodyLRegular;
+        }     
       }
-      .bodyLRegular {
-        @include bodyLRegular;
-      }     
     }
   }
 }
@@ -139,8 +147,9 @@
     border-radius: 90px;
     border: 5px solid $primary-base-color;
   }
-  .bodyLBold {
+  .beneficts_Title {
     @include bodyLBold;
+    margin-bottom: 48px;
   }
   .benefict_content {
     display: flex;
@@ -158,7 +167,7 @@
       width: 100px;
     }
 
-    .bodyXLRegular {
+    .benefict_title {
       @include bodyXLRegular;
     }
   }
@@ -188,8 +197,15 @@
   }
 }
 
-// @media (min-width: 650px) {}
-// @media (min-width: 768px) {}
+.cta_btn {
+  display: flex;
+  margin: auto;
+}
+
+
+@media (min-width: 768px) {
+  
+}
 
 @media (min-width: 1279px) {
   .sevices_header {
@@ -200,24 +216,25 @@
     
     .service {
       margin-top: 24px;
+
       .service_section {
         text-align: left;
         padding: 24px 48px;
     
-        .TitleM {
-          @include TitleM;
+        .solution_title {
+          @include TitleL;
         }
     
-        .bodyXLRegular {
-          @include bodyXLRegular;
+        .service_desc {
+          @include bodyXXLRegular;
         }
       }
-      .TitleL {
-        @include TitleL;
+      .benefict_title {
+        @include TitleS;
       }
 
-      .bodyXXLRegular {
-        @include bodyXXLRegular;
+      .benefict_desc {
+        @include bodyXLRegular;
       }
 
       .service_content  {
@@ -225,6 +242,9 @@
         flex-direction: row;
         align-items: start;
 
+        .servise_desc {
+          @include bodyXXLRegular
+        }
       }  
     }
   }
@@ -262,17 +282,40 @@
     }
   }
 
-  .sevice_energy {
+  .service_eco {
+    @include flexCol;
+    text-align: left;
+    padding: 24px 48px 0;
+    gap: 24px;
+  
+    .solution_title {
+      @include TitleS;
+      border-bottom: solid 4px $primary-base-color;
+    }
+  
+    .service_content {
+  
+      .servise_desc {
+        @include bodyMRegular;
+        text-align: left;
+      }
+    }
+  }
+
+  .sevice_track {
     padding: 96px 200px;
+    min-width: 100vw;
+    margin: auto;
+
     .service {
       .service_content {
         display: flex;
         flex-direction: row;
-        .TitleM {
-          @include TitleM;
+        .track_Title {
+          @include TitleL;
         }
     
-        p.bodyXXLRegular {
+        .track_desc {
           @include bodyXXLRegular;
         }
       }
@@ -284,11 +327,14 @@
     width: 100%;
 
     .title_outLine {
-      width: 508px 69px;
+      @include TitleL;
+      min-width: fit-content;
+      margin-bottom: 48px;
+      height: 69px;
     }
 
     .benefict_content {
-      .TitleS {
+      .benefict_title {
         @include TitleS;
       }
     }
@@ -317,8 +363,8 @@
     min-width: 100vw;
     margin: auto;
   }
-  .service_section {
-    font-size: 24px;
+  .service_title {
+    @include TitleM;
   }
   .sevice_energy {
     min-width: 100vw;
