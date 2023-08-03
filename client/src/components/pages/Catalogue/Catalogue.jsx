@@ -109,7 +109,7 @@ const Catalogue = () => {
     <TextMarquee className='text_band' elements={passElements()}/>
 
     <section className='beneficts_list'>
-        <h2 className='beneficts_Title  title_outLine'>Beneficios de SOL7 </h2>
+        <h2 className='title_outLine'>Beneficios de SOL7 </h2>
 
       <article className='benefict_content'>
         <img className='service_img' src='../../../../public/assets/Catalogue/ph_chart-line-down-light.svg'/>

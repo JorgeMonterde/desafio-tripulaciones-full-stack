@@ -110,9 +110,9 @@ const Profile = () => {
       <section className='profile_header'>
         <img className='profile_avatar' src='../../../../public/assets/Profile/userPicture.jpg'/>
         <article className='profile_headerText'>
-          <h2 className='TitleM'>{buildingInfo.name_of_community}</h2>
-          <p className='bodyLRegular'><span className='bold'>Id de usuario: </span>{clientInfo.client_id}</p>
-          <p className='bodyLRegular'><span className='bold'>Dirección: </span>{buildingInfo.address}</p>
+          <h2 className='Comunity'>{buildingInfo.name_of_community}</h2>
+          <p className='user_id'><span className='bold'>Id de usuario: </span>{clientInfo.client_id}</p>
+          <p className='adrress'><span className='bold'>Dirección: </span>{buildingInfo.address}</p>
           </article>
       </section>
 
@@ -143,8 +143,8 @@ const Profile = () => {
 
       {showGraphic ? <section className='profile_temperature'>
         <article className='temp_header'>
-          <h2 className='TitleM'>Tus lecturas en tiempo real</h2>
-          <p className='bodyXXLRegular'>Enn este espacio puedes comprobar en tiempo real la temperatura registrada por los termómetros instalados en tu comunidad, así como el CO2 que habéis conseguido evitar y los árboles que habéis salvado desde que se ejecutó el proyecto:</p>
+          <h2 className='real_temp'>Tus lecturas en tiempo real</h2>
+          <p className='tem_desc'>En este espacio puedes comprobar en tiempo real la temperatura registrada por los termómetros instalados en tu comunidad, así como el CO2 que habéis conseguido evitar y los árboles que habéis salvado desde que se ejecutó el proyecto:</p>
         </article>
         <section className='profile_temp'>
           <section className='temp_user'>
