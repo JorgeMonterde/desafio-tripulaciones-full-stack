@@ -148,8 +148,8 @@
 
 @include large_screens {
   .claim_container {
-    min-width: 100vw;
-    margin: 54px auto;
+    // min-width: 100vw;
+    // margin: 54px auto;
     padding: 54px 200px;
 
     .TitleXL  {
@@ -163,8 +163,8 @@
 
   .cards_container {
     @include flexCol;
-    width: 100vw;
-    margin: auto;
+    // width: 100vw;
+    // margin: auto;
     margin-top: 54px;
     padding: 0 300px;
     gap: 60px;
@@ -192,8 +192,8 @@
     display: none;
   }
   .marquee {
-    margin: auto;
-    width: 100vw;
+    // margin: auto;
+    // width: 100vw;
 
     .marquee-text {
       @include TitleXL;

@@ -7,7 +7,7 @@
   @include flexCol;
   background-color: $primary-color-dark;
   min-height: 100vh;
-  min-width: 100vw;
+  // min-width: 100vw;
   padding: 48px 24px;
 
   .login_card {
@@ -88,8 +88,8 @@
 @media (min-width: 650px) {
   
   .login_section {
-    min-width: 100vw;
-    margin: auto;
+    // min-width: 100vw;
+    // margin: auto;
   
     .login_card {
       .login_header {
