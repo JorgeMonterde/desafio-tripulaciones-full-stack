@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from 'react';
 import { Document, Page } from 'react-pdf';
-import { pdfjs } from 'react-pdf';
+import { pdfjs  } from 'react-pdf';
 import { BsChevronRight, BsChevronLeft} from "react-icons/bs";
 import LinesChart from "./LinesChart/LinesChart";
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
@@ -11,9 +11,6 @@ import Collapse from '../../baseComponents/Collapse/Collapse';
 import axios from "axios";
 //contexts
 import { ClientInfoContext } from "../../../../contexts/clientInfoContext";
-
-
-
 
 
 const steps = [
@@ -48,7 +45,7 @@ const steps = [
 const Profile = () => {
   const [pageAmount, setPageAmount] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
-  const [showGraphic, setshowGraphic] = useState(false);
+  const [showGraphic, setshowGraphic] = useState(true);
   const [pdfName, setPpdfName] = useState('');
   //const [clientInfo, setClientInfo] = useState({});
   const [buildingInfo, setBuildingInfo] = useState({});
@@ -64,7 +61,7 @@ const Profile = () => {
   const handlePrevPage = () => setPageNumber(pageNumber - 1);
   const handleNextPage = () => setPageNumber(pageNumber + 1);
   const handleClosePdf = () => setshowGraphic(true);
-  
+
   const clickHandlerGenerator = (pdf) => () => {
     setshowGraphic(false);
     setPpdfName(pdf)
@@ -76,8 +73,8 @@ const Profile = () => {
     const getClientAndBuildingInfo = async() => {
       const clientResponse = await axios.get("/api/clients/client", { withCredentials: true });
       changeClientInfoState(clientResponse.data.data);
-      
-      
+
+
       const buildingResponse = await axios.get("/api/buildings/building", { withCredentials: true });
       setBuildingInfo(buildingResponse.data.data);
       console.log("info?????", clientResponse, buildingResponse);
@@ -102,11 +99,9 @@ const Profile = () => {
   useEffect(() => {
     setPageNumber(1);
   }, [pdfName])
- 
+
   return (
     <>
-    
-
       <section className='profile_header'>
         <img className='profile_avatar' src='../../../../public/assets/Profile/userPicture.jpg'/>
         <article className='profile_headerText'>
@@ -123,60 +118,70 @@ const Profile = () => {
           <li className='legend_title'>Leyenda:</li>
           <li>
             <span className='legend_color done'></span>
-            Completado  
+            Completado
           </li>
           <li>
             <span className='legend_color inProcess'></span>
-            En proceso  
+            En proceso
           </li>
           <li>
             <span className='legend_color docRequired'></span>
-            A la espera de documentación  
+            A la espera de documentación
           </li>
           <li>
             <span className='legend_color notInit'></span>
-            No iniciado  
+            No iniciado
           </li>
         </ul>
       </section>
 
-      {showGraphic ? <section className='profile_temperature'>
-        <article className='temp_header'>
-          <h2 className='real_temp'>Tus lecturas en tiempo real</h2>
-          <p className='tem_desc'>En este espacio puedes comprobar en tiempo real la temperatura registrada por los termómetros instalados en tu comunidad, así como el CO2 que habéis conseguido evitar y los árboles que habéis salvado desde que se ejecutó el proyecto:</p>
-        </article>
-        <section className='profile_temp'>
-          <section className='temp_user'>
-            <article className='temp_meassure'>
-              <p className='temp_label'>Temperatura exterior</p>
-              <div className='temp_box temp_exterior'>
-                <p className='temp_text'>33ºC</p>
-              </div>
-            </article>
-            <article className='temp_meassure'>
-              <p className='temp_label'>Temperatura interior</p>
-              <div className='temp_box temp_interior'>
-                <p className='temp_text'>28,3ºC</p>
-              </div>
-            </article>
-          </section>
+      {showGraphic ? <>
+        <section className='profile_temperature'>
+          <article className='temp_header'>
+            <h2 className='real_temp'>Tus lecturas en tiempo real</h2>
+            <p className='tem_desc'>En este espacio puedes comprobar en tiempo real la temperatura registrada por los termómetros instalados en tu comunidad, así como el CO2 que habéis conseguido evitar y los árboles que habéis salvado desde que se ejecutó el proyecto:</p>
+          </article>
 
-          <section className='temp_graphic'>
-            <LinesChart city={buildingInfo.city}/>
-          </section>
-         
-          <section className='temp_savedTrees'>
-            <div className='temp_box '>
-              <p className='temp_text'>35045</p>
+          <section className='profile_temp'>
+            <div className='temp_user'>
+              <article className='temp_meassure'>
+                <div className='temp_box temp_exterior'>
+                  <p className='temp_text'>33ºC</p>
+                </div>
+                <p className='temp_label'>Temperatura exterior</p>
+              </article>
+
+              <article className='temp_meassure'>
+                <div className='temp_box temp_interior'>
+                  <p className='temp_text'>28,3ºC</p>
+                </div>
+                <p className='temp_label'>Temperatura interior</p>
+              </article>
             </div>
-            <p>kg de CO2 evitados</p>
-            <img src='../../../../public/assets/Tree.png' alt='Icono de arbol'/>
-            <p className='temp_text'>1584</p>
-            <p>Árboles salvados</p>
-         
+
+            <div className='temp_savedTrees'>
+              <article className='co2_tree'>
+                <div className='temp_box'>
+                  <p className='temp_text'>35045</p>
+                </div>
+                <p>kg de CO2 evitados</p>
+              </article>
+
+              <article className='tem_buton'>
+                <img src='../../../../public/assets/Tree.png' alt='Icono de arbol'/>
+                <div>
+                  <p className='temp_text'>1584</p>
+                  <p>Árboles salvados</p>
+                </div>
+              </article>
+            </div>
           </section>
         </section>
-      </section>
+        {/* <section className='temp_graphic'>
+        </section> */}
+          <LinesChart city={buildingInfo.city}/>
+      </>
+      
       :(pdfName && <section className='pdf_report'>
         <button className='cta_pdf' onClick={handleClosePdf}>Cerrar</button>
         <Document file={pdfName}  onLoadSuccess={onDocumentLoadSuccess}>
@@ -201,7 +206,6 @@ const Profile = () => {
             <Collapse/>
           </section>
         </section>
-      
     </>
   );
 };

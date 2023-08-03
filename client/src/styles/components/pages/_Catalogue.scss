@@ -4,7 +4,9 @@
 
 
 .sevices_header {
-  @include flexCol;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   padding: 24px;
   gap: 24px;
 
@@ -204,7 +206,13 @@
 
 
 @media (min-width: 768px) {
-  
+  .sevices_header {
+    display: flex;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
+    padding: 48px;
+    gap: 24px;
+  }
 }
 
 @media (min-width: 1279px) {
@@ -304,8 +312,8 @@
 
   .sevice_track {
     padding: 96px 200px;
-    min-width: 100vw;
-    margin: auto;
+    // min-width: 100vw;
+    // margin: auto;
 
     .service {
       .service_content {
@@ -330,7 +338,7 @@
       @include TitleL;
       min-width: fit-content;
       margin-bottom: 48px;
-      height: 69px;
+      height: fit-content;
     }
 
     .benefict_content {
@@ -358,21 +366,21 @@
   }
 }
 
-@media (min-width: 1512px) {
-  .sevices_benefits {
-    min-width: 100vw;
-    margin: auto;
-  }
-  .service_title {
-    @include TitleM;
-  }
-  .sevice_energy {
-    min-width: 100vw;
-    margin: auto;
-  }
+// @media (min-width: 1512px) {
+//   .sevices_benefits {
+//     // min-width: 100vw;
+//     // margin: auto;
+//   }
+//   .service_title {
+//     @include TitleM;
+//   }
+//   .sevice_energy {
+//     // min-width: 100vw;
+//     // margin: auto;
+//   }
 
-  .beneficts_list {
-    min-width: 100vw;
-    margin: auto;
-  }
-}
+//   .beneficts_list {
+//     // min-width: 100vw;
+//     // margin: auto;
+//   }
+// }

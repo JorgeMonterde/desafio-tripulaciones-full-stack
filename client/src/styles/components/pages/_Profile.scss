@@ -5,11 +5,11 @@
 
 .profile_header {
   display: flex;
-  height: fit-content;
-  padding: 32px 96px;
-  margin: 48px;
+  flex-direction: row;
+  padding: 24px;
+  margin: 0;
   width: 100%;
-  gap: 48px;
+  gap: 24px;
 
 
   .profile_avatar {
@@ -23,19 +23,18 @@
     display: flex;
     text-align: left;
     flex-direction: column;
-    padding: 0 96px 40px;
-    gap: 24px;
+    gap: 14px;
     width: 100%;
 
     .Comunity {
-      @include TitleM;
+      @include TitleS;
     }
     .user_id, .adrress {
-      @include bodyLRegular;  
+      @include bodyMRegular;  
 
     }
     .bold {
-      @include bodyXLRegular;
+      @include bodyLRegular;
       font-weight: 700;
     }
   }
@@ -45,20 +44,21 @@
   @include flexCol;
   width: 100%;
   margin-top: 0;
-  padding: 0 96px 40px;
 
   .legend {
     @include bodyLRegular;
-    @include flexCenterCenter;
-    padding: 24px 0;
+    text-align: left;
     flex-direction: row;
-    gap: 48px;
+    align-items: center;
+    padding: 12px;
+    gap: 10px;
 
     .legend_title {
       @include TitleS;
     }
 
     li {
+      align-items: center;
       @include bodyMRegular;
       margin-bottom: 0;
 
@@ -87,37 +87,41 @@
   }
 }
 
+
 .profile_temperature {
 
   .temp_header {
     @include flexCol;
     text-align: left;
+    max-width: 900px;
     width: 100%;
-    padding: 48px 96px;
-    margin: 48px 0;
-    gap: 10px;
+    padding: 24px;
+    gap: 12px;
  
     .real_temp {
-      @include TitleM;
+      @include TitleS;
     }
 
-    .bodyXXLRegular {
+    .bodyXLRegular {
       @include bodyXXLRegular;
     }
   }
 
   .profile_temp {
     display: flex;
-    width: 100%;
-    gap: 36px;
-    padding: 0 96px 48px;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 32px;
+    padding: 24px;
 
     .temp_user {
       display: flex;
-      flex-direction: column;
-      gap: auto;
+      flex-direction: row;
       justify-content: space-between;
+      gap: 24px;
  
       .temp_meassure {
         .temp_label {
@@ -133,7 +137,7 @@
           border-radius: 40px;
          
           .temp_text {
-            @include TitleM;
+            @include TitleXS;
           }
         }
         .temp_exterior {
@@ -146,10 +150,24 @@
           background-color:#47d3ff;
         }
       }
-    }
-   
-    .temp_graphic {
-      display: flex;
+
+      .temp_savedTrees {
+        display: flex;
+        flex-direction: row;
+
+        .temp_text {
+          @include TitleXS;
+          height: 64px;
+          width: 200px;
+        }
+
+        img {
+          min-width: 80px;
+          width: 100%;
+          max-width: 150px;
+          margin: auto;
+        }
+      }
     }
  
     .temp_savedTrees {
@@ -164,6 +182,7 @@
         border: solid 3.9px black;
         border-radius: 40px;
         background-color: #009b72;
+        gap: 8px;
  
         .temp_text {
           font-size: 42px;
@@ -174,10 +193,6 @@
         font-size: 42px;
       }
     }
-  }
-
-  .temp_graphic {
-    width: 100%;
   }
 }
 
@@ -194,7 +209,7 @@
     @include CTA_btn;
     position: relative;
     top: 70px;
-    left: 73%;
+    left: 32%;
   }
 
   .report {
@@ -236,9 +251,12 @@
   @include flexCol;
   width: 100%;
   height: fit-content;
-  gap: 48px;
+  gap: 32px;
   margin-bottom: 48px;
-  padding: 80px 200px 24px;
+  
+  &>div {
+    max-width: 900px;
+  }
 
 
   .incidents_header {
@@ -247,13 +265,15 @@
     align-items: flex-start;
     text-align: left;
     gap: 10px;
+    max-width: 900px;
+    padding: 24px;
 
     .incident_title {
-      @include TitleM;
+      @include TitleS;
     }
 
     .incident_contacts {
-      @include bodyXLRegular;
+      @include bodyLRegular;
       text-align: left;
     }
   }
@@ -293,6 +313,77 @@
         margin: auto;
       }
 
+    }
+  }
+}
+
+@media (min-width: 650px) {
+
+  .profile_header {
+    display: flex;
+    align-items: start;
+    height: fit-content;
+    max-width: 900px;
+    padding: 32px 48px;
+    margin: 16px;
+    width: 100%;
+    gap: 48px;
+
+    .profile_headerText {
+      padding: 0 40px;
+    }
+  }
+
+  .profile_progressBar {
+    padding: 0 48px 24px;
+    .steps_Wrapper  {
+      gap: 4px;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+  }
+  .profile_temp {
+    .co2_tree {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .temp_savedTrees {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
+  .profile_temp {
+    @include flexCol;
+    justify-content: center;
+  }
+
+
+  .profile_incidents  {
+    padding: 24px 48px;
+    width: 100vw;
+    margin: auto;
+
+    .incidents_header {
+      @include flexCol;
+      justify-content: center;
+      align-items: flex-start;
+      text-align: left;
+      padding: 24px;
+      gap: 10px;
+    }
+
+    .incident_title {
+      @include  TitleM;
+    }
+    
+    .incident_contacts {
+      @include bodySRegular;
     }
   }
 }
