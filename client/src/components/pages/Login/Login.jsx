@@ -73,8 +73,8 @@ const Login = () => {
     <section className='login_section'>
       <section className='login_card'>
         <article className='login_header'>
-          <h2 className='TitleL'>Estudio Energético</h2>
-          <p className='bodyXLRegular'>Si has completado el formulario de contacto, tendrás un correo con las instrucciones para conseguir tus datos de acceso</p>
+          <h2 className='form_title TitleM TitleL'>Estudio Energético</h2>
+          <p className='form_desc bodyLRegular bodyXLRegular'>Si has completado el formulario de contacto, tendrás un correo con las instrucciones para conseguir tus datos de acceso</p>
         </article>
 
         <form className='form_login grid-1' onSubmit={handleSubmit(onSubmit)}>
@@ -92,11 +92,11 @@ const Login = () => {
             })} aria-invalid={errors.password ? "true" : "false"} />
           </label>
           {errors.password && <p className='text_error' role="alert">{errors.password?.message}</p>}
-          <p className='bodyMRegular'>¿Has olvidado tu contraseña? Haz click <a onClick={changeVisibleState}>aquí </a> para resetearla</p>
+          <p className='notification'>¿Has olvidado tu contraseña? Haz click <a onClick={changeVisibleState}>aquí </a> para resetearla</p>
           <ResetPasswordModal isVisible={isVisible} />
 
           {loginErrorMessage? <p className='text_error'>{loginErrorMessage}</p> : ""}
-          <button className='cta_btn' type="submit">Enviar</button>
+          <button className='cta_btn_form' type="submit">Enviar</button>
         </form>
       </section>
     </section>

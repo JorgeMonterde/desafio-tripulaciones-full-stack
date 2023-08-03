@@ -1,5 +1,6 @@
 @import '../../utils/mixins.scss';
 @import '../../utils/variables.scss';
+@import '../../utils/media_queries.scss';
 
 
 .login_section {
@@ -7,38 +8,45 @@
   background-color: $primary-color-dark;
   min-height: 100vh;
   min-width: 100vw;
-  padding: 48px 0;
+  padding: 48px 24px;
 
   .login_card {
     @include flexCol;
-    padding: 48px 60px;
+    min-width: 250px;
+    width: 100%;
+    max-width: 768px;
+    padding: 30px;
     border-radius: 30px;
-    background: var(--neutrals-white, #FCFCFC);
-    max-width: 800px;
+    background: $neutral-white;
     margin: auto;
 
     .login_header {
       @include flexCol;
       gap: 10px;
-      margin-bottom: 48px;
+      margin-bottom: 24px;
 
-      .TitleL {
-        @include TitleL;
+      .form_title {
+        @include TitleM;
         text-align: left;
       }
   
-      .bodyXLRegular {
-        @include bodyXXLRegular;
+      .form_desc {
+        @include bodyLRegular;
         text-align: left;
       } 
+
+      .notification {
+        @include bodyMCAPS;
+        margin-bottom: 0;
+      }
     }
 
     .form_login {
       @include grid-1-col;
       text-align: left;
-      gap: 60px;
-      margin-bottom: 32px;
-    
+      gap: 24px;
+      margin-top: 16px;
+
       .bodyXLBold {
         @include bodyXLBold;
         @include flexCol;
@@ -53,7 +61,7 @@
       }
     }
 
-    .bodyMRegular {
+    .notification {
       @include bodyMRegular;
       text-align: left;
       margin-bottom: 48px;
@@ -62,9 +70,35 @@
         color: $primary-base-color;
       }
     }
+  }
+  .cta_btn_form {
+    @include flexCenterCenter;
+    @include TitleXS;
+    min-width: fit-content;
+    min-height: fit-content;
+    width: 150px;
+    height: 48px;
+    border-radius: 40px;
+    border: 3px solid $neutral-black;
+    background: $primary-color-ligth;
+    margin: auto;
+  }
+}
+
+@media (min-width: 650px) {
   
-    .cta_btn {
-      margin: auto;
+  .login_section {
+    min-width: 100vw;
+    margin: auto;
+  
+    .login_card {
+      .login_header {
+        .login_header {
+          .form_title {
+            @include TitleL;
+          }
+        }
+      }
     }
   }
   

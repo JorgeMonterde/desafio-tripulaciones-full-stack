@@ -1,108 +1,103 @@
 @import '../../utils/mixins.scss';
 @import '../../utils/variables.scss';
+@import '../../utils/media_queries.scss';
+
 
 .sevices_header {
   @include flexCol;
-  padding: 96px 200px 0;
-  gap: 48px;
+  padding: 24px;
+  gap: 24px;
 
   .service {
     @include flexCol;
     gap: 32px;
 
-    .TitleL {
-      @include TitleL;
+    .service_title {
+      @include TitleS;
       text-align: left;
     }
 
     .service_content {
-      display: flex;
-      gap: 24px;
-      justify-content: space-between;
+      @include flexCol;
+      align-items: center;
+      text-align: left;
+      gap: 16px;
 
       .service_img {
-        min-width: 400px;
-        height: 48px;
-        background-color: dimgrey;
+        width: 100px;
+        height: 100px
       }
       
-      .bodyXXLRegular {
-        @include bodyXXLRegular;
-        text-align: left;
+      .service_desc {
+        @include bodyMRegular;
+        line-height: 20px;
       }
     }
 
-    
     .service_section {
+      @include flexCol;
       padding: 0 48px;
+      gap: 16px;
 
-      .TitleM {
-        @include TitleM;
+      .servise_title {
+        @include TitleS;
         text-align: left;
         border-bottom: solid 4px $secondary-color;
       }
 
-      .bodyXXLRegular {
+      .servise_desc {
         @include bodyXXLRegular;
         text-align: left
       }
-    }
+    } 
   }
 }
 
-
 .sevices_benefits {
-  @include flexCol;
-  text-align: left;
-  width: 100%;
-  padding: 0 200px 48px;
-  gap: 24px;
-  margin-top: 24px;
-
   
   .benefict {
-    display: flex;
-    justify-content: left;
-    width: 100%;
-    padding: 0 48px;
-    margin-bottom: 24px;
-    gap: 16px;
-    
-    .TitleS {
-      @include TitleS;
-    }
-
-    .bodyXLRegular {
-      @include bodyXLRegular;
-    }
+    @include flexCol;
+    text-align: left;
+    gap: 24px;
+    margin: 0 24px;
 
     .benefict_content {
       @include flexCol;
-      gap: 24px;
-    }
-  }
+      gap: 16px;
+      margin-top: 24px;
 
-  img {
-    min-width: 384px;
-    min-height: 304px;
+      .benefict_title {
+        @include TitleS;
+      }
+
+      .benefict_desc {
+        @include bodyXLRegular; 
+      }
+    }
+
+    img {
+      height: 304px;
+      min-width: 280px;
+      flex: 1 0 0;
+    }
   }
 }
 
 .service_eco {
   @include flexCol;
-  padding: 24px 48px;
+  text-align: left;
+  padding: 24px 48px 0;
   gap: 24px;
 
-  .TitleM {
-    @include TitleM;
-    text-align: left;
+  .solution_title {
+    @include TitleS;
     border-bottom: solid 4px $primary-base-color;
   }
 
   .service_content {
 
-    .bodyXXLRegular {
-      @include bodyXXLRegular;
+    .servise_desc {
+      @include bodyMRegular;
       text-align: left;
     }
   }
@@ -112,52 +107,54 @@
   .service {
     @include flexCol;
     text-align: left;
-    width: 100%;
-    padding: 0 200px 144px;
-    gap: 32px;
+    gap: 24px;
+    padding: 16px 24px 24px;
     
-    .TitleL {
-      @include TitleL;
-      text-align: left;
+    .track_Title {
+      @include TitleS;
     }
   
     .service_content {
-      display: flex;
-      gap: 24px;
-  
-      .service_img {
-        height: 100px;
-        width: 100px;
-      }
-      .bodyXXLRegular {
-        @include bodyXXLRegular;
+
+      .sevice_track {
+        @include flexCol;
         text-align: left;
-      }     
-  }
+        align-items: center;
+        gap: 24px;
+    
+        .service_img {
+          height: 100px;
+          width: 100px;
+        }
+        .track_desc {
+          @include bodyLRegular;
+        }     
+      }
+    }
   }
 }
 
 .beneficts_list {
   @include flexCol;
-  align-items: flex-start;
-  margin-bottom: 48px;
-  padding: 0 260px;
-  margin-top: 96px;
+  text-align: left;
+  padding: 24px;
 
   .title_outLine {
-    @include TitleL;
+    @include TitleS;
     width: fit-content;
     padding: 16px 40px;
     margin: 0 auto 48px;
     border-radius: 90px;
     border: 5px solid $primary-base-color;
   }
-  .TitleS {
-    @include TitleS;
-    text-align: left;
+  .beneficts_Title {
+    @include bodyLBold;
+    margin-bottom: 48px;
   }
   .benefict_content {
-    @include flexCenterCenter;
+    display: flex;
+    width: 100%;
+    align-items: center;
     text-align: left;
     padding: 16px;
     gap: 24px;
@@ -170,7 +167,7 @@
       width: 100px;
     }
 
-    .bodyXLRegular {
+    .benefict_title {
       @include bodyXLRegular;
     }
   }
@@ -197,5 +194,185 @@
         @include bodyXLRegular;
       }
     }
+  }
+}
+
+.cta_btn {
+  display: flex;
+  margin: auto;
+}
+
+
+@media (min-width: 768px) {
+  
+}
+
+@media (min-width: 1279px) {
+  .sevices_header {
+    align-items: start;
+    text-align: left;
+    padding: 48px 200px;
+    gap: 48px;
+    
+    .service {
+      margin-top: 24px;
+
+      .service_section {
+        text-align: left;
+        padding: 24px 48px;
+    
+        .solution_title {
+          @include TitleL;
+        }
+    
+        .service_desc {
+          @include bodyXXLRegular;
+        }
+      }
+      .benefict_title {
+        @include TitleS;
+      }
+
+      .benefict_desc {
+        @include bodyXLRegular;
+      }
+
+      .service_content  {
+        display: flex;
+        flex-direction: row;
+        align-items: start;
+
+        .servise_desc {
+          @include bodyXXLRegular
+        }
+      }  
+    }
+  }
+  
+  .sevices_benefits {
+    flex-direction: row;
+    margin: 0;
+    padding: 24px 200px;
+
+    .beneficts {
+      .benefict {
+        .benefict_content {
+          .TitleS {
+            @include TitleS;
+          }
+    
+          .bodyXLRegular {
+            @include bodyXLRegular;
+          }
+        }
+      }
+      .service_eco {
+        padding: 0;
+    
+        .TitleM {
+          @include TitleM;
+        }
+    
+        .service_content {
+          .bodyXLRegular {
+            @include bodyXLRegular;
+          }
+        }
+      }
+    }
+  }
+
+  .service_eco {
+    @include flexCol;
+    text-align: left;
+    padding: 24px 48px 0;
+    gap: 24px;
+  
+    .solution_title {
+      @include TitleS;
+      border-bottom: solid 4px $primary-base-color;
+    }
+  
+    .service_content {
+  
+      .servise_desc {
+        @include bodyMRegular;
+        text-align: left;
+      }
+    }
+  }
+
+  .sevice_track {
+    padding: 96px 200px;
+    min-width: 100vw;
+    margin: auto;
+
+    .service {
+      .service_content {
+        display: flex;
+        flex-direction: row;
+        .track_Title {
+          @include TitleL;
+        }
+    
+        .track_desc {
+          @include bodyXXLRegular;
+        }
+      }
+    }
+  }
+
+  .beneficts_list {
+    padding: 96px 260px;
+    width: 100%;
+
+    .title_outLine {
+      @include TitleL;
+      min-width: fit-content;
+      margin-bottom: 48px;
+      height: 69px;
+    }
+
+    .benefict_content {
+      .benefict_title {
+        @include TitleS;
+      }
+    }
+  }
+
+  .marquee {
+    background-color: #A1E3D8;
+
+    .marquee-text {
+      background-color: #A1E3D8;
+
+      .TitleXL {
+        @include TitleXL;
+      }
+
+      .marquee-star {
+        height: 50px;
+        width: 50px;
+      }
+    }
+  }
+}
+
+@media (min-width: 1512px) {
+  .sevices_benefits {
+    min-width: 100vw;
+    margin: auto;
+  }
+  .service_title {
+    @include TitleM;
+  }
+  .sevice_energy {
+    min-width: 100vw;
+    margin: auto;
+  }
+
+  .beneficts_list {
+    min-width: 100vw;
+    margin: auto;
   }
 }

@@ -1,6 +1,5 @@
 import {/*useState,*/ useContext} from "react";
 // import { useNavigate } from "react-router-dom";
-import { AiFillFacebook, AiOutlineInstagram, AiOutlineTwitter } from "react-icons/ai";
 import { Navbar } from "@nextui-org/react";
 import { Link, useNavigate } from 'react-router-dom';
 

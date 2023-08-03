@@ -1,62 +1,62 @@
 @import '../../utils/mixins.scss';
+@import '../../utils/media_queries.scss';
+@import '../../utils/variables.scss';
 
 
 .profile_header {
-  padding: 32px 96px;
   display: flex;
+  height: fit-content;
+  padding: 32px 96px;
+  margin: 48px;
   width: 100%;
-  height: 244px;
   gap: 48px;
-  margin: 48px 0;
 
 
   .profile_avatar {
-    min-width: 180px;
+    width: 180px;
     height: 180px;
     border-radius: 50%;
+    margin: auto;
   }
-
 
   .profile_headerText {
     display: flex;
     text-align: left;
     flex-direction: column;
+    padding: 0 96px 40px;
     gap: 24px;
     width: 100%;
 
-    .TitleM {
+    .Comunity {
       @include TitleM;
     }
-    p {
-      @include bodyLRegular;
+    .user_id, .adrress {
+      @include bodyLRegular;  
 
-      .bold {
-        font-weight: 700;
-      }
+    }
+    .bold {
+      @include bodyXLRegular;
+      font-weight: 700;
     }
   }
 }
-
 
 .profile_progressBar {
   @include flexCol;
   width: 100%;
   margin-top: 0;
-  padding: 0 200px 40px;
-
+  padding: 0 96px 40px;
 
   .legend {
-    @include bodyMRegular;
+    @include bodyLRegular;
     @include flexCenterCenter;
     padding: 24px 0;
     flex-direction: row;
     gap: 48px;
 
-
     .legend_title {
-      @include bodyMBold;
+      @include TitleS;
     }
-
 
     li {
       @include bodyMRegular;
@@ -87,36 +87,32 @@
   }
 }
 
-
 .profile_temperature {
-
 
   .temp_header {
     @include flexCol;
     text-align: left;
     width: 100%;
-    padding: 24px 200px 48px;
+    padding: 48px 96px;
     margin: 48px 0;
     gap: 10px;
  
-    h2 {
+    .real_temp {
       @include TitleM;
     }
-
 
     .bodyXXLRegular {
       @include bodyXXLRegular;
     }
   }
 
-
   .profile_temp {
     display: flex;
     width: 100%;
-    gap: 72px;
-    margin-bottom: 48px;
-    padding: 0 200px 24px;
- 
+    gap: 36px;
+    padding: 0 96px 48px;
+    justify-content: space-between;
+
     .temp_user {
       display: flex;
       flex-direction: column;
@@ -125,27 +121,25 @@
  
       .temp_meassure {
         .temp_label {
-          font-size: 1.3rem;
+          @include bodyMRegular;
         }
         .temp_box {
           @include flexCol;
-          height: 72.8px;
-          width: 228.8px;
+          width: 160px;
+          padding: 4px 20px;
           justify-content: center;
           align-items: center;
           border: solid 3.9px black;
           border-radius: 40px;
-         
          
           .temp_text {
             @include TitleM;
           }
         }
         .temp_exterior {
-          @include TitleL;
+          @include TitleS;
           background-color: #ee740d;
         }
-
 
         .temp_interior {
           @include TitleL;
@@ -161,7 +155,7 @@
     .temp_savedTrees {
       .temp_box {
         @include flexCol;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
         height: 72.8px;
         width: 228.8px;
@@ -181,6 +175,10 @@
       }
     }
   }
+
+  .temp_graphic {
+    width: 100%;
+  }
 }
 
 .pdf_report {
@@ -192,8 +190,11 @@
     padding: 48px;
   }
 
-  .cta_btn {
-    margin-left: 73%;
+  .cta_pdf {
+    @include CTA_btn;
+    position: relative;
+    top: 70px;
+    left: 73%;
   }
 
   .report {
@@ -214,6 +215,7 @@
       border-radius: 0px 40px 40px 0px;
       border: 3px solid $neutral-black;
       background: $primary-color-ligth;
+      z-index: 100;
     }
 
     .arrow_left {
@@ -225,10 +227,10 @@
       border-radius: 40px 0 0 40px;
       border: 3px solid $neutral-black;
       background: var(--primary-light, #A1E3D8);
+      z-index: 100;
     }
   }
 }
-
 
 .profile_incidents {
   @include flexCol;
@@ -243,15 +245,14 @@
     @include flexCol;
     justify-content: center;
     align-items: flex-start;
+    text-align: left;
     gap: 10px;
 
-
-    .TitleM {
+    .incident_title {
       @include TitleM;
     }
 
-
-    .bodyXLRegular {
+    .incident_contacts {
       @include bodyXLRegular;
       text-align: left;
     }
@@ -287,34 +288,11 @@
         }
       }
 
-      .TitleXS {
-      @include TitleXS;
-      @include flexCenterCenter;
-      width: 150px;
-      height: 48px;
-      border: solid 2px #000;
-      background-color: #fff;
-      margin: auto;
-    }
-    }
+      .cta_incidents {
+        @include CTA_btn;
+        margin: auto;
+      }
 
-
-    // .incidens_form {
-    //   height: 144px;
-    //   display: flex;
-    //   flex-direction: column;
-    //   justify-content: center;
-    //   gap: 48px;
-    //   padding: 12px;
-    //   background-color: #d9d9d9;
- 
-    //   input {
-    //     @include bodyLRegular;
-    //     border: none;
-    //     background-color: #d9d9d9;
-    //   }
- 
-    
-    // }
+    }
   }
 }

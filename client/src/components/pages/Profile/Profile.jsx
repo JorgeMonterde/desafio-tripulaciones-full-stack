@@ -48,7 +48,7 @@ const steps = [
 const Profile = () => {
   const [pageAmount, setPageAmount] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
-  const [showGraphic, setshowGraphic] = useState(true);
+  const [showGraphic, setshowGraphic] = useState(false);
   const [pdfName, setPpdfName] = useState('');
   //const [clientInfo, setClientInfo] = useState({});
   const [buildingInfo, setBuildingInfo] = useState({});
@@ -110,15 +110,14 @@ const Profile = () => {
       <section className='profile_header'>
         <img className='profile_avatar' src='../../../../public/assets/Profile/userPicture.jpg'/>
         <article className='profile_headerText'>
-          <h2 className='TitleM'>{buildingInfo.name_of_community}</h2>
-          <p className='bodyLRegular'><span className='bold'>Id de usuario: </span>{clientInfo.client_id}</p>
-          <p className='bodyLRegular'><span className='bold'>Dirección: </span>{buildingInfo.address}</p>
+          <h2 className='Comunity'>{buildingInfo.name_of_community}</h2>
+          <p className='user_id'><span className='bold'>Id de usuario: </span>{clientInfo.client_id}</p>
+          <p className='adrress'><span className='bold'>Dirección: </span>{buildingInfo.address}</p>
           </article>
       </section>
 
       <section className='profile_progressBar'>
         <StepBar steps={stepBarSteps}/>
-
 
         <ul className='legend'>
           <li className='legend_title'>Leyenda:</li>
@@ -143,8 +142,8 @@ const Profile = () => {
 
       {showGraphic ? <section className='profile_temperature'>
         <article className='temp_header'>
-          <h2 className='TitleM'>Tus lecturas en tiempo real</h2>
-          <p className='bodyXXLRegular'>Enn este espacio puedes comprobar en tiempo real la temperatura registrada por los termómetros instalados en tu comunidad, así como el CO2 que habéis conseguido evitar y los árboles que habéis salvado desde que se ejecutó el proyecto:</p>
+          <h2 className='real_temp'>Tus lecturas en tiempo real</h2>
+          <p className='tem_desc'>En este espacio puedes comprobar en tiempo real la temperatura registrada por los termómetros instalados en tu comunidad, así como el CO2 que habéis conseguido evitar y los árboles que habéis salvado desde que se ejecutó el proyecto:</p>
         </article>
         <section className='profile_temp'>
           <section className='temp_user'>
@@ -164,7 +163,6 @@ const Profile = () => {
 
           <section className='temp_graphic'>
             <LinesChart city={buildingInfo.city}/>
-            {/* <img src='../../../../public/assets/Chart.png' alt='gráfica de temperaturas'/> */}
           </section>
          
           <section className='temp_savedTrees'>
@@ -180,7 +178,7 @@ const Profile = () => {
         </section>
       </section>
       :(pdfName && <section className='pdf_report'>
-        <button className='cta_btn' onClick={handleClosePdf}>Cerrar</button>
+        <button className='cta_pdf' onClick={handleClosePdf}>Cerrar</button>
         <Document file={pdfName}  onLoadSuccess={onDocumentLoadSuccess}>
           <Page pageNumber={pageNumber} />
         </Document>
@@ -194,8 +192,8 @@ const Profile = () => {
 
         <section className='profile_incidents'>
           <article className='incidents_header'>
-            <h2 className='TitleM'>¿Algo no va bien?</h2>
-            <p className='bodyXLRegular'>Pregúntale a nuestro chatbot, si tu problema no se soluciona, rellena el formulario inferior.
+            <h2 className='incident_title'>¿Algo no va bien?</h2>
+            <p className='incident_contacts'>Pregúntale a nuestro chatbot, si tu problema no se soluciona, rellena el formulario inferior.
   ¿No puedes esperar? Puedes llamar  al (+34) 919 01 72 57 de lunes a viernes de 9:00 a 20:00</p>
           </article>
 
